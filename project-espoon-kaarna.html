@@ -4,15 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>As Oy Espoon Kaarna - Valttikodit</title>
+    <title>Espoon Kaarna - Valttikodit</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Inline override for specific assets -->
+    <style>
+        .hero-kaarna {
+            background-image: url('kaarna_hero_forest_1769605587193.png');
+        }
+    </style>
 </head>
 
-<body>
+<body data-project-id="espoon-kaarna">
 
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Main Navigation (Transparent) -->
+    <nav class="navbar" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);">
         <div class="container nav-container">
             <a href="index.html" class="logo">Valttikodit</a>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
@@ -20,137 +26,217 @@
             </button>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
-                <!-- <li><a href="collection.html" class="nav-link">Mallisto</a></li> -->
-                <li><a href="projects.html" class="nav-link active">Myytävät kohteet (3)</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
-                <li><a href="stories.html" class="nav-link">Tarinoita</a></li>
                 <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero"
-        style="background-image: url('intro-image.png'); background-size: cover; background-position: center; position: relative; height: 60vh;">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content text-center">
-            <span class="status-badge marketing"
-                style="font-size: 1rem; padding: 0.5rem 1.5rem; margin-bottom: 2rem;">Vain 2 asuntoa vapaana!</span>
-            <h1>As Oy Espoon Kaarna</h1>
-            <p style="font-size: 1.5rem;">Modernia asumista Saunalahden luonnonhelmassa.</p>
+    <!-- Immersive Hero -->
+    <header class="immersive-hero hero-kaarna">
+        <div class="immersive-content">
+            <div class="immersive-subtitle">Ennakkomarkkinoinnissa</div>
+            <h1 class="immersive-title">As Oy Espoon Kaarna</h1>
+            <p style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s;">
+                Saunalahti, Espoo &bull; 4 Paritaloa &bull; 120-140 m²
+            </p>
         </div>
-    </div>
+    </header>
 
-    <!-- Main Content -->
-    <section class="section">
+    <!-- Sticky Project Nav -->
+    <nav class="sticky-project-nav">
+        <a href="#esittely" class="sticky-nav-link active">Esittely</a>
+        <a href="#asunnot" class="sticky-nav-link">Asunnot</a>
+        <a href="#talo" class="sticky-nav-link">Talomalli</a>
+        <a href="#sijainti" class="sticky-nav-link">Sijainti</a>
+        <a href="#yhteys" class="sticky-nav-link">Ota yhteyttä</a>
+    </nav>
+
+    <!-- Intro / Magazine Section -->
+    <section id="esittely" class="magazine-section">
         <div class="container">
-
-            <!-- Description & Model Link -->
-            <div class="split-section" style="margin-bottom: 6rem;">
-                <div class="split-content">
-                    <h2>Koti, joka kasvaa kanssasi.</h2>
-                    <p>Espoon Kaarna rakentuu suositulle Saunalahden alueelle. Metsään rajoittuva tontti tarjoaa omaa
-                        rauhaa, mutta palvelut ovat lähellä.</p>
-
-                    <div
-                        style="background-color: #f5f5f5; padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-emerald);">
-                        <p style="margin-bottom: 0.5rem; font-weight: 600;">Talon malli</p>
-                        <p style="margin-bottom: 1rem;">Tässä kohteessa asut suositussa <strong>Kasvun paikka</strong>
-                            -mallissa.</p>
-                        <a href="collection.html?model=family" class="btn btn-secondary"
-                            style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">Tutustu talomalliin &rarr;</a>
+            <div class="magazine-grid">
+                <div class="magazine-text">
+                    <h2>Luonnonrauhaa ja modernia arkkitehtuuria.</h2>
+                    <p class="magazine-intro">
+                        Espoon Kaarna edustaa uuden ajan pientaloasumista, jossa yhdistyvät tinkimätön estetiikka,
+                        ekologisuus ja lapsiperheen arjen sujuvuus.
+                    </p>
+                    <p>
+                        Sijainti Saunalahden halutulla alueella, päättyvän tien päässä, takaa rauhan. Isot ikkunat
+                        tuovat ympäröivän metsämaiseman osaksi sisustusta. Täällä et asu vain neliöissä, vaan osana
+                        luontoa.
+                    </p>
+                    <div class="magazine-quote">
+                        "Suunnittelun lähtökohtana oli luoda koteja, jotka hengittävät samaan tahtiin ympäröivän luonnon
+                        kanssa."
                     </div>
+                </div>
+                <div class="magazine-image">
+                    <!-- Placeholder or generated interior if available -->
+                    <img src="intro-image.png" alt="Interior mood"
+                        style="width: 100%; height: auto; border-radius: 4px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Strip -->
+    <section class="section" style="padding: 0; background: #fafaf9;">
+        <div class="gallery-strip">
+            <img src="kaarna_hero_forest_1769605587193.png" class="gallery-item" alt="Exterior">
+            <img src="model-family-exterior.png" class="gallery-item" alt="Detail">
+            <img src="intro-image.png" class="gallery-item" alt="Interior Living">
+            <img src="hero-bg.png" class="gallery-item" alt="Kitchen">
+        </div>
+    </section>
+
+    <!-- Progress / Timeline (Dynamic) -->
+    <section class="section">
+        <div class="container text-center">
+            <h2>Hankkeen vaihe</h2>
+            <!-- This will be populated/updated by main.js based on ID -->
+            <div class="timeline-container" id="dynamic-timeline">
+                <p>Ladataan aikataulua...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartments Layout -->
+    <section id="asunnot" class="section" style="background-color: var(--color-white);">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 3rem;">Vapaat asunnot</h2>
+            <table class="apartment-table">
+                <thead>
+                    <tr>
+                        <th>Asunto</th>
+                        <th>Malli</th>
+                        <th>Pinta-ala</th>
+                        <th>Mh</th>
+                        <th>Velaton hinta</th>
+                        <th>Tila</th>
+                    </tr>
+                </thead>
+                <!-- Hardcoded for V1, could be dynamic -->
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 700;">A1</td>
+                        <td>Kasvun paikka</td>
+                        <td>120 m²</td>
+                        <td>4h+k+s</td>
+                        <td style="font-weight: 700;">445 000 €</td>
+                        <td class="status-free">Vapaa</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 700;">A2</td>
+                        <td>Kasvun paikka</td>
+                        <td>120 m²</td>
+                        <td>4h+k+s</td>
+                        <td style="font-weight: 700;">445 000 €</td>
+                        <td class="status-reserved">Varattu</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 700;">B1</td>
+                        <td>Kasvun paikka</td>
+                        <td>120 m²</td>
+                        <td>4h+k+s</td>
+                        <td style="color: #999;">455 000 €</td>
+                        <td class="status-sold">Myyty</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 700;">B2</td>
+                        <td>Kasvun paikka</td>
+                        <td>120 m²</td>
+                        <td>4h+k+s</td>
+                        <td style="font-weight: 700;">455 000 €</td>
+                        <td class="status-free">Vapaa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- House Model / Floorplan Inline -->
+    <section id="talo" class="section">
+        <div class="container">
+            <div class="split-section">
+                <div class="split-content">
+                    <h2>Kasvun paikka -malli</h2>
+                    <p>Espoon Kaarna rakennetaan suositulla "Kasvun paikka" -mallilla, joka on suunniteltu joustamaan
+                        elämäntilanteiden mukaan. </p>
+                    <ul style="margin-bottom: 2rem; padding-left: 1.5rem; color: var(--color-text-secondary);">
+                        <li>3 makuuhuonetta</li>
+                        <li>Avara oleskelutila korotetulla sisäkatolla</li>
+                        <li>Iso katettu terassi</li>
+                        <li>Mahdollisuus parveen tai lisähuoneeseen</li>
+                    </ul>
+
+                    <button class="btn btn-primary" onclick="window.openModelDetail('family')">
+                        Avaa pohjakuva ja tiedot
+                    </button>
                 </div>
                 <div class="split-image">
-                    <img src="model-family-exterior.png" alt="Espoon Kaarna Exterior">
+                    <!-- Floorplan preview -->
+                    <img src="kaarna_floorplan_1769605625549.png" alt="Pohjakuva"
+                        style="border: 1px solid #eee; padding: 1rem; background: white; cursor: pointer;"
+                        onclick="window.openModelDetail('family')">
                 </div>
             </div>
 
-            <!-- Timeline -->
-            <div style="margin-bottom: 6rem;">
-                <h3 class="text-center" style="margin-bottom: 3rem;">Hankkeen eteneminen</h3>
-                <div class="timeline-container">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-steps">
-                        <!-- Step 1 Done -->
-                        <div class="timeline-step completed">
-                            <div class="step-circle"><span class="material-icons-round">check</span></div>
-                            <div class="step-label">Tontti & Luvat</div>
-                        </div>
-                        <!-- Step 2 Active -->
-                        <div class="timeline-step active">
-                            <div class="step-circle">2</div>
-                            <div class="step-label">Ennakkomarkkinointi</div>
-                        </div>
-                        <!-- Step 3 Future -->
-                        <div class="timeline-step">
-                            <div class="step-circle">3</div>
-                            <div class="step-label">Rakentaminen<br><small
-                                    style="font-weight: 400; color: var(--color-text-secondary);">Arvio 06/2026</small>
-                            </div>
-                        </div>
-                        <!-- Step 4 Future -->
-                        <div class="timeline-step">
-                            <div class="step-circle">4</div>
-                            <div class="step-label">Muutto</div>
-                        </div>
+            <!-- This container is used by main.js to inject the detailed view inline/overlay -->
+            <div id="model-details-view" class="hidden" style="margin-top: 4rem; scroll-margin-top: 100px;">
+                <!-- Close button for inline view -->
+                <div style="text-align: right; margin-bottom: 1rem;">
+                    <button onclick="document.getElementById('model-details-view').classList.add('hidden')"
+                        style="background:none; border:none; cursor:pointer;">&times; Sulje</button>
+                </div>
+
+                <div class="inline-model-box">
+                    <h2 id="detail-title">Malli</h2>
+                    <p id="detail-size" class="text-center"
+                        style="font-weight: bold; color: var(--color-accent-emerald);"></p>
+                    <div id="detail-description" style="max-width: 700px; margin: 0 auto 2rem;"></div>
+
+                    <img id="detail-image" src="" style="max-width: 100%; border-radius: 4px; margin-bottom: 2rem;">
+
+                    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+                        <button onclick="prevImage()" class="btn btn-secondary">Edellinen</button>
+                        <button onclick="nextImage()" class="btn btn-secondary">Seuraava</button>
+                    </div>
+
+                    <div id="detail-specs"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: left; max-width: 800px; margin: 0 auto;">
+                        <!-- Specs go here -->
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Apartment List -->
-            <div>
-                <h2 style="margin-bottom: 2rem;">Asunnot</h2>
-                <table class="apartment-table">
-                    <thead>
-                        <tr>
-                            <th>Asunto</th>
-                            <th>Malli</th>
-                            <th>Koko</th>
-                            <th>Hinta</th>
-                            <th>Tila</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="font-weight: 600;">A1</td>
-                            <td>Kasvun paikka</td>
-                            <td>120 m²</td>
-                            <td style="font-weight: 600;">445 000 €</td>
-                            <td class="status-free">Vapaa</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 600;">A2</td>
-                            <td>Kasvun paikka</td>
-                            <td>120 m²</td>
-                            <td style="font-weight: 600;">445 000 €</td>
-                            <td class="status-reserved">Varattu</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 600;">B1</td>
-                            <td>Kasvun paikka</td>
-                            <td>120 m²</td>
-                            <td style="font-family: monospace;">455 000 €</td>
-                            <td class="status-sold">Myyty</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 600;">B2</td>
-                            <td>Kasvun paikka</td>
-                            <td>120 m²</td>
-                            <td style="font-weight: 600;">455 000 €</td>
-                            <td class="status-free">Vapaa</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 600;">C1</td>
-                            <td>Kasvun paikka +</td>
-                            <td>140 m²</td>
-                            <td style="font-family: monospace;">510 000 €</td>
-                            <td class="status-sold">Myyty</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Location / Map -->
+    <section id="sijainti" class="section" style="background: #fafaf9;">
+        <div class="container text-center">
+            <h2 style="margin-bottom: 2rem;">Sijainti</h2>
+            <div class="map-placeholder">
+                <div>
+                    <span class="material-icons-round"
+                        style="font-size: 3rem; color: var(--color-text-secondary);">map</span>
+                    <p>Kartta latautuu (Placeholder)</p>
+                    <p>Saunalahdenkatu, 02330 Espoo</p>
+                </div>
             </div>
+        </div>
+    </section>
 
+    <!-- Contact CTA -->
+    <section id="yhteys" class="section">
+        <div class="container">
+            <div class="quote-box text-center" style="border: none; box-shadow: none; background: transparent;">
+                <h2>Kiinnostuitko Kaarnasta?</h2>
+                <p>Ota yhteyttä ja varaa oma esittelysi tai kysy lisätietoja ennakkomarkkinoinnista.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä myyntiin</a>
+            </div>
         </div>
     </section>
 
@@ -159,7 +245,6 @@
         <div class="container footer-content">
             <div>
                 <h3>Valttikodit Oy</h3>
-                <p>Rakennamme koteja, joissa viihdyt.</p>
             </div>
             <div>
                 <h3>Yhteystiedot</h3>
@@ -173,6 +258,65 @@
         </div>
     </footer>
 
+    <!-- Script that auto-populates timeline based on ID -->
+    <script src="main.js"></script>
+    <script>
+        // Additional Page Specific Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for main data load, then update timeline specific to this project
+            const checkData = setInterval(() => {
+                // Determine logic based on loaded project data
+                // Finds project with status match in appState
+                // For now, let's mock the timeline update if appState is ready
+                if (window.appState && window.appState.loaded) {
+                    clearInterval(checkData);
+                    updateTimeline();
+                }
+            }, 500);
+
+            function updateTimeline() {
+                const projectId = 'espoon-kaarna';
+                const project = window.appState.projects.find(p => p.id === projectId || p.name.includes('Kaarna'));
+
+                if (!project) return;
+
+                // Logic based on progress
+                /*
+                   0-24%: Suunnittelu
+                   25-49%: Ennakkomarkkinointi
+                   50-99%: Rakentaminen
+                   100%: Muutto
+                */
+                const p = project.progress || 0;
+                let activeStep = 1;
+                if (p >= 25) activeStep = 2;
+                if (p >= 50) activeStep = 3;
+                if (p >= 100) activeStep = 4;
+
+                const timelineHTML = `
+                    <div class="timeline-steps">
+                        <div class="timeline-step ${activeStep >= 1 ? (activeStep > 1 ? 'completed' : 'active') : ''}">
+                            <div class="step-circle">${activeStep > 1 ? '✓' : '1'}</div>
+                            <div class="step-label">Suunnittelu</div>
+                        </div>
+                        <div class="timeline-step ${activeStep >= 2 ? (activeStep > 2 ? 'completed' : 'active') : ''}">
+                            <div class="step-circle">${activeStep > 2 ? '✓' : '2'}</div>
+                            <div class="step-label">Ennakkomarkkinointi</div>
+                        </div>
+                        <div class="timeline-step ${activeStep >= 3 ? (activeStep > 3 ? 'completed' : 'active') : ''}">
+                            <div class="step-circle">${activeStep > 3 ? '✓' : '3'}</div>
+                            <div class="step-label">Rakentaminen</div>
+                        </div>
+                        <div class="timeline-step ${activeStep >= 4 ? 'completed' : ''}">
+                            <div class="step-circle">4</div>
+                            <div class="step-label">Muutto</div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('dynamic-timeline').innerHTML = timelineHTML;
+            }
+        });
+    </script>
 </body>
 
 </html>
