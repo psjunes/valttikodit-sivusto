@@ -326,7 +326,7 @@ a {
 }
 
 .hero-content h1 {
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 400;
     margin-bottom: 2rem;
     color: var(--color-white);
@@ -358,7 +358,7 @@ a {
 }
 
 .split-content h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 2rem;
 }
 
@@ -428,8 +428,8 @@ a {
 /* Collection Grid */
 .collection-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
     margin-top: 3rem;
 }
 
@@ -543,13 +543,27 @@ a {
         font-size: 2.5rem;
     }
 
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
     .split-section {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
 
+    .section {
+        padding: 4rem 0;
+    }
+
     .trust-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .trust-item {
+        padding: 2rem;
     }
 
     /* Mobile Navigation */
@@ -577,8 +591,9 @@ a {
     }
 
     .hero {
-        height: 80vh;
-        margin: 0.5rem;
+        height: 70vh;
+        margin: 0;
+        border-radius: 0;
     }
 }
 
