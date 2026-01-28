@@ -143,7 +143,11 @@ async function fetchAllData() {
         const modelsText = await modelsRes.text();
 
         siteContent = processContentData(parseCSV(contentText));
+        console.log('Raw Content CSV:', contentText.substring(0, 100)); // Log first 100 chars
+
         projectsData = parseCSV(projectsText);
+        console.log('Raw Projects CSV:', projectsText.substring(0, 100));
+        console.log('Parsed Projects Data:', projectsData);
 
         // Models need special structural parsing
         const flatModels = parseCSV(modelsText);
