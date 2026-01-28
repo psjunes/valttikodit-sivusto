@@ -10,7 +10,7 @@
     <!-- Inline override for specific assets -->
     <style>
         .hero-kaarna {
-            background-image: url('kaarna_hero_forest_1769605587193.png');
+            background-image: url('kaarna_hero_sunny_1769607005303.png');
         }
     </style>
 </head>
@@ -36,22 +36,16 @@
     <!-- Immersive Hero -->
     <header class="immersive-hero hero-kaarna">
         <div class="immersive-content">
-            <div class="immersive-subtitle">Ennakkomarkkinoinnissa</div>
-            <h1 class="immersive-title">As Oy Espoon Kaarna</h1>
-            <p style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s;">
+            <div class="immersive-subtitle" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Ennakkomarkkinoinnissa</div>
+            <h1 class="immersive-title" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5);">As Oy Espoon Kaarna</h1>
+            <p
+                style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
                 Saunalahti, Espoo &bull; 4 Paritaloa &bull; 120-140 m²
             </p>
         </div>
     </header>
 
-    <!-- Sticky Project Nav -->
-    <nav class="sticky-project-nav">
-        <a href="#esittely" class="sticky-nav-link active">Esittely</a>
-        <a href="#asunnot" class="sticky-nav-link">Asunnot</a>
-        <a href="#talo" class="sticky-nav-link">Talomalli</a>
-        <a href="#sijainti" class="sticky-nav-link">Sijainti</a>
-        <a href="#yhteys" class="sticky-nav-link">Ota yhteyttä</a>
-    </nav>
+    <!-- Sticky Project Nav Removed -->
 
     <!-- Intro / Magazine Section -->
     <section id="esittely" class="magazine-section">
@@ -85,7 +79,7 @@
     <!-- Gallery Strip -->
     <section class="section" style="padding: 0; background: #fafaf9;">
         <div class="gallery-strip">
-            <img src="kaarna_hero_forest_1769605587193.png" class="gallery-item" alt="Exterior">
+            <img src="kaarna_hero_sunny_1769607005303.png" class="gallery-item" alt="Exterior">
             <img src="model-family-exterior.png" class="gallery-item" alt="Detail">
             <img src="intro-image.png" class="gallery-item" alt="Interior Living">
             <img src="hero-bg.png" class="gallery-item" alt="Kitchen">
@@ -173,7 +167,7 @@
                     </ul>
 
                     <button class="btn btn-primary" onclick="window.openModelDetail('family')">
-                        Avaa pohjakuva ja tiedot
+                        Avaa tarkemmat tiedot
                     </button>
                 </div>
                 <div class="split-image">
@@ -205,10 +199,22 @@
                         <button onclick="nextImage()" class="btn btn-secondary">Seuraava</button>
                     </div>
 
-                    <div id="detail-specs"
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: left; max-width: 800px; margin: 0 auto;">
-                        <!-- Specs go here -->
-                    </div>
+                    <!-- TEKNISET TIEDOT TAULUKKO -->
+                    <h3 style="margin-bottom: 1rem;">Tekniset tiedot</h3>
+                    <table class="apartment-table" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                        <thead>
+                            <tr>
+                                <th>Ominaisuus</th>
+                                <th>Tieto</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detail-specs-table-body">
+                            <!-- Populated by main.js -->
+                        </tbody>
+                    </table>
+                    <!-- Fallback specs grid for redundancy -->
+                    <div id="detail-specs" style="display: none;"></div>
+
                 </div>
             </div>
         </div>

@@ -341,11 +341,19 @@ window.openModelDetail = function (id) {
     document.getElementById('detail-size').innerText = currentDetailData.size;
     document.getElementById('detail-description').innerHTML = currentDetailData.description;
 
-    // Specs
-    const specs = document.getElementById('detail-specs');
-    specs.innerHTML = currentDetailData.specs.map(s =>
-        `<div class="spec-item"><span class="spec-label">${s.label}</span><span class="spec-value">${s.value}</span></div>`
-    ).join('');
+    // Specs in table
+    const tableBody = document.getElementById('detail-specs-table-body');
+    if (tableBody) {
+        tableBody.innerHTML = currentDetailData.specs.map(s =>
+            `<tr><td style="font-weight:600;">${s.label}</td><td>${s.value}</td></tr>`
+        ).join('');
+        // Also add detailed specs if any
+        if (currentDetailData.detailedSpecs) {
+            tableBody.innerHTML += currentDetailData.detailedSpecs.map(s =>
+                `<tr><td style="font-weight:600;">${s.label}</td><td>${s.value}</td></tr>`
+            ).join('');
+        }
+    }
 
     // Image
     currentDetailImgIdx = 0;
