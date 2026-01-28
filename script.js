@@ -14,33 +14,60 @@ function parseCSV(csvText) {
     const lines = csvText.split(/\r?\n/);
     if (lines.length < 2) return [];
 
-    // Simple CSV parser that handles basic comma splitting
-    // Note: Does not handle commas inside quotes efficiently, but sufficient for simple data
-    const headers = lines[0].split(',').map(h => h.trim());
+    const headers = parseCSVLine(lines[0]);
     const result = [];
 
     for (let i = 1; i < lines.length; i++) {
         if (!lines[i].trim()) continue;
 
-        // Handle basic split but respecting potential future quote needs
-        const currentLine = lines[i].split(',');
-
+        const currentLine = parseCSVLine(lines[i]);
         let obj = {};
-        // Safety check if line doesn't match headers
-        if (currentLine.length < headers.length) continue;
+
+        // Skip malformed lines very strictly? Or loose?
+        // Loose allows for missing trailing comma
 
         for (let j = 0; j < headers.length; j++) {
-            let value = currentLine[j] ? currentLine[j].trim() : '';
+            let value = currentLine[j] || '';
             const key = headers[j];
 
             // Type conversions
             if (key === 'progress') value = parseInt(value, 10) || 0;
-            if (key === 'images') value = value.split('|').map(img => img.trim()); // Use pipe for multi-image
+            if (key === 'images') value = value.split('|').map(img => img.trim());
 
             obj[key] = value;
         }
         result.push(obj);
     }
+    return result;
+}
+
+// Helper to parse a single CSV line respecting quotes
+function parseCSVLine(text) {
+    const result = [];
+    let start = 0;
+    let inQuotes = false;
+
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === '"') {
+            inQuotes = !inQuotes;
+        } else if (text[i] === ',' && !inQuotes) {
+            let field = text.substring(start, i).trim();
+            // Remove surrounding quotes and unescape double quotes
+            if (field.startsWith('"') && field.endsWith('"')) {
+                field = field.substring(1, field.length - 1).replace(/""/g, '"');
+            }
+            result.push(field);
+            start = i + 1;
+        }
+    }
+
+    // Push the last field
+    let field = text.substring(start).trim();
+    if (field.startsWith('"') && field.endsWith('"')) {
+        field = field.substring(1, field.length - 1).replace(/""/g, '"');
+    }
+    result.push(field);
+
     return result;
 }
 
