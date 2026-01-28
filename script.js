@@ -304,6 +304,11 @@ function renderProjectsList() {
 
     grid.innerHTML = ''; // Clear default/static content
 
+    if (projectsData.length === 0) {
+        grid.innerHTML = '<p style="text-align: center; width: 100%; grid-column: 1 / -1;">Ei myytäviä kohteita tällä hetkellä.</p>';
+        return;
+    }
+
     projectsData.forEach(project => {
         const card = document.createElement('div');
         card.className = 'project-card';
