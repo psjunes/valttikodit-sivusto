@@ -154,10 +154,13 @@ function applyContent() {
     // Also handle Background images specially if needed
     // e.g. .hero { background-image: ... }
     // We can map specific IDs to style changes
+    // REMOVED: Caused tiling issue. We use the img tag with data-cms instead.
+    /*
     if (siteContent['home.hero.bg']) {
         const hero = document.querySelector('.hero');
         if (hero) hero.style.backgroundImage = `url('${siteContent['home.hero.bg']}')`;
     }
+    */
 }
 
 function refreshUI() {
