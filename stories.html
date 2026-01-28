@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenssit - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        .ref-hero {
+            position: relative;
+            height: 60vh;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .ref-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ref-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 4rem 2rem;
+            color: var(--color-white);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link active">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="section" style="padding-top: 8rem; padding-bottom: 2rem;">
+        <div class="container text-center">
+            <h1>Toteutuneet unelmat</h1>
+            <p>Tutustu rakentamiimme koteihin ja tarinoihin niiden takana.</p>
+        </div>
+    </div>
+
+    <!-- Featured Reference -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="ref-hero">
+                <img src="story-featured.png" alt="Matti ja Liisa kotonaan">
+                <div class="ref-overlay">
+                    <div class="container">
+                        <span class="intro-tag"
+                            style="background: white; padding: 2px 8px; border-radius: 4px;">Omakotitalo</span>
+                        <h3 style="color: white; font-size: 2.5rem; margin-top: 0.5rem;">Matti & Liisa, Espoo</h3>
+                        <p style="font-size: 1.2rem; max-width: 600px;">"Jännitimme rakentamista valtavasti. Mutta
+                            viestintä rauhoitti meidät heti."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reference Grid -->
+            <div class="collection-grid">
+                <!-- Ref 1 -->
+                <div class="collection-card">
+                    <img src="collection-family.png" alt="Family Home" class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">Järvenpää | 2024</div>
+                        <h3 class="collection-title">Moderni puutalo perheelle</h3>
+                        <p class="collection-desc">Yksilöllisesti suunniteltu koti, jossa luonnonvalo on pääosassa.</p>
+                        <button class="btn btn-secondary">Lue tarina</button>
+                    </div>
+                </div>
+
+                <!-- Ref 2 -->
+                <div class="collection-card">
+                    <img src="collection-header.png" onerror="this.src='model-luxury-interior.png'" alt="Interior"
+                        class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">Sipoo | 2023</div>
+                        <h3 class="collection-title">Kivitalo rinteessä</h3>
+                        <p class="collection-desc">Haastava tontti vaati luovaa arkkitehtuuria ja vahvaa
+                            insinööriosaamista.</p>
+                        <button class="btn btn-secondary">Lue tarina</button>
+                    </div>
+                </div>
+
+                <!-- Ref 3 -->
+                <div class="collection-card">
+                    <img src="collection-senior.png" alt="Senior Home" class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">Kirkkonummi | 2023</div>
+                        <h3 class="collection-title">Esteetön lepopaikka</h3>
+                        <p class="collection-desc">Eläkepäivien koti, jossa kaikki toiminnot ovat yhdessä tasossa.</p>
+                        <button class="btn btn-secondary">Lue tarina</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 4rem;">
+                <h2>Haluatko kuulla lisää kokemuksia?</h2>
+                <p>Järjestämme säännöllisesti taloesittelyjä valmistuneissa kohteissamme.</p>
+                <a href="contact.html" class="btn btn-accent">Tilaa esittelykutsu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 123<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

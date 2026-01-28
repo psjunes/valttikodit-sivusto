@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mallisto - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link active">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="section" style="padding-top: 8rem; padding-bottom: 2rem;">
+        <div class="container text-center">
+            <h1>Mallisto & Ideat</h1>
+            <p>Valitse elämäntilanteeseesi sopiva koti tai inspiroidu suunnitelmista.</p>
+        </div>
+    </div>
+
+    <!-- Collection Grid -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="collection-grid">
+                <!-- Card 1 -->
+                <div class="collection-card">
+                    <img src="collection-family.png" alt="Family Home" class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">120 - 160 m²</div>
+                        <h3 class="collection-title">Kasvun paikka</h3>
+                        <p class="collection-desc">Tilaa elää ja hengittää. Suunniteltu lapsiperheen arjen pyörteisiin,
+                            mutta rauhalliseksi satamaksi.</p>
+
+                        <div class="cross-link-box">
+                            <p>Ihastuitko tähän malliin?</p>
+                            <a href="project-espoon-kaarna.html">Rakennamme tätä juuri nyt kohteessa: <strong>As Oy
+                                    Espoon Kaarna &rarr;</strong></a>
+                        </div>
+                        <button onclick="showModelDetails('family')" class="btn btn-secondary">Tutustu malliin</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="collection-card">
+                    <img src="collection-couple.png" alt="Luxury Home" class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">80 - 110 m²</div>
+                        <h3 class="collection-title">Arjen luksusta</h3>
+                        <p class="collection-desc">Laatua arvostavalle pariskunnalle. Spa-henkinen kylpyhuone ja avoin
+                            oleskelutila illanistujaisiin.</p>
+
+                        <div class="cross-link-box">
+                            <p>Saatavilla nyt Vantaalla.</p>
+                            <a href="projects.html">Tutustu kohteeseen: <strong>As Oy Vantaan Puro &rarr;</strong></a>
+                        </div>
+                        <button onclick="showModelDetails('luxury')" class="btn btn-secondary">Tutustu malliin</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="collection-card">
+                    <img src="collection-senior.png" alt="Accessible Home" class="collection-image">
+                    <div class="collection-content">
+                        <div class="collection-meta">60 - 90 m²</div>
+                        <h3 class="collection-title">Ajaton rauha</h3>
+                        <p class="collection-desc">Esteetön ja kompakti yksitasoinen koti, jossa on helppo elää ja
+                            liikkua. Turvallinen valinta.</p>
+                        <button onclick="showModelDetails('senior')" class="btn btn-secondary">Tutustu malliin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed View Section (Initially Hidden) -->
+    <section id="model-details-view" class="section hidden"
+        style="background-color: var(--color-bg-primary); padding-top: 4rem;">
+        <div class="container">
+            <div
+                style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 2rem;">
+                <div>
+                    <span id="detail-size" class="intro-tag" style="margin-bottom: 0.5rem;">SIZE</span>
+                    <h2 id="detail-title" style="font-size: 3rem; margin-bottom: 0;"></h2>
+                </div>
+                <button onclick="document.getElementById('model-details-view').classList.add('hidden')"
+                    style="background: none; border: none; cursor: pointer; font-size: 2rem; color: var(--color-text-secondary);">&times;</button>
+            </div>
+
+            <div class="split-section" style="align-items: flex-start;">
+                <!-- Carousel Container -->
+                <div class="split-image" style="position: relative;">
+                    <img id="detail-image" src="" alt="House view"
+                        style="border-radius: var(--radius-lg); width: 100%; aspect-ratio: 4/3; object-fit: cover;">
+
+                    <!-- Carousel Controls -->
+                    <button onclick="prevImage()" class="carousel-btn prev-btn"><span
+                            class="material-icons-round">chevron_left</span></button>
+                    <button onclick="nextImage()" class="carousel-btn next-btn"><span
+                            class="material-icons-round">chevron_right</span></button>
+                </div>
+
+                <div class="split-content">
+                    <div id="detail-description"
+                        style="font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: 3rem;"></div>
+
+                    <h3
+                        style="font-size: 1.2rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--color-accent-emerald); display: inline-block; padding-bottom: 0.5rem;">
+                        Perustiedot</h3>
+                    <div id="detail-specs" class="specs-grid">
+                        <!-- Specs populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Specs Toggle Section -->
+            <div style="margin-top: 4rem; text-align: center;">
+                <button id="toggle-specs-btn" onclick="toggleDetailedSpecs()" class="btn btn-secondary"
+                    style="min-width: 300px;">Katso tarkemmat tekniset tiedot</button>
+            </div>
+
+            <!-- Detailed Specs Table (Initially Hidden) -->
+            <div id="detailed-specs-container" class="hidden"
+                style="margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <table id="detailed-specs-table" class="specs-table">
+                    <thead>
+                        <tr>
+                            <th>Ominaisuus</th>
+                            <th>Tieto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="contact.html" class="btn btn-accent" style="min-width: 300px;">Kiinnostuin tästä mallista</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 123<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

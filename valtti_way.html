@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valtti-tapa - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link active">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header (Removed extensive large text as requested) -->
+    <div class="section" style="padding-top: 8rem; padding-bottom: 3rem; background-color: var(--color-bg-secondary);">
+        <div class="container text-center">
+            <h1>Turvallinen ja läpinäkyvä prosessi.</h1>
+            <p>Tiedät aina, missä mennään.</p>
+        </div>
+    </div>
+
+    <!-- Content Sections -->
+    <section class="section">
+        <div class="container">
+
+            <!-- Contact Person -->
+            <div class="split-section" style="margin-bottom: 8rem;">
+                <div class="split-image">
+                    <img src="valtti-contact.png" alt="Oma yhteyshenkilö">
+                </div>
+                <div class="split-content">
+                    <div class="trust-icon" style="margin-bottom: 1rem;"><span
+                            class="material-icons-round">person</span></div>
+                    <h2 data-cms="valtti.process.contact.title">Oma yhteyshenkilö</h2>
+                    <p data-cms="valtti.process.contact.text">Rakentaminen on monimutkainen matka, mutta sinun ei
+                        tarvitse kulkea sitä yksin. Valttikodeilla
+                        nimeämme sinulle henkilökohtaisen yhteyshenkilön, joka pysyy rinnallasi ensimmäisestä
+                        tapaamisesta aina avainten luovutukseen asti.</p>
+                </div>
+            </div>
+
+            <!-- Digital View -->
+            <div class="split-section" style="margin-bottom: 8rem; direction: rtl;">
+                <div class="split-image">
+                    <img src="valtti-digital.png" alt="Digitaalinen näkymä">
+                </div>
+                <div class="split-content" style="direction: ltr;">
+                    <div class="trust-icon" style="margin-bottom: 1rem;"><span
+                            class="material-icons-round">stay_primary_portrait</span></div>
+                    <h2 data-cms="valtti.process.digital.title">Digitaalinen näkymä</h2>
+                    <p data-cms="valtti.process.digital.text">Avoimuus on luottamuksen perusta. Nykyaikaisen
+                        digitaalisen asiakasportaalimme avulla sinulla on
+                        virtuaalinen ikkuna työmaallesi 24/7. Voit seurata uuden kotisi valmistumista reaaliajassa
+                        valokuvien ja aikataulupäivitysten kautta.</p>
+                </div>
+            </div>
+
+            <!-- Plain Language -->
+            <div class="split-section" style="margin-bottom: 8rem;">
+                <div class="split-image">
+                    <img src="valtti-clarity.png" alt="Selkokielisyys">
+                </div>
+                <div class="split-content">
+                    <div class="trust-icon" style="margin-bottom: 1rem;"><span
+                            class="material-icons-round">description</span></div>
+                    <h2>Selkokielisyys</h2>
+                    <p>Uskomme, ettei talon rakentamiseen tarvita insinöörin tutkintoa. Rakennusala on usein täynnä
+                        monimutkaista jargonia ja hämmentäviä termejä, mutta me teemme asiat toisin. Olemme ylpeitä
+                        siitä, että puhumme selkeää suomea.</p>
+                    <p>Sopimuksemme on kirjoitettu ymmärrettäviksi, ei hämääviksi. Selitämme prosessin jokaisen vaiheen
+                        arkikielellä, jotta tiedät aina tarkalleen, mihin sitoudut ja mitä tapahtuu seuraavaksi.
+                        Rehellinen viestintä tarkoittaa ei piilokuluja, ei pientä printtiä ja suoria vastauksia kaikkiin
+                        huoliisi. Teemme monimutkaisesta yksinkertaista.</p>
+                </div>
+            </div>
+
+            <!-- Stress-free Construction -->
+            <div class="text-center" style="max-width: 900px; margin: 0 auto;">
+                <h2 style="font-size: 3.5rem; margin-bottom: 2rem;">Rakentaminen ilman stressiä</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 3rem;">Tavoitteemme on yksinkertainen: tehdä unelmiesi kodin
+                    rakentamisesta iloinen kokemus. Me kannamme stressin puolestasi.</p>
+                <img src="valtti-stressfree.png" alt="Happy couple in their new home"
+                    style="border-radius: var(--radius-lg); width: 100%; margin-bottom: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <p>Me huolehdimme luvista, aikatauluista ja valvonnasta. Sinun tehtäväsi on nauttia matkasta ja valita
+                    pintamateriaalit.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 2rem;">Aloita stressitön matka</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 123<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As Oy Espoon Kaarna - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Tarinoita</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero"
+        style="background-image: url('intro-image.png'); background-size: cover; background-position: center; position: relative; height: 60vh;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content text-center">
+            <span class="status-badge marketing"
+                style="font-size: 1rem; padding: 0.5rem 1.5rem; margin-bottom: 2rem;">Vain 2 asuntoa vapaana!</span>
+            <h1>As Oy Espoon Kaarna</h1>
+            <p style="font-size: 1.5rem;">Modernia asumista Saunalahden luonnonhelmassa.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+
+            <!-- Description & Model Link -->
+            <div class="split-section" style="margin-bottom: 6rem;">
+                <div class="split-content">
+                    <h2>Koti, joka kasvaa kanssasi.</h2>
+                    <p>Espoon Kaarna rakentuu suositulle Saunalahden alueelle. Metsään rajoittuva tontti tarjoaa omaa
+                        rauhaa, mutta palvelut ovat lähellä.</p>
+
+                    <div
+                        style="background-color: #f5f5f5; padding: 2rem; border-radius: var(--radius-md); border-left: 4px solid var(--color-accent-emerald);">
+                        <p style="margin-bottom: 0.5rem; font-weight: 600;">Talon malli</p>
+                        <p style="margin-bottom: 1rem;">Tässä kohteessa asut suositussa <strong>Kasvun paikka</strong>
+                            -mallissa.</p>
+                        <a href="collection.html?model=family" class="btn btn-secondary"
+                            style="font-size: 0.9rem; padding: 0.5rem 1.5rem;">Tutustu talomalliin &rarr;</a>
+                    </div>
+                </div>
+                <div class="split-image">
+                    <img src="model-family-exterior.png" alt="Espoon Kaarna Exterior">
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div style="margin-bottom: 6rem;">
+                <h3 class="text-center" style="margin-bottom: 3rem;">Hankkeen eteneminen</h3>
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-steps">
+                        <!-- Step 1 Done -->
+                        <div class="timeline-step completed">
+                            <div class="step-circle"><span class="material-icons-round">check</span></div>
+                            <div class="step-label">Tontti & Luvat</div>
+                        </div>
+                        <!-- Step 2 Active -->
+                        <div class="timeline-step active">
+                            <div class="step-circle">2</div>
+                            <div class="step-label">Ennakkomarkkinointi</div>
+                        </div>
+                        <!-- Step 3 Future -->
+                        <div class="timeline-step">
+                            <div class="step-circle">3</div>
+                            <div class="step-label">Rakentaminen<br><small
+                                    style="font-weight: 400; color: var(--color-text-secondary);">Arvio 06/2026</small>
+                            </div>
+                        </div>
+                        <!-- Step 4 Future -->
+                        <div class="timeline-step">
+                            <div class="step-circle">4</div>
+                            <div class="step-label">Muutto</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apartment List -->
+            <div>
+                <h2 style="margin-bottom: 2rem;">Asunnot</h2>
+                <table class="apartment-table">
+                    <thead>
+                        <tr>
+                            <th>Asunto</th>
+                            <th>Malli</th>
+                            <th>Koko</th>
+                            <th>Hinta</th>
+                            <th>Tila</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">A1</td>
+                            <td>Kasvun paikka</td>
+                            <td>120 m²</td>
+                            <td style="font-weight: 600;">445 000 €</td>
+                            <td class="status-free">Vapaa</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">A2</td>
+                            <td>Kasvun paikka</td>
+                            <td>120 m²</td>
+                            <td style="font-weight: 600;">445 000 €</td>
+                            <td class="status-reserved">Varattu</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">B1</td>
+                            <td>Kasvun paikka</td>
+                            <td>120 m²</td>
+                            <td style="font-family: monospace;">455 000 €</td>
+                            <td class="status-sold">Myyty</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">B2</td>
+                            <td>Kasvun paikka</td>
+                            <td>120 m²</td>
+                            <td style="font-weight: 600;">455 000 €</td>
+                            <td class="status-free">Vapaa</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">C1</td>
+                            <td>Kasvun paikka +</td>
+                            <td>140 m²</td>
+                            <td style="font-family: monospace;">510 000 €</td>
+                            <td class="status-sold">Myyty</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 1<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

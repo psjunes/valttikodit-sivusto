@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ota yhteyttä - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-card {
+            background-color: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid #e5e5e5;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="section" style="padding-top: 8rem; min-height: 80vh; display: flex; align-items: center;">
+        <div class="container">
+            <div class="contact-card">
+                <h1 data-cms="contact.title">Aloitetaan keskustelu.</h1>
+                <p data-cms="contact.subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">Haluamme kuulla
+                    unelmistasi. Varaa rento
+                    etäkahvihetki asiantuntijamme kanssa – ei myyntipuheita, vaan aitoa kuuntelua.</p>
+
+                <a href="#" class="btn btn-primary" style="margin-bottom: 2rem;">Varaa etäkahvit ☕</a>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
+
+                <h3>Tai ota suoraan yhteyttä</h3>
+                <p><strong>Puhelin:</strong> 040 123 4567</p>
+                <p><strong>Sähköposti:</strong> info@valttikodit.fi</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 123<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

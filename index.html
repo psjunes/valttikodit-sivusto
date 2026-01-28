@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valttikodit - Enemmän kuin talo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="hero-bg.png" data-cms="home.hero.bg" alt="Sunlit bedroom in a Valttikodit home" class="hero-bg">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 data-cms="home.hero.title">Enemmän kuin talo.<br>Hyvinvointisi perusta.</h1>
+            <p data-cms="home.hero.subtitle">Tyylikkäät, toimivat ja tavoitettavissa olevat skandinaaviset kodit elämän
+                kaikkiin vaiheisiin.</p>
+            <a href="collection.html" class="btn btn-primary">Löydä oma Valttikotisi</a>
+            <div style="margin-top: 4rem; opacity: 0.7;">↓</div>
+        </div>
+    </header>
+
+    <!-- Services Summary Section (New) -->
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="text-center" style="max-width: 800px; margin: 0 auto 4rem;">
+                <span class="intro-tag">Palvelumme</span>
+                <h2 data-cms="home.services.title">Kaikki saman katon alta.</h2>
+                <p data-cms="home.services.text">Me emme vain rakenna seiniä. Tarjoamme kokonaisvaltaisen kumppanuuden
+                    tontin hankinnasta
+                    muuttovalmiiseen kotiin.</p>
+            </div>
+            <div class="trust-grid" style="margin-top: 0;">
+                <div class="trust-item" style="text-align: center;">
+                    <div class="trust-icon" style="margin: 0 auto 1.5rem;"><span
+                            class="material-icons-round">edit</span></div>
+                    <h3>Yksilöllinen Suunnittelu</h3>
+                    <p>Arkkitehtimme muokkaavat mallistomme kodit tonttisi ja toiveidesi mukaan. Tai suunnittelemme
+                        täysin alusta.</p>
+                </div>
+                <div class="trust-item" style="text-align: center;">
+                    <div class="trust-icon" style="margin: 0 auto 1.5rem;"><span
+                            class="material-icons-round">home_work</span></div>
+                    <h3>Laadukas Rakentaminen</h3>
+                    <p>Omat, luotettavat asentajamme ja tarkoin valitut kumppanit takaavat teknisen laadun ja
+                        pysyvyyden.</p>
+                </div>
+                <div class="trust-item" style="text-align: center;">
+                    <div class="trust-icon" style="margin: 0 auto 1.5rem;"><span
+                            class="material-icons-round">manage_accounts</span></div>
+                    <h3>Projektinjohto</h3>
+                    <p>Hoidamme luvat, kilpailutukset ja aikataulutuksen. Sinulle jää vain päätöksenteko ja fiilistely.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="section">
+        <div class="container">
+            <div class="split-section">
+                <div class="split-image">
+                    <img src="intro-image.png" data-cms="home.intro.image" alt="Interior atmosphere">
+                </div>
+                <div class="split-content">
+                    <span class="intro-tag">Tunne</span>
+                    <h2 data-cms="home.intro.title">Koti on tunne.</h2>
+                    <p data-cms="home.intro.text">Se on paikka, jossa hengähdät syvään oven suljettuasi. Se on arjen
+                        sujuvuutta, kun kaikelle on
+                        paikkansa.<br><br>Valttikodit suunnitellaan todellista elämää varten.</p>
+
+                    <div class="quote-box" data-cms="home.intro.quote">
+                        "Emme rakenna vain neliöitä, vaan puitteet hyvälle elämälle."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section (Image 2) -->
+    <section class="section" style="background-color: var(--color-bg-primary);">
+        <div class="container">
+            <div class="split-section">
+                <div class="split-content">
+                    <h2>Kun arki toimii, mieli lepää.</h2>
+                    <p>Skandinaavinen muotoilu ei ole meille vain estetiikkaa – se on demokratiaa. Uskomme, että hyvin
+                        suunniteltu koti vähentää stressiä.</p>
+
+                    <div style="margin-top: 2rem;">
+                        <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                            <div class="trust-icon"
+                                style="flex-shrink: 0; width: 50px; height: 50px; font-size: 1.5rem;">🌱</div>
+                            <div>
+                                <h3>Elämänkaariajattelu</h3>
+                                <p style="margin-bottom: 0;">Kodit, jotka joustavat. Lastenhuoneesta tulee työhuone,
+                                    työhuoneesta lukunurkkaus.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="trust-icon"
+                                style="flex-shrink: 0; width: 50px; height: 50px; font-size: 1.5rem;">🛡️</div>
+                            <div>
+                                <h3>Saavutettava Laatu</h3>
+                                <p style="margin-bottom: 0;">Huippumuotoilu ei kuulu vain harvoille. Fiksut neliöt
+                                    pitävät kustannukset kurissa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="split-image" style="position: relative;">
+                    <!-- Simulating layered look -->
+                    <img src="collection-senior.png" alt="Functional design"
+                        style="position: relative; z-index: 2; transform: translateX(-20px);">
+                    <div
+                        style="position: absolute; top: -30px; right: -30px; width: 100%; height: 100%; background: #e5e7eb; border-radius: var(--radius-lg); z-index: 1;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center" style="font-size: 3rem; margin-bottom: 1rem;">Turvallinen matka omaan kotiin.</h2>
+            <p class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">Rakentaminen voi jännittää. Siksi me
+                teemme siitä läpinäkyvää. Et jää koskaan yksin.</p>
+
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <div class="trust-icon"><span class="material-icons-round">person</span></div>
+                    <h3>Oma yhteyshenkilö</h3>
+                    <p>Yksi ihminen, joka tuntee projektisi ja vastaa puhelimeen.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><span class="material-icons-round">menu_book</span></div>
+                    <h3>Selkokielisyys</h3>
+                    <p>Ei rakennusjargonia. Viestimme ymmärrettävästi ja rehellisesti.</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon"><span class="material-icons-round">visibility</span></div>
+                    <h3>Läpinäkyvyys</h3>
+                    <p>Reaaliaikainen digitaalinen näkymä työmaalle ja aikatauluihin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="intro-tag">Mallisto & Ideat</span>
+                <h2 style="font-size: 3rem;">Koti jokaiseen vaiheeseen</h2>
+                <p>Valitse elämäntilanteeseesi sopiva koti.</p>
+            </div>
+
+            <div id="collection-grid" class="collection-grid">
+                <!-- Models rendered by script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h2>Aloitetaan keskustelu.</h2>
+                <p>Haluatko kuulla lisää malleistamme tai jutella tonttiasioista?<br>Lupaamme rennon jutteluhetken, emme
+                    myyntipuhetta.</p>
+                <a href="contact.html" class="btn btn-accent">☕ Varaa etäkahvit</a>
+            </div>
+            <div>
+                <h3 style="font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: #a8a29e;">
+                    Yhteystiedot</h3>
+                <p>Valttikodit Oy</p>
+                <p>Mannerheimintie 1<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3 style="font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: #a8a29e;">Seuraa
+                    meitä</h3>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">LinkedIn</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

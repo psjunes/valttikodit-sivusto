@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myytävät kohteet - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet (3)</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="section" style="padding-top: 8rem; padding-bottom: 2rem;">
+        <div class="container text-center">
+            <h1>Löydä uusi kotisi parhailta paikoilta.</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Varaamalla ajoissa varmistat rakentamisen
+                aloituksen ja pääset vaikuttamaan sisustukseen.</p>
+        </div>
+    </div>
+
+    <!-- Project List -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="collection-grid">
+
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="intro-image.png" alt="As Oy Espoon Kaarna" class="project-image">
+                    <div class="project-content">
+                        <span class="status-badge marketing">Ennakkomarkkinointi</span>
+                        <h3 class="collection-title">As Oy Espoon Kaarna</h3>
+                        <div class="collection-meta" style="color: var(--color-text-secondary);">Espoo, Saunalahti |
+                            Paritalot</div>
+                        <p style="margin-top: 0.5rem; font-weight: 700;">Alk. 445 000 €</p>
+
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Varausaste</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                            <p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">Rakentaminen alkaa 50%
+                                kohdalla.</p>
+                        </div>
+
+                        <div style="margin-top: auto;">
+                            <a href="project-espoon-kaarna.html" class="btn btn-accent"
+                                style="width: 100%; text-align: center;">Tutustu kohteeseen</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="hero-bg.png" alt="As Oy Kirkkonummen Kallio" class="project-image">
+                    <div class="project-content">
+                        <span class="status-badge construction">Rakenteilla</span>
+                        <h3 class="collection-title">As Oy Kirkkonummen Kallio</h3>
+                        <div class="collection-meta" style="color: var(--color-text-secondary);">Kirkkonummi, Sundsberg
+                            | Erillistalot</div>
+                        <p style="margin-top: 0.5rem; font-weight: 700;">Alk. 398 000 €</p>
+
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Rakentaminen käynnissä</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"
+                                    style="width: 100%; background-color: var(--color-accent-emerald-dark);"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: auto;">
+                            <button class="btn btn-secondary" style="width: 100%; text-align: center;">Tutustu
+                                kohteeseen</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="model-luxury-exterior.png" alt="As Oy Vantaan Puro" class="project-image">
+                    <div class="project-content">
+                        <span class="status-badge marketing">Ennakkomarkkinointi</span>
+                        <h3 class="collection-title">As Oy Vantaan Puro</h3>
+                        <div class="collection-meta" style="color: var(--color-text-secondary);">Vantaa, Kivistö |
+                            Kaupunkipientalot</div>
+                        <p style="margin-top: 0.5rem; font-weight: 700;">Alk. 320 000 €</p>
+
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>Varausaste</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"
+                                    style="width: 10%; background-color: var(--color-accent-amber);"></div>
+                            </div>
+                            <p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">Ole ensimmäisten
+                                joukossa.</p>
+                        </div>
+
+                        <div style="margin-top: auto;">
+                            <button class="btn btn-secondary" style="width: 100%; text-align: center;">Tutustu
+                                kohteeseen</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 1<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
