@@ -36,11 +36,13 @@
 
     <!-- Immersive Hero -->
     <header class="immersive-hero hero-kaarna">
-        <div class="immersive-content">
-            <div class="immersive-subtitle" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Ennakkomarkkinoinnissa</div>
-            <h1 class="immersive-title" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5);">As Oy Espoon Kaarna</h1>
-            <p
-                style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+        <div class="immersive-content" style="color: #ffffff;">
+            <div class="immersive-subtitle" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.subtitle">Ennakkomarkkinoinnissa</div>
+            <h1 class="immersive-title" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.title">As Oy Espoon Kaarna</h1>
+            <p style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.desc">
                 Saunalahti, Espoo &bull; 4 Paritaloa &bull; 120-140 m²
             </p>
         </div>
@@ -53,17 +55,17 @@
         <div class="container">
             <div class="magazine-grid">
                 <div class="magazine-text">
-                    <h2>Luonnonrauhaa ja modernia arkkitehtuuria.</h2>
-                    <p class="magazine-intro">
+                    <h2 data-cms="espoon-kaarna.intro.title">Luonnonrauhaa ja modernia arkkitehtuuria.</h2>
+                    <p class="magazine-intro" data-cms="espoon-kaarna.intro.text">
                         Espoon Kaarna edustaa uuden ajan pientaloasumista, jossa yhdistyvät tinkimätön estetiikka,
                         ekologisuus ja lapsiperheen arjen sujuvuus.
                     </p>
-                    <p>
+                    <p data-cms="espoon-kaarna.intro.text2">
                         Sijainti Saunalahden halutulla alueella, päättyvän tien päässä, takaa rauhan. Isot ikkunat
                         tuovat ympäröivän metsämaiseman osaksi sisustusta. Täällä et asu vain neliöissä, vaan osana
                         luontoa.
                     </p>
-                    <div class="magazine-quote">
+                    <div class="magazine-quote" data-cms="espoon-kaarna.intro.quote">
                         "Suunnittelun lähtökohtana oli luoda koteja, jotka hengittävät samaan tahtiin ympäröivän luonnon
                         kanssa."
                     </div>
@@ -206,8 +208,9 @@
     <section id="yhteys" class="section">
         <div class="container">
             <div class="quote-box text-center" style="border: none; box-shadow: none; background: transparent;">
-                <h2>Kiinnostuitko Kaarnasta?</h2>
-                <p>Ota yhteyttä ja varaa oma esittelysi tai kysy lisätietoja ennakkomarkkinoinnista.</p>
+                <h2 data-cms="espoon-kaarna.cta.title">Kiinnostuitko Kaarnasta?</h2>
+                <p data-cms="espoon-kaarna.cta.text">Ota yhteyttä ja varaa oma esittelysi tai kysy lisätietoja
+                    ennakkomarkkinoinnista.</p>
                 <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä myyntiin</a>
             </div>
         </div>
@@ -281,18 +284,20 @@
                 const timelineContainer = document.getElementById('dynamic-timeline');
                 if (timelineContainer) timelineContainer.innerHTML = '';
 
-                // Lightbox functions
-                window.openLightbox = function (src) {
-                    const lb = document.getElementById('lightbox');
-                    const img = document.getElementById('lightbox-img');
-                    img.src = src;
-                    lb.classList.remove('hidden');
-                }
-                window.closeLightbox = function () {
-                    document.getElementById('lightbox').classList.add('hidden');
-                }
+                if (timelineContainer) timelineContainer.innerHTML = '';
             } // End updateTimeline
         });
+
+        // Global Lightbox functions (must be outside DOMContentLoaded or assigned to window explicitly outside data check)
+        window.openLightbox = function (src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.classList.remove('hidden');
+        }
+        window.closeLightbox = function () {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
     </script>
 </body>
 
