@@ -134,86 +134,21 @@
     </style>
 
     <!-- Progress / Timeline (Dynamic) -->
-    <section class="section">
-        <div class="container text-center">
-            <h2>Hankkeen vaihe</h2>
-            <!-- This will be populated/updated by main.js based on ID -->
-            <div class="timeline-container" id="dynamic-timeline">
-                <p>Ladataan aikataulua...</p>
-                <noscript>Tämä toiminto vaatii JavaScriptin.</noscript>
-            </div>
-        </div>
-    </section>
+    <!-- Progress / Timeline REMOVED -->
 
     <!-- Apartments Layout -->
     <!-- Apartments Layout REMOVED -->
 
     <!-- House Model / Floorplan Inline -->
-    <section id="talo" class="section">
+    <!-- House Model / Floorplan REMOVED -->
+
+    <!-- Basic Info Section (Dynamic) -->
+    <section id="perustiedot" class="section">
         <div class="container">
-            <div class="split-section">
-                <div class="split-content">
-                    <h2>Kasvun paikka -malli</h2>
-                    <p>Espoon Kaarna rakennetaan suositulla "Kasvun paikka" -mallilla, joka on suunniteltu joustamaan
-                        elämäntilanteiden mukaan. </p>
-                    <ul style="margin-bottom: 2rem; padding-left: 1.5rem; color: var(--color-text-secondary);">
-                        <li>3 makuuhuonetta</li>
-                        <li>Avara oleskelutila korotetulla sisäkatolla</li>
-                        <li>Iso katettu terassi</li>
-                        <li>Mahdollisuus parveen tai lisähuoneeseen</li>
-                    </ul>
-
-                    <button class="btn btn-primary"
-                        onclick="if(window.currentProject && window.currentProject.modelId) window.openModelDetail(window.currentProject.modelId); else window.openModelDetail('family')">
-                        Avaa tarkemmat tiedot
-                    </button>
-                </div>
-                <div class="split-image">
-                    <!-- Floorplan preview -->
-                    <img src="kaarna_floorplan_1769605625549.png" alt="Pohjakuva"
-                        style="border: 1px solid #eee; padding: 1rem; background: white; cursor: pointer;"
-                        onclick="if(window.currentProject && window.currentProject.modelId) window.openModelDetail(window.currentProject.modelId); else window.openModelDetail('family')">
-                </div>
-            </div>
-
-            <!-- This container is used by main.js to inject the detailed view inline/overlay -->
-            <div id="model-details-view" class="hidden" style="margin-top: 4rem; scroll-margin-top: 100px;">
-                <!-- Close button for inline view -->
-                <div style="text-align: right; margin-bottom: 1rem;">
-                    <button onclick="document.getElementById('model-details-view').classList.add('hidden')"
-                        style="background:none; border:none; cursor:pointer;">&times; Sulje</button>
-                </div>
-
-                <div class="inline-model-box">
-                    <h2 id="detail-title">Malli</h2>
-                    <p id="detail-size" class="text-center"
-                        style="font-weight: bold; color: var(--color-accent-emerald);"></p>
-                    <div id="detail-description" style="max-width: 700px; margin: 0 auto 2rem;"></div>
-
-                    <img id="detail-image" src="" style="max-width: 100%; border-radius: 4px; margin-bottom: 2rem;">
-
-                    <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
-                        <button onclick="prevImage()" class="btn btn-secondary">Edellinen</button>
-                        <button onclick="nextImage()" class="btn btn-secondary">Seuraava</button>
-                    </div>
-
-                    <!-- TEKNISET TIEDOT TAULUKKO -->
-                    <h3 style="margin-bottom: 1rem;">Tekniset tiedot</h3>
-                    <table class="apartment-table" style="max-width: 800px; margin: 0 auto; text-align: left;">
-                        <thead>
-                            <tr>
-                                <th>Ominaisuus</th>
-                                <th>Tieto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="detail-specs-table-body">
-                            <!-- Populated by main.js -->
-                        </tbody>
-                    </table>
-                    <!-- Fallback specs grid for redundancy -->
-                    <div id="detail-specs" style="display: none;"></div>
-
-                </div>
+            <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
+            <div id="project-details-container">
+                <p>Ladataan tietoja...</p>
+                <!-- Table will be rendered here -->
             </div>
         </div>
     </section>
@@ -342,31 +277,21 @@
                 if (p >= 50) activeStep = 3;
                 if (p >= 100) activeStep = 4;
 
-                const timelineHTML = `
-                    <div class="progress-container" style="max-width: 600px; margin: 0 auto; text-align: left;">
-                        <div class="progress-label">
-                            <h3>${activeStep >= 3 ? 'Rakentaminen käynnissä' : (activeStep == 2 ? 'Ennakkomarkkinointi' : 'Suunnittelu')}</h3>
-                            <span style="font-weight: bold; font-size: 1.2rem;">${p}%</span>
-                        </div>
-                        <div class="progress-bar" style="height: 1.5rem; background-color: #eee; border-radius: 99px; overflow: hidden; margin-top: 0.5rem; margin-bottom: 0.5rem;">
-                            <div class="progress-fill" style="height: 100%; width: ${p}%; background-color: var(--color-accent-emerald); transition: width 1s ease-out;"></div>
-                        </div>
-                         <p style="font-size: 0.9rem; color: var(--color-text-secondary);">${activeStep >= 3 ? 'Rakentaminen alkanut!' : 'Varaa omasi nyt.'}</p>
-                    </div>
-                `;
-                document.getElementById('dynamic-timeline').innerHTML = timelineHTML;
-            }
+                // Element removed (Timeline)
+                const timelineContainer = document.getElementById('dynamic-timeline');
+                if (timelineContainer) timelineContainer.innerHTML = '';
 
-            // Lightbox functions
-            window.openLightbox = function (src) {
-                const lb = document.getElementById('lightbox');
-                const img = document.getElementById('lightbox-img');
-                img.src = src;
-                lb.classList.remove('hidden');
-            }
-            window.closeLightbox = function () {
-                document.getElementById('lightbox').classList.add('hidden');
-            }
+                // Lightbox functions
+                window.openLightbox = function (src) {
+                    const lb = document.getElementById('lightbox');
+                    const img = document.getElementById('lightbox-img');
+                    img.src = src;
+                    lb.classList.remove('hidden');
+                }
+                window.closeLightbox = function () {
+                    document.getElementById('lightbox').classList.add('hidden');
+                }
+            } // End updateTimeline
         });
     </script>
 </body>

@@ -7,7 +7,8 @@
 const CMS_CONFIG = {
     contentUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=193117699&single=true&output=csv',
     projectsUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=0&single=true&output=csv',
-    modelsUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv'
+    modelsUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv',
+    detailsUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=483496592&single=true&output=csv'
 };
 
 // State
@@ -15,6 +16,7 @@ let appState = {
     content: {}, // Key-value pairs for text content
     projects: [], // Array of project objects
     models: {},   // Object of model definitions
+    projectDetails: [], // Array of {id, category, label, value}
     loaded: false,
     error: null
 };
@@ -32,10 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadCMSData() {
     try {
         console.log('Fetching CMS data...');
-        const [contentRes, projectsRes, modelsRes] = await Promise.all([
+        // If detailsUrl is empty, we just skip it or fetch empty
+        const fetchDetails = CMS_CONFIG.detailsUrl ? fetch(CMS_CONFIG.detailsUrl) : Promise.resolve({ ok: true, text: () => '' });
+
+        const [contentRes, projectsRes, modelsRes, detailsRes] = await Promise.all([
             fetch(CMS_CONFIG.contentUrl),
             fetch(CMS_CONFIG.projectsUrl),
-            fetch(CMS_CONFIG.modelsUrl)
+            fetch(CMS_CONFIG.modelsUrl),
+            fetchDetails
         ]);
 
         if (!contentRes.ok || !projectsRes.ok || !modelsRes.ok) {
@@ -45,11 +51,22 @@ async function loadCMSData() {
         const contentText = await contentRes.text();
         const projectsText = await projectsRes.text();
         const modelsText = await modelsRes.text();
+        const detailsText = CMS_CONFIG.detailsUrl ? await detailsRes.text() : '';
 
         // Parse Data
         appState.content = parseKeyValCSV(contentText);
         appState.projects = parseStandardCSV(projectsText);
         appState.models = parseModelsCSV(modelsText);
+
+        // Parse Details (Standard CSV parser works fine: id, category, label, value)
+        if (detailsText) {
+            appState.projectDetails = parseStandardCSV(detailsText);
+        } else {
+            // Use empty array if no data
+            appState.projectDetails = [];
+            console.log('No details data found or URL not configured.');
+        }
+
         appState.loaded = true;
 
         console.log('CMS Data Loaded Successfully', appState);
@@ -62,11 +79,68 @@ async function loadCMSData() {
         // Check if we are on a detail page
         checkModeldetail();
 
+        // Render project details if container exists
+        const projectDetailsContainer = document.getElementById('project-details-container');
+        if (projectDetailsContainer) {
+            // Get project ID from body data attribute
+            const projectId = document.body.getAttribute('data-project-id');
+            if (projectId) renderProjectDetails(projectId);
+        }
+
     } catch (err) {
         console.error('CMS Load Failed:', err);
         appState.error = err;
         displayErrorOnPage(err.message);
     }
+}
+
+// --- Dynamic Project Details Rendering ---
+
+function renderProjectDetails(projectId) {
+    const container = document.getElementById('project-details-container');
+    if (!container) return;
+
+    // Filter details for this project
+    const details = appState.projectDetails.filter(d => d.id === projectId);
+
+    if (details.length === 0) {
+        container.innerHTML = '<p>Ei lisätietoja saatavilla.</p>';
+        return;
+    }
+
+    // Group by category if present, or just list
+    // We will use a single table but insert headers for categories
+
+    // Sort logic: use original order from sheet, but maybe group?
+    // Let's assume the sheet order is the desired display order.
+
+    let html = '<table class="apartment-table" style="max-width: 800px; margin: 0 auto; text-align: left;"><tbody>';
+
+    let lastCategory = null;
+
+    details.forEach(item => {
+        if (item.category && item.category !== lastCategory) {
+            // Insert Category Header
+            html += `
+                <tr style="background-color: transparent; border-bottom: none;">
+                    <td colspan="2" style="padding-top: 1.5rem; padding-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem; font-weight: bold; color: var(--color-text-primary); border-bottom: none;">
+                        ${item.category}
+                    </td>
+                </tr>
+            `;
+            lastCategory = item.category;
+        }
+
+        html += `
+            <tr>
+                <td style="width: 40%; font-weight: 600;">${item.label}</td>
+                <td>${item.value}</td>
+            </tr>
+        `;
+    });
+
+    html += '</tbody></table>';
+    container.innerHTML = html;
 }
 
 // --- Rendering Functions ---
