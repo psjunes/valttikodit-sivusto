@@ -28,6 +28,7 @@
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
                 <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Valtti-tapa</a></li>
+                <li><a href="stories.html" class="nav-link">Referenssit</a></li>
                 <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
             </ul>
         </div>
@@ -79,12 +80,58 @@
     <!-- Gallery Strip -->
     <section class="section" style="padding: 0; background: #fafaf9;">
         <div class="gallery-strip" style="justify-content: center;">
-            <img src="kaarna_hero_sunny_1769607005303.png" class="gallery-item" alt="Exterior">
-            <img src="model-family-exterior.png" class="gallery-item" alt="Detail">
-            <img src="intro-image.png" class="gallery-item" alt="Interior Living">
-            <img src="hero-bg.png" class="gallery-item" alt="Kitchen">
+            <img src="kaarna_hero_sunny_1769607005303.png" class="gallery-item" alt="Exterior"
+                onclick="openLightbox(this.src)" style="cursor: pointer;">
+            <img src="model-family-exterior.png" class="gallery-item" alt="Detail" onclick="openLightbox(this.src)"
+                style="cursor: pointer;">
+            <img src="intro-image.png" class="gallery-item" alt="Interior Living" onclick="openLightbox(this.src)"
+                style="cursor: pointer;">
+            <img src="hero-bg.png" class="gallery-item" alt="Kitchen" onclick="openLightbox(this.src)"
+                style="cursor: pointer;">
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <style>
+        .lightbox {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.hidden {
+            display: none;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 
     <!-- Progress / Timeline (Dynamic) -->
     <section class="section">
@@ -99,58 +146,7 @@
     </section>
 
     <!-- Apartments Layout -->
-    <section id="asunnot" class="section" style="background-color: var(--color-white);">
-        <div class="container">
-            <h2 class="text-center" style="margin-bottom: 3rem;">Vapaat asunnot</h2>
-            <table class="apartment-table">
-                <thead>
-                    <tr>
-                        <th>Asunto</th>
-                        <th>Malli</th>
-                        <th>Pinta-ala</th>
-                        <th>Mh</th>
-                        <th>Velaton hinta</th>
-                        <th>Tila</th>
-                    </tr>
-                </thead>
-                <!-- Hardcoded for V1, could be dynamic -->
-                <tbody>
-                    <tr>
-                        <td style="font-weight: 700;">A1</td>
-                        <td>Kasvun paikka</td>
-                        <td>120 m²</td>
-                        <td>4h+k+s</td>
-                        <td style="font-weight: 700;">445 000 €</td>
-                        <td class="status-free">Vapaa</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 700;">A2</td>
-                        <td>Kasvun paikka</td>
-                        <td>120 m²</td>
-                        <td>4h+k+s</td>
-                        <td style="font-weight: 700;">445 000 €</td>
-                        <td class="status-reserved">Varattu</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 700;">B1</td>
-                        <td>Kasvun paikka</td>
-                        <td>120 m²</td>
-                        <td>4h+k+s</td>
-                        <td style="color: #999;">455 000 €</td>
-                        <td class="status-sold">Myyty</td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 700;">B2</td>
-                        <td>Kasvun paikka</td>
-                        <td>120 m²</td>
-                        <td>4h+k+s</td>
-                        <td style="font-weight: 700;">455 000 €</td>
-                        <td class="status-free">Vapaa</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
+    <!-- Apartments Layout REMOVED -->
 
     <!-- House Model / Floorplan Inline -->
     <section id="talo" class="section">
@@ -167,7 +163,8 @@
                         <li>Mahdollisuus parveen tai lisähuoneeseen</li>
                     </ul>
 
-                    <button class="btn btn-primary" onclick="window.openModelDetail('family')">
+                    <button class="btn btn-primary"
+                        onclick="if(window.currentProject && window.currentProject.modelId) window.openModelDetail(window.currentProject.modelId); else window.openModelDetail('family')">
                         Avaa tarkemmat tiedot
                     </button>
                 </div>
@@ -175,7 +172,7 @@
                     <!-- Floorplan preview -->
                     <img src="kaarna_floorplan_1769605625549.png" alt="Pohjakuva"
                         style="border: 1px solid #eee; padding: 1rem; background: white; cursor: pointer;"
-                        onclick="window.openModelDetail('family')">
+                        onclick="if(window.currentProject && window.currentProject.modelId) window.openModelDetail(window.currentProject.modelId); else window.openModelDetail('family')">
                 </div>
             </div>
 
@@ -233,6 +230,40 @@
                 </iframe>
             </div>
             <p style="margin-top: 1rem; font-weight: 600;">Nuolitie 18, 02770 Espoo</p>
+
+            <!-- Distances Table -->
+            <div style="margin-top: 3rem; overflow-x: auto;">
+                <table class="apartment-table" style="max-width: 600px; margin: 0 auto; text-align: left;">
+                    <thead>
+                        <tr>
+                            <th>Palvelu</th>
+                            <th>Etäisyys (arvio)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ruokakauppa</td>
+                            <td>n. 800 m</td>
+                        </tr>
+                        <tr>
+                            <td>Bussipysäkki</td>
+                            <td>n. 150 m</td>
+                        </tr>
+                        <tr>
+                            <td>Päiväkoti</td>
+                            <td>n. 400 m</td>
+                        </tr>
+                        <tr>
+                            <td>Peruskoulu</td>
+                            <td>n. 900 m</td>
+                        </tr>
+                        <tr>
+                            <td>Metroasema</td>
+                            <td>n. 1,5 km</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -312,26 +343,29 @@
                 if (p >= 100) activeStep = 4;
 
                 const timelineHTML = `
-                    <div class="timeline-steps">
-                        <div class="timeline-step ${activeStep >= 1 ? (activeStep > 1 ? 'completed' : 'active') : ''}">
-                            <div class="step-circle">${activeStep > 1 ? '✓' : '1'}</div>
-                            <div class="step-label">Suunnittelu</div>
+                    <div class="progress-container" style="max-width: 600px; margin: 0 auto; text-align: left;">
+                        <div class="progress-label">
+                            <h3>${activeStep >= 3 ? 'Rakentaminen käynnissä' : (activeStep == 2 ? 'Ennakkomarkkinointi' : 'Suunnittelu')}</h3>
+                            <span style="font-weight: bold; font-size: 1.2rem;">${p}%</span>
                         </div>
-                        <div class="timeline-step ${activeStep >= 2 ? (activeStep > 2 ? 'completed' : 'active') : ''}">
-                            <div class="step-circle">${activeStep > 2 ? '✓' : '2'}</div>
-                            <div class="step-label">Ennakkomarkkinointi</div>
+                        <div class="progress-bar" style="height: 1.5rem; background-color: #eee; border-radius: 99px; overflow: hidden; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                            <div class="progress-fill" style="height: 100%; width: ${p}%; background-color: var(--color-accent-emerald); transition: width 1s ease-out;"></div>
                         </div>
-                        <div class="timeline-step ${activeStep >= 3 ? (activeStep > 3 ? 'completed' : 'active') : ''}">
-                            <div class="step-circle">${activeStep > 3 ? '✓' : '3'}</div>
-                            <div class="step-label">Rakentaminen</div>
-                        </div>
-                        <div class="timeline-step ${activeStep >= 4 ? 'completed' : ''}">
-                            <div class="step-circle">4</div>
-                            <div class="step-label">Muutto</div>
-                        </div>
+                         <p style="font-size: 0.9rem; color: var(--color-text-secondary);">${activeStep >= 3 ? 'Rakentaminen alkanut!' : 'Varaa omasi nyt.'}</p>
                     </div>
                 `;
                 document.getElementById('dynamic-timeline').innerHTML = timelineHTML;
+            }
+
+            // Lightbox functions
+            window.openLightbox = function (src) {
+                const lb = document.getElementById('lightbox');
+                const img = document.getElementById('lightbox-img');
+                img.src = src;
+                lb.classList.remove('hidden');
+            }
+            window.closeLightbox = function () {
+                document.getElementById('lightbox').classList.add('hidden');
             }
         });
     </script>
