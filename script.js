@@ -1,159 +1,40 @@
 const SHEET_URLS = {
     content: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=193117699&single=true&output=csv',
     projects: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=0&single=true&output=csv',
-    models: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv'
+    models: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv',
+    references: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?output=csv'
 };
 
 let modelData = {};
 let projectsData = [];
+let referencesData = []; // Now fetched dynamically
 let siteContent = {};
 
-// --- Google Sheets Integrations ---
-
-function parseCSV(csvText) {
-    const lines = csvText.split(/\r?\n/);
-    if (lines.length < 2) return [];
-
-    const headers = parseCSVLine(lines[0]);
-    const result = [];
-
-    for (let i = 1; i < lines.length; i++) {
-        if (!lines[i].trim()) continue;
-
-        const currentLine = parseCSVLine(lines[i]);
-        let obj = {};
-
-        // Skip malformed lines very strictly? Or loose?
-        // Loose allows for missing trailing comma
-
-        for (let j = 0; j < headers.length; j++) {
-            let value = currentLine[j] || '';
-            const key = headers[j];
-
-            // Type conversions
-            if (key === 'progress') value = parseInt(value, 10) || 0;
-            if (key === 'images') value = value.split('|').map(img => img.trim());
-
-            obj[key] = value;
-        }
-        result.push(obj);
-    }
-    return result;
-}
-
-// Helper to parse a single CSV line respecting quotes
-function parseCSVLine(text) {
-    const result = [];
-    let start = 0;
-    let inQuotes = false;
-
-    for (let i = 0; i < text.length; i++) {
-        if (text[i] === '"') {
-            inQuotes = !inQuotes;
-        } else if (text[i] === ',' && !inQuotes) {
-            let field = text.substring(start, i).trim();
-            // Remove surrounding quotes and unescape double quotes
-            if (field.startsWith('"') && field.endsWith('"')) {
-                field = field.substring(1, field.length - 1).replace(/""/g, '"');
-            }
-            result.push(field);
-            start = i + 1;
-        }
-    }
-
-    // Push the last field
-    let field = text.substring(start).trim();
-    if (field.startsWith('"') && field.endsWith('"')) {
-        field = field.substring(1, field.length - 1).replace(/""/g, '"');
-    }
-    result.push(field);
-
-    return result;
-}
-
-// Special parser for Models which has nested arrays/objects structure flattened
-function processModelsData(rows) {
-    const models = {};
-    rows.forEach(row => {
-        // Reconstruct the complex model object from flat CSV columns
-        // Expecting CSV columns: id, title, size, shortDesc, description, mainImage, images(comma sep), specs_room_sqm, specs_total_sqm, specs_bedrooms, specs_bathrooms...
-
-        // Split images by standard comma if present, or just use mainImage
-        // The basic parseCSV splits by comma, so 'images' field might be tricky if it contains commas. 
-        // For simplicity in this v1, let's assume 'images' column in CSV uses pipe '|' separator if manually edited, 
-        // OR we just use the file names we know.
-
-        // Actually, let's fix the parseCSV to treat images column specially or use pipe
-        let imageList = [];
-        if (row.images && Array.isArray(row.images)) {
-            // If parseCSV split it? No, parseCSV returns string for unknown cols usually unless I changed it.
-            // Wait, my parseCSV above DOES split by pipe for 'images'.
-            imageList = row.images;
-        } else if (typeof row.images === 'string') {
-            imageList = row.images.split('|');
-        } else {
-            imageList = [row.mainImage];
-        }
-
-        models[row.id] = {
-            title: row.title,
-            size: row.size,
-            meta: row.size, // or row.meta
-            images: imageList,
-            shortDesc: row.shortDesc,
-            description: row.description, // HTML content
-            specs: [
-                { label: 'Huoneistoala', value: row.specs_room_sqm },
-                { label: 'Kerrosala', value: row.specs_total_sqm },
-                { label: 'Makuuhuoneet', value: row.specs_bedrooms },
-                { label: 'Kylpyhuoneet', value: row.specs_bathrooms }
-            ],
-            // Detailed specs could be separate columns too, for now keeping basic
-            detailedSpecs: [
-                { label: 'Huoneistoala', value: row.specs_room_sqm },
-                { label: 'Kerrosala', value: row.specs_total_sqm },
-                // Add defaults or more columns as needed
-            ]
-        };
-    });
-    return models;
-}
-
-// Process Content (Key-Value)
-function processContentData(rows) {
-    const content = {};
-    rows.forEach(row => {
-        if (row.id && row.content) {
-            content[row.id] = row.content;
-        }
-    });
-    return content;
-}
+// ... (existing parse functions) ...
 
 async function fetchAllData() {
     try {
-        const [contentRes, projectsRes, modelsRes] = await Promise.all([
+        const [contentRes, projectsRes, modelsRes, referencesRes] = await Promise.all([
             fetch(SHEET_URLS.content),
             fetch(SHEET_URLS.projects),
-            fetch(SHEET_URLS.models)
+            fetch(SHEET_URLS.models),
+            fetch(SHEET_URLS.references) // Fetch references
         ]);
 
         const contentText = await contentRes.text();
         const projectsText = await projectsRes.text();
         const modelsText = await modelsRes.text();
+        const referencesText = await referencesRes.text();
 
         siteContent = processContentData(parseCSV(contentText));
-        console.log('Raw Content CSV:', contentText.substring(0, 100)); // Log first 100 chars
-
         projectsData = parseCSV(projectsText);
-        console.log('Raw Projects CSV:', projectsText.substring(0, 100));
-        console.log('Parsed Projects Data:', projectsData);
+        referencesData = parseCSV(referencesText); // Parse references
 
         // Models need special structural parsing
         const flatModels = parseCSV(modelsText);
         modelData = processModelsData(flatModels);
 
-        console.log('CMS Data Loaded:', { siteContent, projectsData, modelData });
+        console.log('CMS Data Loaded:', { siteContent, projectsData, modelData, referencesData });
 
         // Once data is loaded...
         applyContent();
@@ -161,10 +42,101 @@ async function fetchAllData() {
 
     } catch (error) {
         console.error('CMS Load Error:', error);
-        // Fallback or alert? For now just log. 
-        // The static data was overwrite so page might be empty if this fails.
     }
 }
+
+// ... (existing applyContent) ...
+
+function refreshUI() {
+    // Re-run render functions
+    if (document.getElementById('projects-grid')) renderProjectsList();
+    if (document.getElementById('collection-grid')) {
+        const isIndex = !!document.querySelector('.hero');
+        renderCollectionList(isIndex);
+    }
+    // Render references grid if exists
+    if (document.getElementById('references-grid')) renderReferences();
+
+    // Render single reference page if needed
+    const refBody = document.querySelector('body[data-reference-id]');
+    if (refBody) {
+        const refId = refBody.getAttribute('data-reference-id');
+        populateReferencePage(refId);
+    }
+
+    // ... (rest of refreshUI) ...
+}
+
+
+function renderReferences() {
+    const container = document.getElementById('references-grid');
+    if (!container) return;
+
+    if (referencesData.length === 0) {
+        // Fallback or loading state?
+        // If fetch failed, referencesData might be empty. 
+        // We could keep the hardcoded list as fallback, but for now let's assume fetch works 
+        // or user hasn't created sheet yet so it might be empty.
+        // Let's use the hardcoded list ONLY if fetched list is empty to avoid breaking UI during dev.
+        // Actually, user wants to use Sheet. Let's show empty if empty.
+        container.innerHTML = '<p>Ladataan...</p>';
+    }
+
+    container.innerHTML = referencesData.map(ref => `
+        <div class="collection-card">
+            <div style="height: 250px; overflow: hidden;">
+                <img src="${ref.image_main || 'placeholder.jpg'}" alt="${ref.title}" class="collection-image" style="height: 100%; width: 100%; object-fit: cover;">
+            </div>
+            <div class="collection-content">
+                <div class="collection-meta">${ref.location} | ${ref.year}</div>
+                <h3 class="collection-title">${ref.title}</h3>
+                <p class="collection-desc">${ref.description_short}</p>
+                <a href="${ref.id}.html" class="btn btn-secondary">Lue tarina</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+function populateReferencePage(refId) {
+    const ref = referencesData.find(r => r.id === refId);
+    if (!ref) {
+        console.warn('Reference not found:', refId);
+        return;
+    }
+
+    // Populate Hero
+    setText('ref-category', ref.category);
+    setText('ref-title', ref.title);
+    setText('ref-location', `${ref.location} | ${ref.year}`);
+
+    // Stats
+    setText('ref-size', ref.stats_size);
+    setText('ref-year', ref.year);
+    setText('ref-type', ref.stats_type);
+
+    // Content
+    // Description long might be HTML
+    const descEl = document.getElementById('ref-description');
+    if (descEl) descEl.innerHTML = ref.description_long;
+
+    // Gallery
+    if (ref.images_gallery) {
+        const galleryContainer = document.getElementById('ref-gallery');
+        if (galleryContainer) {
+            const images = ref.images_gallery.split('|');
+            galleryContainer.innerHTML = images.map(img => `
+                <img src="${img.trim()}" alt="${ref.title}" onclick="openLightbox(this.src)">
+            `).join('');
+        }
+    }
+}
+
+function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el && text) el.innerText = text;
+}
+
+// ... (rest of the file) ...
 
 function applyContent() {
     // Look for all elements with data-cms attributes

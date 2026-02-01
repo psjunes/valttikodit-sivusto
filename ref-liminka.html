@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenssi - Liminka - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        .ref-detail-hero {
+            height: 60vh;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .ref-detail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        }
+
+        .ref-detail-content {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 3rem;
+        }
+
+        .ref-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--color-bg-secondary);
+            border-radius: var(--radius-md);
+        }
+
+        .ref-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ref-gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .ref-gallery img:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body data-reference-id="ref-liminka">
+    <!-- Navigation -->
+    <nav class="navbar" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
+                <li><a href="stories.html" class="nav-link active">Referenssit</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <header class="ref-detail-hero" style="background-image: url('hero-bg.png');" id="ref-hero-bg">
+        <div class="container ref-detail-content">
+            <span
+                style="background: var(--color-accent-emerald); padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block;"
+                id="ref-category">-</span>
+            <h1 style="font-size: 3rem; margin-bottom: 0.5rem;" id="ref-title">Ladataan...</h1>
+            <p style="font-size: 1.3rem; opacity: 0.9;" id="ref-location">-</p>
+        </div>
+    </header>
+    <div class="container section" style="padding-top: 0;">
+        <div class="ref-stats">
+            <div><span
+                    style="display: block; font-size: 0.9rem; color: var(--color-text-secondary); text-transform: uppercase;">Pinta-ala</span><strong
+                    style="font-size: 1.5rem;" id="ref-size">-</strong></div>
+            <div><span
+                    style="display: block; font-size: 0.9rem; color: var(--color-text-secondary); text-transform: uppercase;">Vuosi</span><strong
+                    style="font-size: 1.5rem;" id="ref-year">-</strong></div>
+            <div><span
+                    style="display: block; font-size: 0.9rem; color: var(--color-text-secondary); text-transform: uppercase;">Tyyppi</span><strong
+                    style="font-size: 1.5rem;" id="ref-type">-</strong></div>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--color-text-secondary); margin-bottom: 2rem;"
+                id="ref-description"></p>
+        </div>
+        <h3 style="margin-top: 4rem;">Kuvia kohteesta</h3>
+        <div class="ref-gallery" id="ref-gallery"></div>
+        <div class="text-center" style="margin-top: 5rem;">
+            <a href="contact.html" class="btn btn-accent">Kiinnostuitko vastaavasta? Ota yhteyttä</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
