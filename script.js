@@ -1,40 +1,35 @@
 const SHEET_URLS = {
     content: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=193117699&single=true&output=csv',
     projects: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=0&single=true&output=csv',
-    models: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv',
-    references: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=580812852&single=true&output=csv'
+    models: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSuwd0G4OttPpfKAJiKuYhR1ZEPEyZ2wi8ToyN4vnUgXBhvhQuI_kGKszR5zkox45zbkKSrFCWFCHga/pub?gid=293113482&single=true&output=csv'
 };
 
 let modelData = {};
 let projectsData = [];
-let referencesData = []; // Now fetched dynamically
 let siteContent = {};
 
 // ... (existing parse functions) ...
 
 async function fetchAllData() {
     try {
-        const [contentRes, projectsRes, modelsRes, referencesRes] = await Promise.all([
+        const [contentRes, projectsRes, modelsRes] = await Promise.all([
             fetch(SHEET_URLS.content),
             fetch(SHEET_URLS.projects),
-            fetch(SHEET_URLS.models),
-            fetch(SHEET_URLS.references) // Fetch references
+            fetch(SHEET_URLS.models)
         ]);
 
         const contentText = await contentRes.text();
         const projectsText = await projectsRes.text();
         const modelsText = await modelsRes.text();
-        const referencesText = await referencesRes.text();
 
         siteContent = processContentData(parseCSV(contentText));
         projectsData = parseCSV(projectsText);
-        referencesData = parseCSV(referencesText); // Parse references
 
         // Models need special structural parsing
         const flatModels = parseCSV(modelsText);
         modelData = processModelsData(flatModels);
 
-        console.log('CMS Data Loaded:', { siteContent, projectsData, modelData, referencesData });
+        console.log('CMS Data Loaded:', { siteContent, projectsData, modelData });
 
         // Once data is loaded...
         applyContent();
@@ -55,46 +50,31 @@ function refreshUI() {
         renderCollectionList(isIndex);
     }
     // Render references grid if exists
-    if (document.getElementById('references-grid')) renderReferences();
+
 
     // Render single reference page if needed
     const refBody = document.querySelector('body[data-reference-id]');
     if (refBody) {
         const refId = refBody.getAttribute('data-reference-id');
-        populateReferencePage(refId);
+        // populateReferencePage(refId); // This function is removed
     }
 
     // ... (rest of refreshUI) ...
 }
 
 
-function renderReferences() {
-    const container = document.getElementById('references-grid');
-    if (!container) return;
-
-    if (referencesData.length === 0) {
-        // Fallback or loading state?
-        // If fetch failed, referencesData might be empty. 
-        // We could keep the hardcoded list as fallback, but for now let's assume fetch works 
-        // or user hasn't created sheet yet so it might be empty.
-        // Let's use the hardcoded list ONLY if fetched list is empty to avoid breaking UI during dev.
-        // Actually, user wants to use Sheet. Let's show empty if empty.
-        container.innerHTML = '<p>Ladataan...</p>';
-    }
-
-    container.innerHTML = referencesData.map(ref => `
-        <div class="collection-card">
-            <div style="height: 250px; overflow: hidden;">
-                <img src="${ref.image_main || 'placeholder.jpg'}" alt="${ref.title}" class="collection-image" style="height: 100%; width: 100%; object-fit: cover;">
-            </div>
-            <div class="collection-content">
-                <div class="collection-meta">${ref.location} | ${ref.year}</div>
-                <h3 class="collection-title">${ref.title}</h3>
-                <p class="collection-desc">${ref.description_short}</p>
-                <a href="${ref.id}.html" class="btn btn-secondary">Lue tarina</a>
-            </div>
-        </div>
-    `).join('');
+<div class="collection-card">
+    <div style="height: 250px; overflow: hidden;">
+        <img src="${ref.image_main || 'placeholder.jpg'}" alt="${ref.title}" class="collection-image" style="height: 100%; width: 100%; object-fit: cover;">
+    </div>
+    <div class="collection-content">
+        <div class="collection-meta">${ref.location} | ${ref.year}</div>
+        <h3 class="collection-title">${ref.title}</h3>
+        <p class="collection-desc">${ref.description_short}</p>
+        <a href="${ref.id}.html" class="btn btn-secondary">Lue tarina</a>
+    </div>
+</div>
+`).join('');
 }
 
 function populateReferencePage(refId) {
@@ -107,7 +87,7 @@ function populateReferencePage(refId) {
     // Populate Hero
     setText('ref-category', ref.category);
     setText('ref-title', ref.title);
-    setText('ref-location', `${ref.location} | ${ref.year}`);
+    setText('ref-location', `${ ref.location } | ${ ref.year } `);
 
     // Stats
     setText('ref-size', ref.stats_size);
@@ -125,8 +105,8 @@ function populateReferencePage(refId) {
         if (galleryContainer) {
             const images = ref.images_gallery.split('|');
             galleryContainer.innerHTML = images.map(img => `
-                <img src="${img.trim()}" alt="${ref.title}" onclick="openLightbox(this.src)">
-            `).join('');
+    < img src = "${img.trim()}" alt = "${ref.title}" onclick = "openLightbox(this.src)" >
+        `).join('');
         }
     }
 }
@@ -180,7 +160,7 @@ function refreshUI() {
         // Reset text key? No, just update dynamic parts
         // But we need to be careful not to overwrite the "Myytävät kohteet" text if we translated it
         if (link.href.includes('projects.html')) {
-            link.innerText = `Myytävät kohteet (${projectsData.length})`;
+            link.innerText = `Myytävät kohteet(${ projectsData.length })`;
         }
     });
 
@@ -220,7 +200,7 @@ function showModelDetails(modelId) {
     data.specs.forEach(spec => {
         const div = document.createElement('div');
         div.className = 'spec-item';
-        div.innerHTML = `<span class="spec-label">${spec.label}</span><span class="spec-value">${spec.value}</span>`;
+        div.innerHTML = `< span class="spec-label" > ${ spec.label }</span > <span class="spec-value">${spec.value}</span>`;
         specsContainer.appendChild(div);
     });
 
@@ -229,7 +209,7 @@ function showModelDetails(modelId) {
     tableBody.innerHTML = '';
     data.detailedSpecs.forEach(row => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${row.label}</td><td>${row.value}</td>`;
+        tr.innerHTML = `< td > ${ row.label }</td > <td>${row.value}</td>`;
         tableBody.appendChild(tr);
     });
     // Hide table initially
@@ -296,29 +276,29 @@ function renderProjectsList() {
         const badgeClass = project.status === 'construction' ? 'construction' : 'marketing';
 
         card.innerHTML = `
-            <img src="${project.image}" alt="${project.name}" class="project-image">
-            <div class="project-content">
-                <span class="status-badge ${badgeClass}">${project.statusText}</span>
-                <h3 class="collection-title">${project.name}</h3>
-                <div class="collection-meta" style="color: var(--color-text-secondary);">${project.location}</div>
-                <p style="margin-top: 0.5rem; font-weight: 700;">${project.price}</p>
-                
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>${project.status === 'construction' ? 'Rakentaminen käynnissä' : 'Varausaste'}</span>
-                        <span>${project.progress}%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${project.progress}%; background-color: ${progressColor};"></div>
-                    </div>
-                    ${project.marketingText ? `<p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">${project.marketingText}</p>` : ''}
+    < img src = "${project.image}" alt = "${project.name}" class="project-image" >
+        <div class="project-content">
+            <span class="status-badge ${badgeClass}">${project.statusText}</span>
+            <h3 class="collection-title">${project.name}</h3>
+            <div class="collection-meta" style="color: var(--color-text-secondary);">${project.location}</div>
+            <p style="margin-top: 0.5rem; font-weight: 700;">${project.price}</p>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>${project.status === 'construction' ? 'Rakentaminen käynnissä' : 'Varausaste'}</span>
+                    <span>${project.progress}%</span>
                 </div>
-                
-                <div style="margin-top: auto;">
-                    <a href="${project.link}" class="btn ${project.status === 'construction' ? 'btn-secondary' : 'btn-accent'}" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: ${project.progress}%; background-color: ${progressColor};"></div>
                 </div>
+                ${project.marketingText ? `<p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">${project.marketingText}</p>` : ''}
             </div>
-        `;
+
+            <div style="margin-top: auto;">
+                <a href="${project.link}" class="btn ${project.status === 'construction' ? 'btn-secondary' : 'btn-accent'}" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
+            </div>
+        </div>
+`;
         grid.appendChild(card);
     });
 }
@@ -344,54 +324,49 @@ function renderCollectionList(isIndexPage = false) {
             if (isIndexPage) {
                 // Söpö pieni badge etusivulle
                 crossLinkHtml = `
-                    <div style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #ecfdf5; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--color-accent-emerald-dark); display: flex; align-items: center; gap: 0.5rem;">
+    < div style = "margin-top: 1rem; padding: 0.5rem 1rem; background-color: #ecfdf5; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--color-accent-emerald-dark); display: flex; align-items: center; gap: 0.5rem;" >
                          <span class="material-icons-round" style="font-size: 1rem;">construction</span>
                          <span>Rakennettavana: <strong>${activeProject.name}</strong></span>
-                    </div>
-                 `;
+                    </div >
+    `;
             } else {
                 // Iso boxi kokoelmasivulle
                 crossLinkHtml = `
-                    <div class="cross-link-box">
+    < div class="cross-link-box" >
                         <p>Ihastuitko tähän malliin?</p>
                         <a href="${activeProject.link}">Rakennamme tätä juuri nyt: <strong>${activeProject.name} &rarr;</strong></a>
-                    </div>
-                `;
+                    </div >
+    `;
             }
         } else if (!isIndexPage) {
             // Placeholder jos ei aktiivista
-            crossLinkHtml = `<div style="margin-top: auto;"></div>`; // Spacer
+            crossLinkHtml = `< div style = "margin-top: auto;" ></div > `; // Spacer
         }
 
         const btnClass = isIndexPage ? 'btn-card' : 'btn btn-secondary';
-        const linkAction = isIndexPage ? `href="collection.html?model=${key}"` : `onclick="showModelDetails('${key}')"`;
+        const linkAction = isIndexPage ? `href = "collection.html?model=${key}"` : `onclick = "showModelDetails('${key}')"`;
         const btnTag = isIndexPage ? 'a' : 'button';
 
         card.innerHTML = `
-            <img src="${model.images[0]}" alt="${model.title}" class="collection-image">
-            <div class="collection-content">
-                <div class="collection-meta">${model.meta}</div>
-                <h3 class="collection-title">${model.title}</h3>
-                <p class="collection-desc">${model.shortDesc}</p>
-                ${!isIndexPage ? crossLinkHtml : ''}
-                <${btnTag} ${linkAction} class="${btnClass}">Tutustu malliin</${btnTag}>
-                ${isIndexPage ? crossLinkHtml : ''}
-            </div>
-        `;
+    < img src = "${model.images[0]}" alt = "${model.title}" class="collection-image" >
+        <div class="collection-content">
+            <div class="collection-meta">${model.meta}</div>
+            <h3 class="collection-title">${model.title}</h3>
+            <p class="collection-desc">${model.shortDesc}</p>
+            ${!isIndexPage ? crossLinkHtml : ''}
+            <${btnTag} ${linkAction} class="${btnClass}">Tutustu malliin</${btnTag}>
+            ${isIndexPage ? crossLinkHtml : ''}
+        </div>
+`;
         grid.appendChild(card);
     });
 }
 
 // Duplicate data and function removed
 
-
-// Init functions based on page
 document.addEventListener('DOMContentLoaded', () => {
     // Start data fetch immediately
     fetchAllData();
-
-    // Render local references if on references page
-    renderReferences();
 
     // Mobile Menu Close on Link Click
     const mobileLinks = document.querySelectorAll('.nav-link');
