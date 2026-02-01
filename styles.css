@@ -508,8 +508,8 @@ a {
 .footer {
     background-color: var(--color-footer-bg);
     color: var(--color-white);
-    padding: 8rem 0 4rem;
-    margin-top: 8rem;
+    padding: 60px 0 30px;
+    margin-top: 60px;
 }
 
 .footer-content {
@@ -554,7 +554,7 @@ a {
     }
 
     .section {
-        padding: 4rem 0;
+        padding: 60px 0;
     }
 
     .trust-grid {
@@ -990,7 +990,7 @@ a {
 
 /* Magazine Layout */
 .magazine-section {
-    padding: 8rem 0;
+    padding: 60px 0;
     overflow: hidden;
 }
 
@@ -1031,7 +1031,7 @@ a {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
-    padding: 4rem 0;
+    padding: 60px 0;
 }
 
 .gallery-item-square {
