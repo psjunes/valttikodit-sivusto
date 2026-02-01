@@ -197,6 +197,17 @@ function updatePageContent() {
             }
         }
     });
+
+    // Handle Map Updates specifically
+    document.querySelectorAll('[data-cms-map]').forEach(el => {
+        const key = el.getAttribute('data-cms-map');
+        if (appState.content[key]) {
+            const address = appState.content[key];
+            // Update iframe src with new address query
+            // Using simple embed format: https://maps.google.com/maps?q=[ADDRESS]&output=embed
+            el.src = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+        }
+    });
 }
 
 function renderProjects() {
