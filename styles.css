@@ -846,6 +846,71 @@ a {
     text-align: center;
     max-width: 800px;
     padding: 0 2rem;
+    --container-max-width: 1200px;
+    --header-height: 70px;
+}
+
+/* Accordion Styles */
+.accordion-item {
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.accordion-header {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.accordion-header:hover {
+    background: #f1f1f1;
+}
+
+.accordion-title {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.accordion-icon {
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    display: none;
+    padding: 0;
+    background: #fff;
+    border-top: 1px solid #eee;
+    animation: slideDown 0.3s ease-out;
+}
+
+.accordion-content.open {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .immersive-title {

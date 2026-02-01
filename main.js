@@ -108,40 +108,80 @@ function renderProjectDetails(projectId) {
         return;
     }
 
-    // Group by category if present, or just list
-    // We will use a single table but insert headers for categories
-
-    // Sort logic: use original order from sheet, but maybe group?
-    // Let's assume the sheet order is the desired display order.
-
-    let html = '<table class="apartment-table" style="max-width: 800px; margin: 0 auto; text-align: left;"><tbody>';
-
-    let lastCategory = null;
+    // specific sort order for categories if needed, otherwise distinct
+    // Lets group first
+    const grouped = {};
+    const order = []; // to keep track of category order
 
     details.forEach(item => {
-        if (item.category && item.category !== lastCategory) {
-            // Insert Category Header
-            html += `
-                <tr style="background-color: transparent; border-bottom: none;">
-                    <td colspan="2" style="padding-top: 1.5rem; padding-bottom: 0.5rem; font-family: var(--font-serif); font-size: 1.2rem; font-weight: bold; color: var(--color-text-primary); border-bottom: none;">
-                        ${item.category}
-                    </td>
-                </tr>
-            `;
-            lastCategory = item.category;
+        const cat = item.category || 'Muut';
+        if (!grouped[cat]) {
+            grouped[cat] = [];
+            order.push(cat);
         }
+        grouped[cat].push(item);
+    });
+
+    let html = '<div class="details-accordion">';
+
+    order.forEach((cat, index) => {
+        // Open 'Perustiedot' by default (or the first one if Perustiedot not found, but user specifically asked for Perustiedot)
+        const isOpen = cat === 'Perustiedot';
+        const activeClass = isOpen ? 'active' : '';
+        const openClass = isOpen ? 'open' : '';
+        const iconRotation = isOpen ? 'style="transform: rotate(180deg)"' : ''; // Inline style as fallback or rely on CSS class
 
         html += `
-            <tr>
-                <td style="width: 40%; font-weight: 600;">${item.label}</td>
-                <td>${item.value}</td>
-            </tr>
+            <div class="accordion-item">
+                <div class="accordion-header ${activeClass}" onclick="toggleAccordion(this)">
+                    <span class="accordion-title">${cat}</span>
+                    <span class="material-icons-round accordion-icon">keyboard_arrow_down</span>
+                </div>
+                <div class="accordion-content ${openClass}">
+                    <table class="apartment-table" style="width: 100%; border: none; margin: 0;">
+                        <tbody>
+        `;
+
+        grouped[cat].forEach(item => {
+            html += `
+                <tr>
+                    <td style="width: 40%; font-weight: 600; padding: 1rem 1.5rem;">${item.label}</td>
+                    <td style="padding: 1rem 1.5rem;">${item.value}</td>
+                </tr>
+            `;
+        });
+
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         `;
     });
 
-    html += '</tbody></table>';
+    html += '</div>';
     container.innerHTML = html;
 }
+
+// Accordion Toggle Function (Global)
+window.toggleAccordion = function (header) {
+    const item = header.parentElement;
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
+    const allContents = document.querySelectorAll('.accordion-content');
+
+    const wasOpen = header.classList.contains('active');
+
+    // Close all first (requested behavior: only one open)
+    allHeaders.forEach(h => h.classList.remove('active'));
+    allContents.forEach(c => c.classList.remove('open'));
+
+    // If it wasn't open, open it now
+    if (!wasOpen) {
+        header.classList.add('active');
+        content.classList.add('open');
+    }
+};
 
 // --- Rendering Functions ---
 

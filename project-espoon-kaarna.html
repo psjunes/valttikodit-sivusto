@@ -10,7 +10,7 @@
     <!-- Inline override for specific assets -->
     <style>
         .hero-kaarna {
-            background-image: url('kaarna_hero_sunny_1769607005303.png');
+            background-image: url('Kotiranta_julkisivu.jpeg');
         }
     </style>
 </head>
@@ -60,34 +60,31 @@
                         Espoon Kaarna edustaa uuden ajan pientaloasumista, jossa yhdistyvät tinkimätön estetiikka,
                         ekologisuus ja lapsiperheen arjen sujuvuus.
                     </p>
-                    <p data-cms="espoon-kaarna.intro.text2">
-                        Sijainti Saunalahden halutulla alueella, päättyvän tien päässä, takaa rauhan. Isot ikkunat
-                        tuovat ympäröivän metsämaiseman osaksi sisustusta. Täällä et asu vain neliöissä, vaan osana
-                        luontoa.
-                    </p>
+                    <p data-cms="espoon-kaarna.intro.text2"></p>
                     <div class="magazine-quote" data-cms="espoon-kaarna.intro.quote">
                         "Suunnittelun lähtökohtana oli luoda koteja, jotka hengittävät samaan tahtiin ympäröivän luonnon
                         kanssa."
                     </div>
                 </div>
-                <div class="magazine-image">
-                    <!-- Placeholder or generated interior if available -->
-                    <img src="intro-image.png" alt="Interior mood"
-                        style="width: 100%; height: auto; border-radius: 4px;">
-                </div>
             </div>
+            <div class="magazine-image">
+                <!-- Placeholder or generated interior if available -->
+                <img src="Kotiranta_olohuone.jpeg" alt="Interior mood"
+                    style="width: 100%; height: auto; border-radius: 4px;" data-cms="espoon-kaarna.intro.image">
+            </div>
+        </div>
         </div>
     </section>
 
     <!-- Gallery Strip -->
     <section class="section" style="padding: 0; background: #fafaf9;">
         <div class="gallery-strip" style="justify-content: center;">
-            <img src="kaarna_hero_sunny_1769607005303.png" class="gallery-item" alt="Exterior"
-                onclick="openLightbox(this.src)" style="cursor: pointer;">
+            <img src="Kotiranta_julkisivu.jpeg" class="gallery-item" alt="Exterior" onclick="openLightbox(this.src)"
+                style="cursor: pointer;">
             <img src="model-family-exterior.png" class="gallery-item" alt="Detail" onclick="openLightbox(this.src)"
                 style="cursor: pointer;">
-            <img src="intro-image.png" class="gallery-item" alt="Interior Living" onclick="openLightbox(this.src)"
-                style="cursor: pointer;">
+            <img src="Kotiranta_olohuone.jpeg" class="gallery-item" alt="Interior Living"
+                onclick="openLightbox(this.src)" style="cursor: pointer;">
             <img src="hero-bg.png" class="gallery-item" alt="Kitchen" onclick="openLightbox(this.src)"
                 style="cursor: pointer;">
         </div>
@@ -148,6 +145,11 @@
     <section id="perustiedot" class="section">
         <div class="container">
             <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
+            <!-- Floorplan Image (Width matching table/content) -->
+            <div style="max-width: 100%; margin-bottom: 2rem;">
+                <img src="Kotiranta_pohjakuva.jpeg" alt="Pohjakuva"
+                    style="width: 100%; height: auto; border-radius: 4px;">
+            </div>
             <div id="project-details-container">
                 <p>Ladataan tietoja...</p>
                 <!-- Table will be rendered here -->
