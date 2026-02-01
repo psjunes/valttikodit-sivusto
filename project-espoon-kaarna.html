@@ -70,17 +70,22 @@
         </div>
     </section>
 
-    <!-- Gallery Strip -->
-    <section class="section" style="padding: 0; background: #fafaf9;">
-        <div class="gallery-strip" style="justify-content: center;">
-            <img src="Kotiranta_julkisivu.jpeg" class="gallery-item" alt="Exterior" onclick="openLightbox(this.src)"
-                style="cursor: pointer;">
-            <img src="model-family-exterior.png" class="gallery-item" alt="Detail" onclick="openLightbox(this.src)"
-                style="cursor: pointer;">
-            <img src="Kotiranta_olohuone.jpeg" class="gallery-item" alt="Interior Living"
-                onclick="openLightbox(this.src)" style="cursor: pointer;">
-            <img src="hero-bg.png" class="gallery-item" alt="Kitchen" onclick="openLightbox(this.src)"
-                style="cursor: pointer;">
+    <!-- Gallery Grid -->
+    <section class="section" style="background: #fafaf9;">
+        <div class="container">
+            <div class="gallery-grid">
+                <img src="Kotiranta_julkisivu.jpeg" class="gallery-item-square" alt="Julkisivu"
+                    onclick="openLightbox(this.src)">
+                <img src="Kotiranta_olohuone.jpeg" class="gallery-item-square" alt="Olohuone"
+                    onclick="openLightbox(this.src)">
+                <img src="Kotiranta_pohjakuva.jpeg" class="gallery-item-square" alt="Pohjakuva"
+                    onclick="openLightbox(this.src)">
+                <img src="model-family-exterior.png" class="gallery-item-square" alt="Piha"
+                    onclick="openLightbox(this.src)">
+                <img src="model-family-interior.png" class="gallery-item-square" alt="Sisätila"
+                    onclick="openLightbox(this.src)">
+                <img src="hero-bg.png" class="gallery-item-square" alt="Yksityiskohta" onclick="openLightbox(this.src)">
+            </div>
         </div>
     </section>
 
@@ -113,6 +118,8 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 4px;
+            object-fit: contain;
+            /* Ensure full image is seen in lightbox */
         }
 
         .close-lightbox {
@@ -139,11 +146,7 @@
     <section id="perustiedot" class="section">
         <div class="container">
             <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
-            <!-- Floorplan Image (Width matching table/content) -->
-            <div style="max-width: 100%; margin-bottom: 2rem;">
-                <img src="Kotiranta_pohjakuva.jpeg" alt="Pohjakuva"
-                    style="width: 100%; height: auto; border-radius: 4px;">
-            </div>
+            <!-- Floorplan Removed from here -->
             <div id="project-details-container">
                 <p>Ladataan tietoja...</p>
                 <!-- Table will be rendered here -->
