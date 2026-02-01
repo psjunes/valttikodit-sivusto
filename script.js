@@ -410,10 +410,96 @@ function renderCollectionList(isIndexPage = false) {
     });
 }
 
+// Reference Data (Scalable: Add new items here)
+const referencesData = [
+    {
+        id: 'ref-kempele',
+        title: 'Omakotitalo, Akana 7',
+        location: 'Kempele',
+        year: '2024',
+        category: 'Omakotitalo',
+        image: 'collection-family.png',
+        desc: 'Lupakuvat, Omakotitalo, pihasauna ja autokatos. Asiakkaan toiveiden pohjalta suunniteltu kokonaisuus.',
+        link: 'reference-template.html'
+    },
+    {
+        id: 'ref-rovaniemi',
+        title: 'Printtivaarantie 11',
+        location: 'Rovaniemi',
+        year: '2023',
+        category: 'Omakotitalo',
+        image: 'model-luxury-exterior.png',
+        desc: 'Rakennesuunnittelu. Arkkitehdin suunnittelema omakotitalo, kellari ja autotalli.',
+        link: 'reference-template.html'
+    },
+    {
+        id: 'ref-yllas',
+        title: 'Huvila Conerod',
+        location: 'Ylläs',
+        year: '2023',
+        category: 'Huvila',
+        image: 'story-featured.png',
+        desc: 'Rakennesuunnittelu. Huvilarakennus, pihasauna ja autokatos tunturimaisemassa.',
+        link: 'reference-template.html'
+    },
+    {
+        id: 'ref-koulu',
+        title: 'Koulun muutos asuinkäyttöön',
+        location: 'Maaseutu',
+        year: '-',
+        category: 'Muutostyö',
+        image: 'collection-header.png',
+        desc: 'Vanhan kyläkoulun muutos nykyaikaiseksi asuinrakennukseksi. Lupa- ja rakennekuvat.',
+        link: 'reference-template.html'
+    },
+    {
+        id: 'ref-nellim',
+        title: 'Mökkirakennus',
+        location: 'Nellim',
+        year: '-',
+        category: 'Vapaa-aika',
+        image: 'collection-senior.png',
+        desc: 'Pohjois-Suomeen rakennettu mökkirakennus ja pihavarasto. Lupa- ja rakennesuunnitelmat.',
+        link: 'reference-template.html'
+    },
+    {
+        id: 'ref-liminka',
+        title: 'Yläkertalaajennus',
+        location: 'Liminka',
+        year: '-',
+        category: 'Laajennus',
+        image: 'model-family-interior.png',
+        desc: '2000-luvun alun omakotitalon yläkerran käyttöönotto ja laajennus.',
+        link: 'reference-template.html'
+    }
+];
+
+function renderReferences() {
+    const container = document.getElementById('references-grid');
+    if (!container) return;
+
+    container.innerHTML = referencesData.map(ref => `
+        <div class="collection-card">
+            <div style="height: 250px; overflow: hidden;">
+                <img src="${ref.image}" alt="${ref.title}" class="collection-image" style="height: 100%; width: 100%; object-fit: cover;">
+            </div>
+            <div class="collection-content">
+                <div class="collection-meta">${ref.location} | ${ref.year}</div>
+                <h3 class="collection-title">${ref.title}</h3>
+                <p class="collection-desc">${ref.desc}</p>
+                <a href="${ref.link}" class="btn btn-secondary">Lue tarina</a>
+            </div>
+        </div>
+    `).join('');
+}
+
 // Init functions based on page
 document.addEventListener('DOMContentLoaded', () => {
     // Start data fetch immediately
     fetchAllData();
+
+    // Render local references if on references page
+    renderReferences();
 
     // Mobile Menu Close on Link Click
     const mobileLinks = document.querySelectorAll('.nav-link');
