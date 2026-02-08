@@ -87,6 +87,9 @@ async function loadCMSData() {
             if (projectId) renderProjectDetails(projectId);
         }
 
+        // Renderöidään dynaamiset listat (Services, Philosophy, Trust)
+        renderDynamicSections();
+
     } catch (err) {
         console.error('CMS Load Failed:', err);
         appState.error = err;
@@ -509,3 +512,125 @@ window.toggleDetailedSpecs = function () {
     const c = document.getElementById('detailed-specs-container');
     c.classList.toggle('hidden');
 };
+
+// --- Dynamic Sections Rendering (Services, Philosophy, Trust) ---
+
+const ICON_MAP = {
+    // Services
+    'home.services.item1': 'edit',
+    'home.services.item2': 'home_work',
+    'home.services.item3': 'manage_accounts',
+    // Philosophy
+    'home.philosophy.item1': 'energy_savings_leaf', // '🌱' replacement
+    'home.philosophy.item2': 'verified_user', // '🛡️' replacement
+    // Trust
+    'home.trust.item1': 'person',
+    'home.trust.item2': 'menu_book',
+    'home.trust.item3': 'visibility',
+    // Fallback
+    'default': 'star'
+};
+
+function renderDynamicSections() {
+    renderGenericList('services-grid', 'home.services', 'trust-item', true);
+    renderPhilosophyList();
+    renderGenericList('trust-grid', 'home.trust', 'trust-item', false);
+}
+
+function renderGenericList(containerId, prefix, itemClass, centerText = false) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    // Find all items: keyPrefix.itemX.title
+    const items = [];
+    Object.keys(appState.content).forEach(key => {
+        if (key.startsWith(prefix + '.item') && key.endsWith('.title')) {
+            // Extract item ID (e.g. 'item1')
+            const parts = key.split('.');
+            const itemKey = parts[parts.length - 2]; // item1
+            items.push(itemKey);
+        }
+    });
+
+    // Unique and Sort
+    const uniqueItems = [...new Set(items)].sort();
+
+    // Fallbacks if no items found (to not break UI if Sheet is empty/old)
+    if (uniqueItems.length === 0) {
+        console.warn(`No dynamic items found for ${prefix}, using fallbacks if hardcoded available.`);
+        // For now we just return, assuming user will update sheet. 
+        // Or we could leave the HTML hardcoded and only clear if we find items.
+        // But the plan was to clear HTML.
+        return;
+    }
+
+    uniqueItems.forEach(itemKey => {
+        const fullKey = `${prefix}.${itemKey}`;
+        const title = appState.content[`${fullKey}.title`] || '';
+        const text = appState.content[`${fullKey}.text`] || '';
+
+        // Icon: check sheet first (.icon), then fallback map, then default
+        let icon = appState.content[`${fullKey}.icon`];
+        if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
+
+        const div = document.createElement('div');
+        div.className = itemClass;
+        if (centerText) div.style.textAlign = 'center';
+
+        const iconStyle = centerText ? 'margin: 0 auto 1.5rem;' : '';
+
+        div.innerHTML = `
+            <div class="trust-icon" style="${iconStyle}">
+                <span class="material-icons-round">${icon}</span>
+            </div>
+            <h3>${title}</h3>
+            <p>${text}</p>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function renderPhilosophyList() {
+    const container = document.getElementById('philosophy-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    // Same logic to find items
+    const items = [];
+    Object.keys(appState.content).forEach(key => {
+        if (key.startsWith('home.philosophy.item') && key.endsWith('.title')) {
+            const parts = key.split('.');
+            const itemKey = parts[parts.length - 2];
+            items.push(itemKey);
+        }
+    });
+    const uniqueItems = [...new Set(items)].sort();
+
+    uniqueItems.forEach(itemKey => {
+        const fullKey = `home.philosophy.${itemKey}`;
+        const title = appState.content[`${fullKey}.title`] || '';
+        const text = appState.content[`${fullKey}.text`] || '';
+
+        let icon = appState.content[`${fullKey}.icon`];
+        if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
+
+        const div = document.createElement('div');
+        div.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 2rem;';
+
+        // Special logic: last item typically has no bottom margin in some designs, but flex gap handles it usually.
+        // Replicating specific inline styles from HTML
+        div.innerHTML = `
+            <div class="trust-icon" style="flex-shrink: 0; width: 50px; height: 50px; font-size: 1.5rem;">
+                <span class="material-icons-round">${icon}</span>
+            </div>
+            <div>
+                <h3>${title}</h3>
+                <p style="margin-bottom: 0;">${text}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
