@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tupoksen Saunaranta - Ennakkomarkkinointi - Valttikodit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- BLOCK 1: Hero-osio -->
+    <header class="hero hero-premarketing" style="background-image: url('Tupos_Saunaranta.png');">
+        <div class="hero-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));"></div>
+        <div class="container hero-content text-center">
+            <span class="intro-tag"
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); color: white; margin-bottom: 2rem; backdrop-filter: blur(5px);">Ennakkomarkkinointi</span>
+            <h1>Tupoksen parhaille paikoille nousee jotain uutta – Sinä päätät muodon.</h1>
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 3rem;">Suunnittelemme kahta modernia 90 m²
+                kotia haluttuun Saunarantaan. Rakentaminen alkaa kesällä 2026. Liity sisäpiiriin nyt ja vaikuta:
+                rakennammeko teille paritalon vai erillistalot?</p>
+            <a href="#vip-form" class="btn btn-accent btn-lg">Liity VIP-listalle ja vaikuta →</a>
+        </div>
+    </header>
+
+    <!-- BLOCK 2: Intro -->
+    <section class="section">
+        <div class="container">
+            <div class="split-section">
+                <!-- Vasemmalla kuva (User provided Image 2) -->
+                <div class="split-image" style="position: relative;">
+                    <img src="Tupos_Saunaranta2.png" alt="Moderni koti"
+                        style="height: 100%; object-fit: cover; border-radius: var(--radius-lg);">
+                </div>
+                <!-- Oikealla teksti -->
+                <div class="split-content">
+                    <span class="intro-tag">Elämänlaatua</span>
+                    <h2>Moderni koti, joka joustaa elämäsi mukana.</h2>
+                    <p>Emme rakenna vain seiniä, rakennamme puitteet elämäsi parhaille vuosille. Tupoksen Saunarannan
+                        uudet Valttikodit yhdistävät skandinaavisen selkeän arkkitehtuurin, laadukkaat materiaalit ja
+                        pohjaratkaisun, jossa jokainen neliö on optimoitu sujuvaa arkea varten.</p>
+                    <p>Tämä on koti sinulle, joka arvostat luonnon läheisyyttä, mutta et halua tinkiä modernin asumisen
+                        mukavuuksista.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOCK 3: The Hook (Split Option) -->
+    <section class="section" style="background-color: var(--color-bg-primary);">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Kumpi on sinun unelmasi?</h2>
+            <p style="max-width: 600px; margin: 0 auto 4rem;">Tontin jako on vielä avoin. Ennakkovaraajana sinun äänesi
+                ratkaisee.</p>
+
+            <div class="hook-split-container">
+                <!-- Option A -->
+                <div class="hook-option">
+                    <div class="hook-image-wrapper">
+                        <!-- Placeholder for Image 6 -->
+                        <div
+                            style="background-color: #e5e5e5; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; color: #78716c; font-weight: bold;">
+                            Vaihtoehto A: Erillistalo (Kuva tulossa)
+                        </div>
+                    </div>
+                    <div class="hook-content">
+                        <h3>Vaihtoehto A: Oma rauha erillistalossa</h3>
+                        <p>Täydellinen yksityisyys ja oma piha-alue ilman seinänaapureita. Kuin omakotitalo, mutta
+                            helpommassa koossa.</p>
+                    </div>
+                </div>
+
+                <!-- Divider / OR -->
+                <div class="hook-divider">TAI</div>
+
+                <!-- Option B -->
+                <div class="hook-option">
+                    <div class="hook-image-wrapper">
+                        <!-- Placeholder for Image 9 -->
+                        <div
+                            style="background-color: #e5e5e5; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; color: #78716c; font-weight: bold;">
+                            Vaihtoehto B: Paritalo (Kuva tulossa)
+                        </div>
+                    </div>
+                    <div class="hook-content">
+                        <h3>Vaihtoehto B: Yhteisöllinen paritalo</h3>
+                        <p>Turvallista ja helppoa asumista, jossa pihatyöt ja ylläpito ovat astetta kevyempiä.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 3rem; font-weight: 600;">Kerro meille mielipiteesi liittymällä VIP-listalle. Enemmistö
+                ratkaisee toteutustavan.</p>
+        </div>
+    </section>
+
+    <!-- BLOCK 4: Speksit -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 4rem;">
+                <span class="intro-tag">Tehokkuus</span>
+                <h2>90 m² täyttä elämää – Ei hukkaneliöitä.</h2>
+                <p>Tämä koti tuntuu neliöitään suuremmalta fiksun suunnittelun ansiosta.</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">meeting_room</span>
+                    <h4>4 Huonetta + Keittiö</h4>
+                    <p>Avara oleskelutila ja kolme muunneltavaa makuu-/työhuonetta.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">hot_tub</span>
+                    <h4>Oma sauna (s)</h4>
+                    <p>Arjen luksusta rentoutumiseen.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">local_laundry_service</span>
+                    <h4>Kodinhoitohuone (khh)</h4>
+                    <p>Pyykkihuolto piiloon omalla sisäänkäynnillä – ehdoton lapsiperheille!</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">checkroom</span>
+                    <h4>Vaatehuone (vh)</h4>
+                    <p>Säilytystilaa, jota aina tarvitaan.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">ac_unit</span>
+                    <h4>Lämmin varasto (var)</h4>
+                    <p>Harrastusvälineet ja kausivaatteet siististi talteen.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="material-icons-round feature-icon">bolt</span>
+                    <h4>Energiatehokas</h4>
+                    <p>Pitää asumiskustannukset kurissa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOCK 5: Footer CTA / Lead Form -->
+    <section id="vip-form" class="section lead-section"
+        style="position: relative; background-color: #1c1917; color: white;">
+        <!-- Placeholder BG Image 15 -->
+        <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; background: url('hero-bg.png') center/cover; filter: blur(10px);">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="lead-content text-center" style="max-width: 700px; margin: 0 auto;">
+                <h2 style="color: white; font-size: 2.5rem;">Varmista paikkasi eturivissä.</h2>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 3rem;">Kohteet tulevat julkiseen myyntiin
+                    myöhemmin. Liittymällä VIP-listalle nyt saat tiedon ennakkomyynnin aloituksesta ensimmäisenä ja
+                    pääset vaikuttamaan talotyyppiin.</p>
+
+                <form class="lead-form"
+                    onsubmit="event.preventDefault(); alert('Kiitos liittymisestäsi! (Oikea lähetys vaatisi backendin)');">
+                    <div class="form-group-row">
+                        <input type="text" placeholder="Etunimi *" required class="form-input">
+                        <input type="text" placeholder="Sukunimi *" required class="form-input">
+                    </div>
+                    <input type="email" placeholder="Sähköpostiosoite *" required class="form-input">
+                    <input type="tel" placeholder="Puhelinnumero" class="form-input">
+
+                    <div class="form-radio-group" style="margin: 2rem 0; text-align: left;">
+                        <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.9);">Olen kiinnostuneempi:</p>
+                        <label class="radio-label">
+                            <input type="radio" name="preference" value="detached"> Erillistalosta
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="preference" value="semidetached"> Paritalosta
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="preference" value="both" checked> Molemmat käy
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent"
+                        style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">Liity VIP-listalle ja vaikuta</button>
+                    <p style="font-size: 0.8rem; margin-top: 1.5rem; color: rgba(255,255,255,0.5);">Rakentamisen
+                        arvioitu aloitus on kesällä 2026. Liittyminen listalle ei sido sinua mihinkään.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Mannerheimintie 1<br>00100 Helsinki</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p>Instagram | Facebook | LinkedIn</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Init mobile menu if needed, reusing main.js logic check
+        // main.js handles CMS data, but this page is static/custom for now.
+    </script>
+</body>
+
+</html>
