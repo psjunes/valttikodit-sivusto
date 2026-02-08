@@ -234,15 +234,29 @@ function renderProjects() {
         if (!project.name) return; // Skip empty rows
 
         const isConstruction = project.status === 'construction';
-        const badgeClass = isConstruction ? 'construction' : 'marketing';
+        const isSold = project.status === 'sold';
+
+        // Determine badge class (sold also uses green 'construction' style)
+        let badgeClass = 'marketing';
+        if (isConstruction || isSold) badgeClass = 'construction';
+
+        // Progress color logic
         let progressColor = 'var(--color-accent-emerald)';
         if (project.status === 'marketing' && project.progress < 20) progressColor = 'var(--color-accent-amber)';
         if (isConstruction) progressColor = 'var(--color-accent-emerald-dark)';
 
+        // Image HTML with Overlay for Sold items
+        const imageHtml = isSold
+            ? `<div class="project-image-wrapper" style="position: relative;">
+                 <img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image" style="opacity: 0.9;">
+                 <div class="sold-overlay">MYYTY</div>
+               </div>`
+            : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">`;
+
         const card = document.createElement('div');
         card.className = 'project-card';
         card.innerHTML = `
-            <img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">
+            ${imageHtml}
             <div class="project-content">
                 <span class="status-badge ${badgeClass}">${project.statusText || 'Ennakkomarkkinointi'}</span>
                 <h3 class="collection-title">${project.name}</h3>
@@ -251,7 +265,7 @@ function renderProjects() {
                 
                 <div class="progress-container">
                     <div class="progress-label">
-                        <span>${isConstruction ? 'Rakentaminen käynnissä' : 'Varausaste'}</span>
+                        <span>${isConstruction ? 'Rakentaminen käynnissä' : (isSold ? 'Varausaste' : 'Varausaste')}</span>
                         <span>${project.progress || 0}%</span>
                     </div>
                     <div class="progress-bar">

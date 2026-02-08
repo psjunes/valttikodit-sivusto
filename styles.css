@@ -1407,3 +1407,25 @@ a {
     }
 }
 
+
+
+/* Sold Project Overlay */
+.sold-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1.5rem;
+    font-weight: 800;
+    color: #b91c1c; /* Red text */
+    border: 3px solid #b91c1c;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 10;
+    pointer-events: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
