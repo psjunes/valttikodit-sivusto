@@ -32,12 +32,15 @@
         <div class="hero-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));"></div>
         <div class="container hero-content text-center">
             <span class="intro-tag"
-                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); color: white; margin-bottom: 2rem; backdrop-filter: blur(5px);">Ennakkomarkkinointi</span>
-            <h1>Tupoksen parhaille paikoille nousee jotain uutta – Sinä päätät muodon.</h1>
-            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 3rem;">Suunnittelemme kahta modernia 90 m²
+                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); color: white; margin-bottom: 2rem; backdrop-filter: blur(5px);"
+                data-cms="tupos.hero.tag">Ennakkomarkkinointi</span>
+            <h1 data-cms="tupos.hero.title">Tupoksen parhaille paikoille nousee jotain uutta – Sinä päätät muodon.</h1>
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 3rem;" data-cms="tupos.hero.text">
+                Suunnittelemme kahta modernia 90 m²
                 kotia haluttuun Saunarantaan. Rakentaminen alkaa kesällä 2026. Liity sisäpiiriin nyt ja vaikuta:
                 rakennammeko teille paritalon vai erillistalot?</p>
-            <a href="#vip-form" class="btn btn-accent btn-lg">Liity VIP-listalle ja vaikuta →</a>
+            <a href="#vip-form" class="btn btn-accent btn-lg" data-cms="tupos.hero.cta">Liity VIP-listalle ja vaikuta
+                →</a>
         </div>
     </header>
 
@@ -48,16 +51,19 @@
                 <!-- Vasemmalla kuva (User provided Image 2) -->
                 <div class="split-image" style="position: relative;">
                     <img src="Tupos_Saunaranta2.png" alt="Moderni koti"
-                        style="height: 100%; object-fit: cover; border-radius: var(--radius-lg);">
+                        style="height: 100%; object-fit: cover; border-radius: var(--radius-lg);"
+                        data-cms="tupos.intro.image">
                 </div>
                 <!-- Oikealla teksti -->
                 <div class="split-content">
-                    <span class="intro-tag">Elämänlaatua</span>
-                    <h2>Moderni koti, joka joustaa elämäsi mukana.</h2>
-                    <p>Emme rakenna vain seiniä, rakennamme puitteet elämäsi parhaille vuosille. Tupoksen Saunarannan
+                    <span class="intro-tag" data-cms="tupos.intro.tag">Elämänlaatua</span>
+                    <h2 data-cms="tupos.intro.title">Moderni koti, joka joustaa elämäsi mukana.</h2>
+                    <p data-cms="tupos.intro.text1">Emme rakenna vain seiniä, rakennamme puitteet elämäsi parhaille
+                        vuosille. Tupoksen Saunarannan
                         uudet Valttikodit yhdistävät skandinaavisen selkeän arkkitehtuurin, laadukkaat materiaalit ja
                         pohjaratkaisun, jossa jokainen neliö on optimoitu sujuvaa arkea varten.</p>
-                    <p>Tämä on koti sinulle, joka arvostat luonnon läheisyyttä, mutta et halua tinkiä modernin asumisen
+                    <p data-cms="tupos.intro.text2">Tämä on koti sinulle, joka arvostat luonnon läheisyyttä, mutta et
+                        halua tinkiä modernin asumisen
                         mukavuuksista.</p>
                 </div>
             </div>
@@ -67,23 +73,24 @@
     <!-- BLOCK 3: The Hook (Split Option) -->
     <section class="section" style="background-color: var(--color-bg-primary);">
         <div class="container text-center">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Kumpi on sinun unelmasi?</h2>
-            <p style="max-width: 600px; margin: 0 auto 4rem;">Tontin jako on vielä avoin. Ennakkovaraajana sinun äänesi
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;" data-cms="tupos.hook.title">Kumpi on sinun unelmasi?
+            </h2>
+            <p style="max-width: 600px; margin: 0 auto 4rem;" data-cms="tupos.hook.desc">Tontin jako on vielä avoin.
+                Ennakkovaraajana sinun äänesi
                 ratkaisee.</p>
 
             <div class="hook-split-container">
                 <!-- Option A -->
                 <div class="hook-option">
-                    <div class="hook-image-wrapper">
-                        <!-- Placeholder for Image 6 -->
-                        <div
-                            style="background-color: #e5e5e5; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; color: #78716c; font-weight: bold;">
-                            Vaihtoehto A: Erillistalo (Kuva tulossa)
-                        </div>
+                    <div class="hook-image-wrapper" style="height: 300px; overflow: hidden;">
+                        <!-- Cropped view for Detached House -->
+                        <img src="Tupos_Saunaranta4.png" alt="Erillistalo" class="hook-img-crop"
+                            data-cms="tupos.hook.optionA.image" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="hook-content">
-                        <h3>Vaihtoehto A: Oma rauha erillistalossa</h3>
-                        <p>Täydellinen yksityisyys ja oma piha-alue ilman seinänaapureita. Kuin omakotitalo, mutta
+                        <h3 data-cms="tupos.hook.optionA.title">Vaihtoehto A: Oma rauha erillistalossa</h3>
+                        <p data-cms="tupos.hook.optionA.text">Täydellinen yksityisyys ja oma piha-alue ilman
+                            seinänaapureita. Kuin omakotitalo, mutta
                             helpommassa koossa.</p>
                     </div>
                 </div>
@@ -93,21 +100,21 @@
 
                 <!-- Option B -->
                 <div class="hook-option">
-                    <div class="hook-image-wrapper">
-                        <!-- Placeholder for Image 9 -->
-                        <div
-                            style="background-color: #e5e5e5; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center; color: #78716c; font-weight: bold;">
-                            Vaihtoehto B: Paritalo (Kuva tulossa)
-                        </div>
+                    <div class="hook-image-wrapper" style="height: 300px; overflow: hidden;">
+                        <!-- Full view for Semi-detached House -->
+                        <img src="Tupos_Saunaranta4.png" alt="Paritalo" class="hook-img-full"
+                            data-cms="tupos.hook.optionB.image" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="hook-content">
-                        <h3>Vaihtoehto B: Yhteisöllinen paritalo</h3>
-                        <p>Turvallista ja helppoa asumista, jossa pihatyöt ja ylläpito ovat astetta kevyempiä.</p>
+                        <h3 data-cms="tupos.hook.optionB.title">Vaihtoehto B: Yhteisöllinen paritalo</h3>
+                        <p data-cms="tupos.hook.optionB.text">Turvallista ja helppoa asumista, jossa pihatyöt ja
+                            ylläpito ovat astetta kevyempiä.</p>
                     </div>
                 </div>
             </div>
 
-            <p style="margin-top: 3rem; font-weight: 600;">Kerro meille mielipiteesi liittymällä VIP-listalle. Enemmistö
+            <p style="margin-top: 3rem; font-weight: 600;" data-cms="tupos.hook.summary">Kerro meille mielipiteesi
+                liittymällä VIP-listalle. Enemmistö
                 ratkaisee toteutustavan.</p>
         </div>
     </section>
@@ -116,41 +123,45 @@
     <section class="section">
         <div class="container">
             <div class="text-center" style="margin-bottom: 4rem;">
-                <span class="intro-tag">Tehokkuus</span>
-                <h2>90 m² täyttä elämää – Ei hukkaneliöitä.</h2>
-                <p>Tämä koti tuntuu neliöitään suuremmalta fiksun suunnittelun ansiosta.</p>
+                <span class="intro-tag" data-cms="tupos.specs.tag">Tehokkuus</span>
+                <h2 data-cms="tupos.specs.title">90 m² täyttä elämää – Ei hukkaneliöitä.</h2>
+                <p data-cms="tupos.specs.text">Tämä koti tuntuu neliöitään suuremmalta fiksun suunnittelun ansiosta.</p>
             </div>
 
             <div class="feature-grid">
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">meeting_room</span>
-                    <h4>4 Huonetta + Keittiö</h4>
-                    <p>Avara oleskelutila ja kolme muunneltavaa makuu-/työhuonetta.</p>
+                    <span class="material-icons-round feature-icon"
+                        data-cms="tupos.specs.item1.icon">meeting_room</span>
+                    <h4 data-cms="tupos.specs.item1.title">4 Huonetta + Keittiö</h4>
+                    <p data-cms="tupos.specs.item1.text">Avara oleskelutila ja kolme muunneltavaa makuu-/työhuonetta.
+                    </p>
                 </div>
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">hot_tub</span>
-                    <h4>Oma sauna (s)</h4>
-                    <p>Arjen luksusta rentoutumiseen.</p>
+                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item2.icon">hot_tub</span>
+                    <h4 data-cms="tupos.specs.item2.title">Oma sauna (s)</h4>
+                    <p data-cms="tupos.specs.item2.text">Arjen luksusta rentoutumiseen.</p>
                 </div>
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">local_laundry_service</span>
-                    <h4>Kodinhoitohuone (khh)</h4>
-                    <p>Pyykkihuolto piiloon omalla sisäänkäynnillä – ehdoton lapsiperheille!</p>
+                    <span class="material-icons-round feature-icon"
+                        data-cms="tupos.specs.item3.icon">local_laundry_service</span>
+                    <h4 data-cms="tupos.specs.item3.title">Kodinhoitohuone (khh)</h4>
+                    <p data-cms="tupos.specs.item3.text">Pyykkihuolto piiloon omalla sisäänkäynnillä – ehdoton
+                        lapsiperheille!</p>
                 </div>
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">checkroom</span>
-                    <h4>Vaatehuone (vh)</h4>
-                    <p>Säilytystilaa, jota aina tarvitaan.</p>
+                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item4.icon">checkroom</span>
+                    <h4 data-cms="tupos.specs.item4.title">Vaatehuone (vh)</h4>
+                    <p data-cms="tupos.specs.item4.text">Säilytystilaa, jota aina tarvitaan.</p>
                 </div>
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">ac_unit</span>
-                    <h4>Lämmin varasto (var)</h4>
-                    <p>Harrastusvälineet ja kausivaatteet siististi talteen.</p>
+                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item5.icon">ac_unit</span>
+                    <h4 data-cms="tupos.specs.item5.title">Lämmin varasto (var)</h4>
+                    <p data-cms="tupos.specs.item5.text">Harrastusvälineet ja kausivaatteet siististi talteen.</p>
                 </div>
                 <div class="feature-item">
-                    <span class="material-icons-round feature-icon">bolt</span>
-                    <h4>Energiatehokas</h4>
-                    <p>Pitää asumiskustannukset kurissa.</p>
+                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item6.icon">bolt</span>
+                    <h4 data-cms="tupos.specs.item6.title">Energiatehokas</h4>
+                    <p data-cms="tupos.specs.item6.text">Pitää asumiskustannukset kurissa.</p>
                 </div>
             </div>
         </div>
@@ -160,16 +171,19 @@
     <section id="vip-form" class="section lead-section"
         style="position: relative; background-color: #1c1917; color: white;">
         <!-- Placeholder BG Image 15 -->
-        <div
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; background: url('hero-bg.png') center/cover; filter: blur(10px);">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; background: url('hero-bg.png') center/cover; filter: blur(10px);"
+            data-cms="tupos.footer.bg">
         </div>
 
         <div class="container" style="position: relative; z-index: 2;">
             <div class="lead-content text-center" style="max-width: 700px; margin: 0 auto;">
-                <h2 style="color: white; font-size: 2.5rem;">Varmista paikkasi eturivissä.</h2>
-                <p style="color: rgba(255,255,255,0.8); margin-bottom: 3rem;">Kohteet tulevat julkiseen myyntiin
+                <h2 style="color: white; font-size: 2.5rem;" data-cms="tupos.footer.title">Varmista paikkasi eturivissä.
+                </h2>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 3rem;" data-cms="tupos.footer.text">Kohteet
+                    tulevat julkiseen myyntiin
                     myöhemmin. Liittymällä VIP-listalle nyt saat tiedon ennakkomyynnin aloituksesta ensimmäisenä ja
                     pääset vaikuttamaan talotyyppiin.</p>
+
 
                 <form class="lead-form"
                     onsubmit="event.preventDefault(); alert('Kiitos liittymisestäsi! (Oikea lähetys vaatisi backendin)');">
