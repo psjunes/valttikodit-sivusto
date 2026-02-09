@@ -243,6 +243,11 @@ function renderSocialLinks() {
     containers.forEach(c => {
         c.innerHTML = linksHtml.join('');
     });
+}
+
+function renderProjects() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return; // Not on a page with projects grid
     console.log('Rendering Projects Grid...');
     grid.innerHTML = ''; // Clear loading text
 
