@@ -196,8 +196,8 @@ function updatePageContent() {
         if (appState.content[key]) {
             let val = appState.content[key];
             // Auto-optimize: Swap known heavy PNGs to JPGs if they come from Sheets
-            if (val === 'hero-bg.png') val = 'hero-bg.jpg';
-            if (val === 'intro-image.png') val = 'intro-image.jpg';
+            if (val && val.toLowerCase() === 'hero-bg.png') val = 'hero-bg.jpg';
+            if (val && val.toLowerCase() === 'intro-image.png') val = 'intro-image.jpg';
 
             if (el.tagName === 'IMG') {
                 el.src = val;
