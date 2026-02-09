@@ -193,10 +193,14 @@ function updatePageContent() {
     document.querySelectorAll('[data-cms]').forEach(el => {
         const key = el.getAttribute('data-cms');
         if (appState.content[key]) {
+            let val = appState.content[key];
+            // Auto-optimize: Swap known heavy PNGs to JPGs if they come from Sheets
+            if (val === 'hero-bg.png') val = 'hero-bg.jpg';
+
             if (el.tagName === 'IMG') {
-                el.src = appState.content[key];
+                el.src = val;
             } else {
-                el.innerHTML = appState.content[key];
+                el.innerHTML = val;
             }
         }
     });
