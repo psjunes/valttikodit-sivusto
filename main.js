@@ -197,6 +197,7 @@ function updatePageContent() {
             let val = appState.content[key];
             // Auto-optimize: Swap known heavy PNGs to JPGs if they come from Sheets
             if (val === 'hero-bg.png') val = 'hero-bg.jpg';
+            if (val === 'intro-image.png') val = 'intro-image.jpg';
 
             if (el.tagName === 'IMG') {
                 el.src = val;
@@ -207,60 +208,83 @@ function updatePageContent() {
     });
 
     // Handle Map Updates specifically
-    document.querySelectorAll('[data-cms-map]').forEach(el => {
-        const key = el.getAttribute('data-cms-map');
-        if (appState.content[key]) {
-            const address = appState.content[key];
-            // Update iframe src with new address query
-            // Using simple embed format: https://maps.google.com/maps?q=[ADDRESS]&output=embed
-            el.src = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
-        }
-    });
+    if (appState.content[key]) {
+        const address = appState.content[key];
+        // Update iframe src with new address query
+        // Using simple embed format: https://maps.google.com/maps?q=[ADDRESS]&output=embed
+        el.src = `https://maps.google.com/maps?q=${encodeURIComponent(address)}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+    }
+});
+
+renderSocialLinks();
 }
 
-function renderProjects() {
-    const grid = document.getElementById('projects-grid');
-    if (!grid) return; // Not on a page with projects grid
+function renderSocialLinks() {
+    // Looks for a container with data-cms-social-container
+    // Or we reuse data-cms="footer.social.links" but overwrite it if individual keys exist
+    const containers = document.querySelectorAll('[data-cms="footer.social.links"]');
+    if (containers.length === 0) return;
 
-    console.log('Rendering Projects Grid...');
-    grid.innerHTML = ''; // Clear loading text
+    const ig = appState.content['footer.social.instagram'];
+    const fb = appState.content['footer.social.facebook'];
+    const li = appState.content['footer.social.linkedin'];
 
-    if (!appState.projects || appState.projects.length === 0) {
-        grid.innerHTML = `
+    // If no individual keys, we leave the default (which might be the full HTML string from 'footer.social.links')
+    // But if ANY individual key exists, we overwrite.
+    if (!ig && !fb && !li) return;
+
+    const linksHtml = [];
+    if (ig) linksHtml.push(`<p><a href="${ig}" target="_blank">Instagram</a></p>`);
+    if (fb) linksHtml.push(`<p><a href="${fb}" target="_blank">Facebook</a></p>`);
+    if (li) linksHtml.push(`<p><a href="${li}" target="_blank">LinkedIn</a></p>`);
+
+    containers.forEach(c => {
+        c.innerHTML = linksHtml.join('');
+    });
+
+    function renderProjects() {
+        const grid = document.getElementById('projects-grid');
+        if (!grid) return; // Not on a page with projects grid
+
+        console.log('Rendering Projects Grid...');
+        grid.innerHTML = ''; // Clear loading text
+
+        if (!appState.projects || appState.projects.length === 0) {
+            grid.innerHTML = `
             <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
                 <h3>Ei julkaistuja kohteita</h3>
                 <p>Tarkista Google Sheetsin "Projects"-välilehti.</p>
             </div>
         `;
-        return;
-    }
+            return;
+        }
 
-    appState.projects.forEach(project => {
-        if (!project.name) return; // Skip empty rows
+        appState.projects.forEach(project => {
+            if (!project.name) return; // Skip empty rows
 
-        const isConstruction = project.status === 'construction';
-        const isSold = project.status === 'sold';
+            const isConstruction = project.status === 'construction';
+            const isSold = project.status === 'sold';
 
-        // Determine badge class (sold also uses green 'construction' style)
-        let badgeClass = 'marketing';
-        if (isConstruction || isSold) badgeClass = 'construction';
+            // Determine badge class (sold also uses green 'construction' style)
+            let badgeClass = 'marketing';
+            if (isConstruction || isSold) badgeClass = 'construction';
 
-        // Progress color logic
-        let progressColor = 'var(--color-accent-emerald)';
-        if (project.status === 'marketing' && project.progress < 20) progressColor = 'var(--color-accent-amber)';
-        if (isConstruction) progressColor = 'var(--color-accent-emerald-dark)';
+            // Progress color logic
+            let progressColor = 'var(--color-accent-emerald)';
+            if (project.status === 'marketing' && project.progress < 20) progressColor = 'var(--color-accent-amber)';
+            if (isConstruction) progressColor = 'var(--color-accent-emerald-dark)';
 
-        // Image HTML with Overlay for Sold items
-        const imageHtml = isSold
-            ? `<div class="project-image-wrapper" style="position: relative;">
+            // Image HTML with Overlay for Sold items
+            const imageHtml = isSold
+                ? `<div class="project-image-wrapper" style="position: relative;">
                  <img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image" style="opacity: 0.9;">
                  <div class="sold-overlay">MYYTY</div>
                </div>`
-            : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">`;
+                : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">`;
 
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.innerHTML = `
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
             ${imageHtml}
             <div class="project-content">
                 <span class="status-badge ${badgeClass}">${project.statusText || 'Ennakkomarkkinointi'}</span>
@@ -284,49 +308,49 @@ function renderProjects() {
                 </div>
             </div>
         `;
-        grid.appendChild(card);
-    });
-}
+            grid.appendChild(card);
+        });
+    }
 
-function renderCollection() {
-    const grid = document.getElementById('collection-grid');
-    if (!grid) return;
+    function renderCollection() {
+        const grid = document.getElementById('collection-grid');
+        if (!grid) return;
 
-    // Check if we are on index page (hero exists) to determine styling
-    const isIndex = !!document.querySelector('.hero');
-    grid.innerHTML = '';
+        // Check if we are on index page (hero exists) to determine styling
+        const isIndex = !!document.querySelector('.hero');
+        grid.innerHTML = '';
 
-    Object.keys(appState.models).forEach(id => {
-        const model = appState.models[id];
-        // Find active project for this model
-        const activeProject = appState.projects.find(p => p.modelId === id && p.status !== 'sold');
+        Object.keys(appState.models).forEach(id => {
+            const model = appState.models[id];
+            // Find active project for this model
+            const activeProject = appState.projects.find(p => p.modelId === id && p.status !== 'sold');
 
-        let extraHtml = '';
-        if (activeProject) {
-            if (isIndex) {
-                extraHtml = `
+            let extraHtml = '';
+            if (activeProject) {
+                if (isIndex) {
+                    extraHtml = `
                     <div style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #ecfdf5; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--color-accent-emerald-dark); display: flex; align-items: center; gap: 0.5rem;">
                          <span class="material-icons-round" style="font-size: 1rem;">construction</span>
                          <span>Rakennettavana: <strong>${activeProject.name}</strong></span>
                     </div>`;
-            } else {
-                extraHtml = `
+                } else {
+                    extraHtml = `
                     <div class="cross-link-box">
                         <p>Ihastuitko tähän malliin?</p>
                         <a href="${activeProject.link}">Rakennamme tätä juuri nyt: <strong>${activeProject.name} &rarr;</strong></a>
                     </div>`;
+                }
+            } else if (!isIndex) {
+                extraHtml = `<div style="margin-top: auto;"></div>`;
             }
-        } else if (!isIndex) {
-            extraHtml = `<div style="margin-top: auto;"></div>`;
-        }
 
-        const btnClass = isIndex ? 'btn-card' : 'btn btn-secondary';
-        const linkAction = isIndex ? `href="collection.html?model=${id}"` : `onclick="openModelDetail('${id}')"`;
-        const btnTag = isIndex ? 'a' : 'button';
+            const btnClass = isIndex ? 'btn-card' : 'btn btn-secondary';
+            const linkAction = isIndex ? `href="collection.html?model=${id}"` : `onclick="openModelDetail('${id}')"`;
+            const btnTag = isIndex ? 'a' : 'button';
 
-        const card = document.createElement('div');
-        card.className = 'collection-card';
-        card.innerHTML = `
+            const card = document.createElement('div');
+            card.className = 'collection-card';
+            card.innerHTML = `
             <img src="${model.images[0]}" alt="${model.title}" class="collection-image">
             <div class="collection-content">
                 <div class="collection-meta">${model.meta}</div>
@@ -337,311 +361,311 @@ function renderCollection() {
                 ${isIndex ? extraHtml : ''}
             </div>
         `;
-        grid.appendChild(card);
-    });
-}
-
-function checkModeldetail() {
-    const params = new URLSearchParams(window.location.search);
-    const modelId = params.get('model');
-    if (modelId && appState.models[modelId]) {
-        openModelDetail(modelId);
-    }
-}
-
-// --- Helpers & Parsers ---
-
-function parseKeyValCSV(text) {
-    const rows = parseCSVLineAware(text);
-    const content = {};
-    rows.forEach(row => {
-        // Assume row[0] is ID, row[1] is Content
-        if (row[0] && row[1]) content[row[0]] = row[1];
-    });
-    return content;
-}
-
-function parseStandardCSV(text) {
-    const rows = parseCSVLineAware(text);
-    if (rows.length < 2) return [];
-
-    const headers = rows[0].map(h => h.trim());
-    const data = [];
-
-    for (let i = 1; i < rows.length; i++) {
-        const row = rows[i];
-        if (row.length < headers.length) continue;
-
-        let obj = {};
-        headers.forEach((h, index) => {
-            let val = row[index] || '';
-            if (h === 'progress') val = parseInt(val, 10) || 0;
-            obj[h] = val;
+            grid.appendChild(card);
         });
-        data.push(obj);
     }
-    return data;
-}
 
-function parseModelsCSV(text) {
-    const rows = parseStandardCSV(text); // Reuse standard parser to get array of objects
-    const models = {};
-    rows.forEach(row => {
-        // Transform pipe-separated images
-        let images = [row.mainImage];
-        if (row.images && row.images.includes('|')) {
-            images = row.images.split('|').map(s => s.trim());
-        } else if (row.images) {
-            images = [row.images];
+    function checkModeldetail() {
+        const params = new URLSearchParams(window.location.search);
+        const modelId = params.get('model');
+        if (modelId && appState.models[modelId]) {
+            openModelDetail(modelId);
         }
+    }
 
-        models[row.id] = {
-            title: row.title,
-            size: row.size,
-            meta: row.size,
-            shortDesc: row.shortDesc,
-            description: row.description,
-            images: images,
-            specs: [
-                { label: 'Huoneistoala', value: row.specs_room_sqm },
-                { label: 'Kerrosala', value: row.specs_total_sqm },
-                { label: 'Makuuhuoneet', value: row.specs_bedrooms },
-                { label: 'Kylpyhuoneet', value: row.specs_bathrooms }
-            ],
-            detailedSpecs: [
-                { label: 'Huoneistoala', value: row.specs_room_sqm },
-                { label: 'Kerrosala', value: row.specs_total_sqm }
-            ]
-        };
-    });
-    return models;
-}
+    // --- Helpers & Parsers ---
 
-// Robust CSV Line Parser (Handles quotes)
-function parseCSVLineAware(text) {
-    const lines = text.split(/\r?\n/);
-    return lines.map(line => {
-        if (!line.trim()) return null;
-        const result = [];
-        let start = 0;
-        let inQuotes = false;
+    function parseKeyValCSV(text) {
+        const rows = parseCSVLineAware(text);
+        const content = {};
+        rows.forEach(row => {
+            // Assume row[0] is ID, row[1] is Content
+            if (row[0] && row[1]) content[row[0]] = row[1];
+        });
+        return content;
+    }
 
-        for (let i = 0; i < line.length; i++) {
-            if (line[i] === '"') {
-                inQuotes = !inQuotes;
-            } else if (line[i] === ',' && !inQuotes) {
-                let field = line.substring(start, i).trim();
-                // Unquote
-                if (field.startsWith('"') && field.endsWith('"')) {
-                    field = field.substring(1, field.length - 1).replace(/""/g, '"');
-                }
-                result.push(field);
-                start = i + 1;
+    function parseStandardCSV(text) {
+        const rows = parseCSVLineAware(text);
+        if (rows.length < 2) return [];
+
+        const headers = rows[0].map(h => h.trim());
+        const data = [];
+
+        for (let i = 1; i < rows.length; i++) {
+            const row = rows[i];
+            if (row.length < headers.length) continue;
+
+            let obj = {};
+            headers.forEach((h, index) => {
+                let val = row[index] || '';
+                if (h === 'progress') val = parseInt(val, 10) || 0;
+                obj[h] = val;
+            });
+            data.push(obj);
+        }
+        return data;
+    }
+
+    function parseModelsCSV(text) {
+        const rows = parseStandardCSV(text); // Reuse standard parser to get array of objects
+        const models = {};
+        rows.forEach(row => {
+            // Transform pipe-separated images
+            let images = [row.mainImage];
+            if (row.images && row.images.includes('|')) {
+                images = row.images.split('|').map(s => s.trim());
+            } else if (row.images) {
+                images = [row.images];
             }
-        }
-        // Last field
-        let field = line.substring(start).trim();
-        if (field.startsWith('"') && field.endsWith('"')) {
-            field = field.substring(1, field.length - 1).replace(/""/g, '"');
-        }
-        result.push(field);
-        return result;
-    }).filter(row => row !== null);
-}
 
-// --- UI Helpers ---
-
-function displayErrorOnPage(msg) {
-    const grid = document.getElementById('projects-grid') || document.body;
-    const errorBox = document.createElement('div');
-    errorBox.style.cssText = 'background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 8px; margin: 2rem; border: 1px solid #f87171;';
-    errorBox.innerHTML = `<strong>Virhe ladattaessa sisältöä:</strong> ${msg}<br>Tarkista onhan Google Sheets julkaistu (File > Share > Publish to web).`;
-    grid.prepend(errorBox);
-}
-
-function initMobileMenu() {
-    window.toggleMobileMenu = function () {
-        document.querySelector('.nav-links').classList.toggle('active');
-    };
-
-    // Close on click
-    document.querySelectorAll('.nav-link').forEach(l => {
-        l.addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.remove('active');
+            models[row.id] = {
+                title: row.title,
+                size: row.size,
+                meta: row.size,
+                shortDesc: row.shortDesc,
+                description: row.description,
+                images: images,
+                specs: [
+                    { label: 'Huoneistoala', value: row.specs_room_sqm },
+                    { label: 'Kerrosala', value: row.specs_total_sqm },
+                    { label: 'Makuuhuoneet', value: row.specs_bedrooms },
+                    { label: 'Kylpyhuoneet', value: row.specs_bathrooms }
+                ],
+                detailedSpecs: [
+                    { label: 'Huoneistoala', value: row.specs_room_sqm },
+                    { label: 'Kerrosala', value: row.specs_total_sqm }
+                ]
+            };
         });
-    });
-}
+        return models;
+    }
 
-// Global for inline onclick handlers
-let currentDetailData = null;
-let currentDetailImgIdx = 0;
+    // Robust CSV Line Parser (Handles quotes)
+    function parseCSVLineAware(text) {
+        const lines = text.split(/\r?\n/);
+        return lines.map(line => {
+            if (!line.trim()) return null;
+            const result = [];
+            let start = 0;
+            let inQuotes = false;
 
-window.openModelDetail = function (id) {
-    currentDetailData = appState.models[id];
-    if (!currentDetailData) return;
+            for (let i = 0; i < line.length; i++) {
+                if (line[i] === '"') {
+                    inQuotes = !inQuotes;
+                } else if (line[i] === ',' && !inQuotes) {
+                    let field = line.substring(start, i).trim();
+                    // Unquote
+                    if (field.startsWith('"') && field.endsWith('"')) {
+                        field = field.substring(1, field.length - 1).replace(/""/g, '"');
+                    }
+                    result.push(field);
+                    start = i + 1;
+                }
+            }
+            // Last field
+            let field = line.substring(start).trim();
+            if (field.startsWith('"') && field.endsWith('"')) {
+                field = field.substring(1, field.length - 1).replace(/""/g, '"');
+            }
+            result.push(field);
+            return result;
+        }).filter(row => row !== null);
+    }
 
-    const view = document.getElementById('model-details-view');
-    if (!view) return;
+    // --- UI Helpers ---
 
-    // Fill data
-    document.getElementById('detail-title').innerText = currentDetailData.title;
-    document.getElementById('detail-size').innerText = currentDetailData.size;
-    document.getElementById('detail-description').innerHTML = currentDetailData.description;
+    function displayErrorOnPage(msg) {
+        const grid = document.getElementById('projects-grid') || document.body;
+        const errorBox = document.createElement('div');
+        errorBox.style.cssText = 'background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 8px; margin: 2rem; border: 1px solid #f87171;';
+        errorBox.innerHTML = `<strong>Virhe ladattaessa sisältöä:</strong> ${msg}<br>Tarkista onhan Google Sheets julkaistu (File > Share > Publish to web).`;
+        grid.prepend(errorBox);
+    }
 
-    // Specs in table
-    const tableBody = document.getElementById('detail-specs-table-body');
-    if (tableBody) {
-        tableBody.innerHTML = currentDetailData.specs.map(s =>
-            `<tr><td style="font-weight:600;">${s.label}</td><td>${s.value}</td></tr>`
-        ).join('');
-        // Also add detailed specs if any
-        if (currentDetailData.detailedSpecs) {
-            tableBody.innerHTML += currentDetailData.detailedSpecs.map(s =>
+    function initMobileMenu() {
+        window.toggleMobileMenu = function () {
+            document.querySelector('.nav-links').classList.toggle('active');
+        };
+
+        // Close on click
+        document.querySelectorAll('.nav-link').forEach(l => {
+            l.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    }
+
+    // Global for inline onclick handlers
+    let currentDetailData = null;
+    let currentDetailImgIdx = 0;
+
+    window.openModelDetail = function (id) {
+        currentDetailData = appState.models[id];
+        if (!currentDetailData) return;
+
+        const view = document.getElementById('model-details-view');
+        if (!view) return;
+
+        // Fill data
+        document.getElementById('detail-title').innerText = currentDetailData.title;
+        document.getElementById('detail-size').innerText = currentDetailData.size;
+        document.getElementById('detail-description').innerHTML = currentDetailData.description;
+
+        // Specs in table
+        const tableBody = document.getElementById('detail-specs-table-body');
+        if (tableBody) {
+            tableBody.innerHTML = currentDetailData.specs.map(s =>
                 `<tr><td style="font-weight:600;">${s.label}</td><td>${s.value}</td></tr>`
             ).join('');
+            // Also add detailed specs if any
+            if (currentDetailData.detailedSpecs) {
+                tableBody.innerHTML += currentDetailData.detailedSpecs.map(s =>
+                    `<tr><td style="font-weight:600;">${s.label}</td><td>${s.value}</td></tr>`
+                ).join('');
+            }
         }
+
+        // Image
+        currentDetailImgIdx = 0;
+        updateDetailImage();
+
+        view.classList.remove('hidden');
+        view.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.nextImage = function () {
+        if (!currentDetailData) return;
+        currentDetailImgIdx = (currentDetailImgIdx + 1) % currentDetailData.images.length;
+        updateDetailImage();
+    };
+
+    window.prevImage = function () {
+        if (!currentDetailData) return;
+        currentDetailImgIdx = (currentDetailImgIdx - 1 + currentDetailData.images.length) % currentDetailData.images.length;
+        updateDetailImage();
+    };
+
+    function updateDetailImage() {
+        const img = document.getElementById('detail-image');
+        if (img && currentDetailData) img.src = currentDetailData.images[currentDetailImgIdx];
     }
 
-    // Image
-    currentDetailImgIdx = 0;
-    updateDetailImage();
+    window.toggleDetailedSpecs = function () {
+        const c = document.getElementById('detailed-specs-container');
+        c.classList.toggle('hidden');
+    };
 
-    view.classList.remove('hidden');
-    view.scrollIntoView({ behavior: 'smooth' });
-};
+    // --- Dynamic Sections Rendering (Services, Philosophy, Trust) ---
 
-window.nextImage = function () {
-    if (!currentDetailData) return;
-    currentDetailImgIdx = (currentDetailImgIdx + 1) % currentDetailData.images.length;
-    updateDetailImage();
-};
+    const ICON_MAP = {
+        // Services
+        'home.services.item1': 'edit',
+        'home.services.item2': 'home_work',
+        'home.services.item3': 'manage_accounts',
+        // Philosophy
+        'home.philosophy.item1': 'energy_savings_leaf', // '🌱' replacement
+        'home.philosophy.item2': 'verified_user', // '🛡️' replacement
+        // Trust
+        'home.trust.item1': 'person',
+        'home.trust.item2': 'menu_book',
+        'home.trust.item3': 'visibility',
+        // Fallback
+        'default': 'star'
+    };
 
-window.prevImage = function () {
-    if (!currentDetailData) return;
-    currentDetailImgIdx = (currentDetailImgIdx - 1 + currentDetailData.images.length) % currentDetailData.images.length;
-    updateDetailImage();
-};
-
-function updateDetailImage() {
-    const img = document.getElementById('detail-image');
-    if (img && currentDetailData) img.src = currentDetailData.images[currentDetailImgIdx];
-}
-
-window.toggleDetailedSpecs = function () {
-    const c = document.getElementById('detailed-specs-container');
-    c.classList.toggle('hidden');
-};
-
-// --- Dynamic Sections Rendering (Services, Philosophy, Trust) ---
-
-const ICON_MAP = {
-    // Services
-    'home.services.item1': 'edit',
-    'home.services.item2': 'home_work',
-    'home.services.item3': 'manage_accounts',
-    // Philosophy
-    'home.philosophy.item1': 'energy_savings_leaf', // '🌱' replacement
-    'home.philosophy.item2': 'verified_user', // '🛡️' replacement
-    // Trust
-    'home.trust.item1': 'person',
-    'home.trust.item2': 'menu_book',
-    'home.trust.item3': 'visibility',
-    // Fallback
-    'default': 'star'
-};
-
-function renderDynamicSections() {
-    renderGenericList('services-grid', 'home.services', 'trust-item', true);
-    renderPhilosophyList();
-    renderGenericList('trust-grid', 'home.trust', 'trust-item', false);
-}
-
-function renderGenericList(containerId, prefix, itemClass, centerText = false) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    // Find all items: keyPrefix.itemX.title
-    const items = [];
-    Object.keys(appState.content).forEach(key => {
-        if (key.startsWith(prefix + '.item') && key.endsWith('.title')) {
-            // Extract item ID (e.g. 'item1')
-            const parts = key.split('.');
-            const itemKey = parts[parts.length - 2]; // item1
-            items.push(itemKey);
-        }
-    });
-
-    // Unique and Sort
-    const uniqueItems = [...new Set(items)].sort();
-
-    // Fallbacks if no items found (to not break UI if Sheet is empty/old)
-    if (uniqueItems.length === 0) {
-        console.warn(`No dynamic items found for ${prefix}, using fallbacks if hardcoded available.`);
-        // For now we just return, assuming user will update sheet. 
-        // Or we could leave the HTML hardcoded and only clear if we find items.
-        // But the plan was to clear HTML.
-        return;
+    function renderDynamicSections() {
+        renderGenericList('services-grid', 'home.services', 'trust-item', true);
+        renderPhilosophyList();
+        renderGenericList('trust-grid', 'home.trust', 'trust-item', false);
     }
 
-    uniqueItems.forEach(itemKey => {
-        const fullKey = `${prefix}.${itemKey}`;
-        const title = appState.content[`${fullKey}.title`] || '';
-        const text = appState.content[`${fullKey}.text`] || '';
+    function renderGenericList(containerId, prefix, itemClass, centerText = false) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
 
-        // Icon: check sheet first (.icon), then fallback map, then default
-        let icon = appState.content[`${fullKey}.icon`];
-        if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
+        container.innerHTML = '';
 
-        const div = document.createElement('div');
-        div.className = itemClass;
-        if (centerText) div.style.textAlign = 'center';
+        // Find all items: keyPrefix.itemX.title
+        const items = [];
+        Object.keys(appState.content).forEach(key => {
+            if (key.startsWith(prefix + '.item') && key.endsWith('.title')) {
+                // Extract item ID (e.g. 'item1')
+                const parts = key.split('.');
+                const itemKey = parts[parts.length - 2]; // item1
+                items.push(itemKey);
+            }
+        });
 
-        const iconStyle = centerText ? 'margin: 0 auto 1.5rem;' : '';
+        // Unique and Sort
+        const uniqueItems = [...new Set(items)].sort();
 
-        div.innerHTML = `
+        // Fallbacks if no items found (to not break UI if Sheet is empty/old)
+        if (uniqueItems.length === 0) {
+            console.warn(`No dynamic items found for ${prefix}, using fallbacks if hardcoded available.`);
+            // For now we just return, assuming user will update sheet. 
+            // Or we could leave the HTML hardcoded and only clear if we find items.
+            // But the plan was to clear HTML.
+            return;
+        }
+
+        uniqueItems.forEach(itemKey => {
+            const fullKey = `${prefix}.${itemKey}`;
+            const title = appState.content[`${fullKey}.title`] || '';
+            const text = appState.content[`${fullKey}.text`] || '';
+
+            // Icon: check sheet first (.icon), then fallback map, then default
+            let icon = appState.content[`${fullKey}.icon`];
+            if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
+
+            const div = document.createElement('div');
+            div.className = itemClass;
+            if (centerText) div.style.textAlign = 'center';
+
+            const iconStyle = centerText ? 'margin: 0 auto 1.5rem;' : '';
+
+            div.innerHTML = `
             <div class="trust-icon" style="${iconStyle}">
                 <span class="material-icons-round">${icon}</span>
             </div>
             <h3>${title}</h3>
             <p>${text}</p>
         `;
-        container.appendChild(div);
-    });
-}
+            container.appendChild(div);
+        });
+    }
 
-function renderPhilosophyList() {
-    const container = document.getElementById('philosophy-container');
-    if (!container) return;
+    function renderPhilosophyList() {
+        const container = document.getElementById('philosophy-container');
+        if (!container) return;
 
-    container.innerHTML = '';
+        container.innerHTML = '';
 
-    // Same logic to find items
-    const items = [];
-    Object.keys(appState.content).forEach(key => {
-        if (key.startsWith('home.philosophy.item') && key.endsWith('.title')) {
-            const parts = key.split('.');
-            const itemKey = parts[parts.length - 2];
-            items.push(itemKey);
-        }
-    });
-    const uniqueItems = [...new Set(items)].sort();
+        // Same logic to find items
+        const items = [];
+        Object.keys(appState.content).forEach(key => {
+            if (key.startsWith('home.philosophy.item') && key.endsWith('.title')) {
+                const parts = key.split('.');
+                const itemKey = parts[parts.length - 2];
+                items.push(itemKey);
+            }
+        });
+        const uniqueItems = [...new Set(items)].sort();
 
-    uniqueItems.forEach(itemKey => {
-        const fullKey = `home.philosophy.${itemKey}`;
-        const title = appState.content[`${fullKey}.title`] || '';
-        const text = appState.content[`${fullKey}.text`] || '';
+        uniqueItems.forEach(itemKey => {
+            const fullKey = `home.philosophy.${itemKey}`;
+            const title = appState.content[`${fullKey}.title`] || '';
+            const text = appState.content[`${fullKey}.text`] || '';
 
-        let icon = appState.content[`${fullKey}.icon`];
-        if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
+            let icon = appState.content[`${fullKey}.icon`];
+            if (!icon) icon = ICON_MAP[fullKey] || ICON_MAP['default'];
 
-        const div = document.createElement('div');
-        div.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 2rem;';
+            const div = document.createElement('div');
+            div.style.cssText = 'display: flex; gap: 1rem; margin-bottom: 2rem;';
 
-        // Special logic: last item typically has no bottom margin in some designs, but flex gap handles it usually.
-        // Replicating specific inline styles from HTML
-        div.innerHTML = `
+            // Special logic: last item typically has no bottom margin in some designs, but flex gap handles it usually.
+            // Replicating specific inline styles from HTML
+            div.innerHTML = `
             <div class="trust-icon" style="flex-shrink: 0; width: 50px; height: 50px; font-size: 1.5rem;">
                 <span class="material-icons-round">${icon}</span>
             </div>
@@ -650,6 +674,6 @@ function renderPhilosophyList() {
                 <p style="margin-bottom: 0;">${text}</p>
             </div>
         `;
-        container.appendChild(div);
-    });
-}
+            container.appendChild(div);
+        });
+    }
