@@ -32,69 +32,70 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- Core Logic ---
 
 async function loadCMSData() {
-    try {
-        console.log('Fetching CMS data...');
-        // If detailsUrl is empty, we just skip it or fetch empty
-        const fetchDetails = CMS_CONFIG.detailsUrl ? fetch(CMS_CONFIG.detailsUrl) : Promise.resolve({ ok: true, text: () => '' });
+    console.log('Fetching CMS data in parallel...');
 
-        const [contentRes, projectsRes, modelsRes, detailsRes] = await Promise.all([
-            fetch(CMS_CONFIG.contentUrl),
-            fetch(CMS_CONFIG.projectsUrl),
-            fetch(CMS_CONFIG.modelsUrl),
-            fetchDetails
-        ]);
+    // 1. Content (Header, Footer, Static Text)
+    const contentPromise = fetch(CMS_CONFIG.contentUrl)
+        .then(res => {
+            if (!res.ok) throw new Error('Content fetch failed');
+            return res.text();
+        })
+        .then(text => {
+            appState.content = parseKeyValCSV(text);
+            updatePageContent();
+            renderDynamicSections();
+        })
+        .catch(err => console.error('Content Error:', err));
 
-        if (!contentRes.ok || !projectsRes.ok || !modelsRes.ok) {
-            throw new Error('Network response was not ok');
-        }
+    // 2. Projects (The main grid)
+    const projectsPromise = fetch(CMS_CONFIG.projectsUrl)
+        .then(res => {
+            if (!res.ok) throw new Error('Projects fetch failed');
+            return res.text();
+        })
+        .then(text => {
+            appState.projects = parseStandardCSV(text);
+            renderProjects(); // Render immediately!
+        })
+        .catch(err => {
+            console.error('Projects Error:', err);
+            displayErrorOnPage(err.message);
+        });
 
-        const contentText = await contentRes.text();
-        const projectsText = await projectsRes.text();
-        const modelsText = await modelsRes.text();
-        const detailsText = CMS_CONFIG.detailsUrl ? await detailsRes.text() : '';
+    // 3. Models (Collection page)
+    const modelsPromise = fetch(CMS_CONFIG.modelsUrl)
+        .then(res => {
+            if (!res.ok) throw new Error('Models fetch failed');
+            return res.text();
+        })
+        .then(text => {
+            appState.models = parseModelsCSV(text);
+        })
+        .catch(err => console.error('Models Error:', err));
 
-        // Parse Data
-        appState.content = parseKeyValCSV(contentText);
-        appState.projects = parseStandardCSV(projectsText);
-        appState.models = parseModelsCSV(modelsText);
+    // 4. Details (Project detail specific)
+    const detailsPromise = (CMS_CONFIG.detailsUrl ? fetch(CMS_CONFIG.detailsUrl) : Promise.resolve(null))
+        .then(res => {
+            if (res && !res.ok) throw new Error('Details fetch failed');
+            return res ? res.text() : '';
+        })
+        .then(text => {
+            if (text) appState.projectDetails = parseStandardCSV(text);
+            // Render specific project details if we are on a project page
+            const container = document.getElementById('project-details-container');
+            if (container) {
+                const projectId = document.body.getAttribute('data-project-id');
+                if (projectId) renderProjectDetails(projectId);
+            }
+        })
+        .catch(err => console.error('Details Error:', err));
 
-        // Parse Details (Standard CSV parser works fine: id, category, label, value)
-        if (detailsText) {
-            appState.projectDetails = parseStandardCSV(detailsText);
-        } else {
-            // Use empty array if no data
-            appState.projectDetails = [];
-            console.log('No details data found or URL not configured.');
-        }
-
-        appState.loaded = true;
-
-        console.log('CMS Data Loaded Successfully', appState);
-
-        // Render Content
-        updatePageContent();
-        renderProjects();
+    // 5. Dependent Logic (Collection needs both Projects and Models)
+    Promise.all([projectsPromise, modelsPromise]).then(() => {
         renderCollection();
-
-        // Check if we are on a detail page
         checkModeldetail();
-
-        // Render project details if container exists
-        const projectDetailsContainer = document.getElementById('project-details-container');
-        if (projectDetailsContainer) {
-            // Get project ID from body data attribute
-            const projectId = document.body.getAttribute('data-project-id');
-            if (projectId) renderProjectDetails(projectId);
-        }
-
-        // Renderöidään dynaamiset listat (Services, Philosophy, Trust)
-        renderDynamicSections();
-
-    } catch (err) {
-        console.error('CMS Load Failed:', err);
-        appState.error = err;
-        displayErrorOnPage(err.message);
-    }
+        appState.loaded = true;
+    });
 }
 
 // --- Dynamic Project Details Rendering ---
