@@ -1160,17 +1160,20 @@ a {
     gap: 2rem;
     margin-top: 3rem;
     position: relative;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    align-items: stretch; /* Make sure items are same height */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+    align-items: stretch;
+    /* Make sure items are same height */
 }
 
 .hook-option {
     flex: 1;
-    min-width: 300px; /* Ensure a minimum width */
+    min-width: 300px;
+    /* Ensure a minimum width */
     background: var(--color-white);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -1178,7 +1181,7 @@ a {
 
 .hook-option:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .hook-image-wrapper {
@@ -1198,9 +1201,11 @@ a {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Center perfectly */
+    transform: translate(-50%, -50%);
+    /* Center perfectly */
     z-index: 10;
-    box-shadow: 0 0 0 5px var(--color-bg-primary); /* Use bg color for border effect */
+    box-shadow: 0 0 0 5px var(--color-bg-primary);
+    /* Use bg color for border effect */
 }
 
 .hook-content {
@@ -1235,7 +1240,7 @@ a {
 
 .feature-item:hover {
     background: var(--color-white);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transform: translateY(-5px);
     border-color: #e7e5e4;
 }
@@ -1262,14 +1267,14 @@ a {
 
 /* Lead Form Styling */
 .lead-section {
-   overflow: hidden;
+    overflow: hidden;
 }
 
 .lead-form {
     background: rgba(255, 255, 255, 0.95);
     padding: 2.5rem;
     border-radius: var(--radius-lg);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
     text-align: left;
     max-width: 600px;
     margin: 0 auto;
@@ -1338,7 +1343,7 @@ a {
         flex-direction: column;
         gap: 3rem;
     }
-    
+
     .hook-divider {
         position: relative;
         top: auto;
@@ -1354,11 +1359,11 @@ a {
         flex-direction: column;
         gap: 0;
     }
-    
+
     .lead-form {
         padding: 1.5rem;
     }
-    
+
     .hero-premarketing h1 {
         font-size: 2.2rem;
     }
@@ -1367,12 +1372,15 @@ a {
 
 /* Hook Image Customizations */
 .hook-img-full {
-    object-position: center bottom; /* Focus on the house structure */
+    object-position: center bottom;
+    /* Focus on the house structure */
 }
 
 .hook-img-crop {
-    object-position: 25% center; /* Focus on left/one side */
-    transform: scale(1.6); /* Zoom in to simulate detached/single unit */
+    object-position: 25% center;
+    /* Focus on left/one side */
+    transform: scale(1.6);
+    /* Zoom in to simulate detached/single unit */
     transform-origin: 30% center;
 }
 
@@ -1385,25 +1393,30 @@ a {
         height: auto;
         margin: 0;
         border-radius: 0;
-        padding-top: 100px; /* Push content below fixed navbar */
+        padding-top: 100px;
+        /* Push content below fixed navbar */
         padding-bottom: 2rem;
     }
 
     .hero-content h1 {
-        font-size: 2rem; /* Smaller font on mobile */
+        font-size: 2rem;
+        /* Smaller font on mobile */
     }
 
     .hero-content p {
         font-size: 1.1rem;
-        padding: 0 1rem; /* Prevent text touching edges */
+        padding: 0 1rem;
+        /* Prevent text touching edges */
     }
-    
+
     .navbar {
-       padding: 1rem 0; /* Slightly smaller navbar on mobile */
+        padding: 1rem 0;
+        /* Slightly smaller navbar on mobile */
     }
 
     .social-links {
-        display: none; /* Hide if present */
+        display: none;
+        /* Hide if present */
     }
 }
 
@@ -1418,10 +1431,11 @@ a {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 0.5rem 1.5rem;
     font-weight: 800;
-    color: #b91c1c; /* Red text */
+    color: #b91c1c;
+    /* Red text */
     border: 3px solid #b91c1c;
     border-radius: var(--radius-sm);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     z-index: 10;
     pointer-events: none;
     font-size: 1.2rem;
@@ -1429,3 +1443,20 @@ a {
     text-transform: uppercase;
 }
 
+
+
+/* Footer Accessibility Updates */
+.footer h3 {
+    color: #f5f5f4 !important;
+    /* Stone-100 */
+}
+
+.footer p,
+.footer a {
+    color: #f5f5f4 !important;
+    /* Stone-100 (Same as headers) */
+}
+
+.footer a:hover {
+    color: var(--color-accent-emerald) !important;
+}
