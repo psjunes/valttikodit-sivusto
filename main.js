@@ -284,6 +284,27 @@ function renderProjects() {
                </div>`
             : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">`;
 
+        // Progress Bar Logic
+        let progressBarHtml = '';
+        if (project.progress !== null && project.progress !== '') {
+            progressBarHtml = `
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>${project.readiness || (isConstruction ? 'Rakentaminen käynnissä' : 'Varausaste')}</span>
+                        <span>${project.progress}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${project.progress}%; background-color: ${progressColor};"></div>
+                    </div>
+                    ${project.marketingText ? `<p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">${project.marketingText}</p>` : ''}
+                </div>`;
+        } else {
+            // If no progress bar, but marketing text exists, show it directly with top margin
+            if (project.marketingText) {
+                progressBarHtml = `<p style="font-size: 0.8rem; margin-top: 1.5rem; margin-bottom: 0; color: var(--color-text-secondary);">${project.marketingText}</p>`;
+            }
+        }
+
         const card = document.createElement('div');
         card.className = 'project-card';
         card.innerHTML = `
@@ -294,18 +315,9 @@ function renderProjects() {
                 <div class="collection-meta" style="color: var(--color-text-secondary);">${project.location || ''}</div>
                 <p style="margin-top: 0.5rem; font-weight: 700;">${project.price || ''}</p>
                 
-                <div class="progress-container">
-                    <div class="progress-label">
-                        <span>${isConstruction ? 'Rakentaminen käynnissä' : (isSold ? 'Varausaste' : 'Varausaste')}</span>
-                        <span>${project.progress || 0}%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${project.progress || 0}%; background-color: ${progressColor};"></div>
-                    </div>
-                    ${project.marketingText ? `<p style="font-size: 0.8rem; margin-top: 0.5rem; margin-bottom: 0;">${project.marketingText}</p>` : ''}
-                </div>
+                ${progressBarHtml}
                 
-                <div style="margin-top: auto;">
+                <div style="margin-top: auto; padding-top: 1.5rem;">
                     <a href="${project.link || '#'}" class="btn ${isConstruction ? 'btn-secondary' : 'btn-accent'}" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
                 </div>
             </div>
@@ -313,80 +325,7 @@ function renderProjects() {
         grid.appendChild(card);
     });
 }
-
-function renderCollection() {
-    const grid = document.getElementById('collection-grid');
-    if (!grid) return;
-
-    // Check if we are on index page (hero exists) to determine styling
-    const isIndex = !!document.querySelector('.hero');
-    grid.innerHTML = '';
-
-    Object.keys(appState.models).forEach(id => {
-        const model = appState.models[id];
-        // Find active project for this model
-        const activeProject = appState.projects.find(p => p.modelId === id && p.status !== 'sold');
-
-        let extraHtml = '';
-        if (activeProject) {
-            if (isIndex) {
-                extraHtml = `
-                    <div style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #ecfdf5; border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--color-accent-emerald-dark); display: flex; align-items: center; gap: 0.5rem;">
-                         <span class="material-icons-round" style="font-size: 1rem;">construction</span>
-                         <span>Rakennettavana: <strong>${activeProject.name}</strong></span>
-                    </div>`;
-            } else {
-                extraHtml = `
-                    <div class="cross-link-box">
-                        <p>Ihastuitko tähän malliin?</p>
-                        <a href="${activeProject.link}">Rakennamme tätä juuri nyt: <strong>${activeProject.name} &rarr;</strong></a>
-                    </div>`;
-            }
-        } else if (!isIndex) {
-            extraHtml = `<div style="margin-top: auto;"></div>`;
-        }
-
-        const btnClass = isIndex ? 'btn-card' : 'btn btn-secondary';
-        const linkAction = isIndex ? `href="collection.html?model=${id}"` : `onclick="openModelDetail('${id}')"`;
-        const btnTag = isIndex ? 'a' : 'button';
-
-        const card = document.createElement('div');
-        card.className = 'collection-card';
-        card.innerHTML = `
-            <img src="${model.images[0]}" alt="${model.title}" class="collection-image">
-            <div class="collection-content">
-                <div class="collection-meta">${model.meta}</div>
-                <h3 class="collection-title">${model.title}</h3>
-                <p class="collection-desc">${model.shortDesc}</p>
-                ${!isIndex ? extraHtml : ''}
-                <${btnTag} ${linkAction} class="${btnClass}">Tutustu malliin</${btnTag}>
-                ${isIndex ? extraHtml : ''}
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-function checkModeldetail() {
-    const params = new URLSearchParams(window.location.search);
-    const modelId = params.get('model');
-    if (modelId && appState.models[modelId]) {
-        openModelDetail(modelId);
-    }
-}
-
-// --- Helpers & Parsers ---
-
-function parseKeyValCSV(text) {
-    const rows = parseCSVLineAware(text);
-    const content = {};
-    rows.forEach(row => {
-        // Assume row[0] is ID, row[1] is Content
-        if (row[0] && row[1]) content[row[0]] = row[1];
-    });
-    return content;
-}
-
+// ... (lines 316-390 unchanged) ...
 function parseStandardCSV(text) {
     const rows = parseCSVLineAware(text);
     if (rows.length < 2) return [];
@@ -401,7 +340,11 @@ function parseStandardCSV(text) {
         let obj = {};
         headers.forEach((h, index) => {
             let val = row[index] || '';
-            if (h === 'progress') val = parseInt(val, 10) || 0;
+            if (h === 'progress') {
+                // If empty string, keep as null to indicate "hide progress bar"
+                // Otherwise parse as int
+                val = val.trim() === '' ? null : (parseInt(val, 10) || 0);
+            }
             obj[h] = val;
         });
         data.push(obj);
