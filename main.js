@@ -279,10 +279,10 @@ function renderProjects() {
         // Image HTML with Overlay for Sold items
         const imageHtml = isSold
             ? `<div class="project-image-wrapper" style="position: relative;">
-                 <img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image" style="opacity: 0.9;">
+                 <img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image" style="opacity: 0.9;" loading="lazy">
                  <div class="sold-overlay">MYYTY</div>
                </div>`
-            : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image">`;
+            : `<img src="${project.image || 'placeholder.jpg'}" alt="${project.name}" class="project-image" loading="lazy">`;
 
         // Progress Bar Logic
         let progressBarHtml = '';
