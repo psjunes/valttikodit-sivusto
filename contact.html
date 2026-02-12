@@ -48,8 +48,59 @@
                     unelmistasi. Varaa rento
                     etäkahvihetki asiantuntijamme kanssa – ei myyntipuheita, vaan aitoa kuuntelua.</p>
 
-                <a href="#" class="btn btn-primary" style="margin-bottom: 2rem;">Varaa
-                    etäkahvit ☕</a>
+                <form class="contact-form" action="#" method="POST" style="text-align: left; margin-top: 2rem;">
+                    <h2 style="text-align: center; margin-bottom: 1.5rem;">Lähetä viestiä</h2>
+                    <div class="form-group">
+                        <label for="firstname" class="form-label">Etunimi<span class="required">*</span></label>
+                        <input type="text" id="firstname" name="firstname" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname" class="form-label">Sukunimi<span class="required">*</span></label>
+                        <input type="text" id="lastname" name="lastname" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Matkapuhelinnumero<span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Sähköposti<span class="required">*</span></label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Viesti</label>
+                        <textarea id="message" name="message" class="form-input" rows="5"></textarea>
+                    </div>
+
+                    <p class="privacy-notice">
+                        Valttikodit tarvitsee meille antamiasi yhteystietoja ottaakseen sinuun yhteyttä tuotteitamme ja
+                        palveluitamme koskevissa asioissa. Voit perua nämä viestintäasetukset koska tahansa. Lisätietoa
+                        tilauksen peruuttamisesta, tietosuojakäytännöistä ja siitä, miten olemme sitoutuneet suojelemaan
+                        yksityisyyttäsi, saat <a href="tietosuojaseloste.html" target="_blank"
+                            style="text-decoration: underline;">tietosuojakäytännöstä</a>.
+                    </p>
+
+                    <!-- Fake reCAPTCHA -->
+                    <div class="recaptcha-placeholder"
+                        style="margin-bottom: 1.5rem; background: #f9f9f9; padding: 1rem; border: 1px solid #d3d3d3; border-radius: 3px; display: inline-flex; align-items: center; justify-content: space-between; width: 100%; max-width: 300px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" id="recaptcha-check" style="width: 24px; height: 24px;">
+                            <label for="recaptcha-check" style="font-size: 14px; color: #000;">I'm not a robot</label>
+                        </div>
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA"
+                                style="width: 32px; height: 32px;">
+                            <span style="font-size: 10px; color: #555;">reCAPTCHA</span>
+                            <span style="font-size: 8px; color: #555;">Privacy - Terms</span>
+                        </div>
+                    </div>
+                    <br>
+
+                    <button type="submit" class="btn btn-accent" style="width: 100%;">Lähetä</button>
+                </form>
 
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
 
