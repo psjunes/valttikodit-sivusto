@@ -533,7 +533,36 @@ const ICON_MAP = {
 function renderDynamicSections() {
     renderGenericList('services-grid', 'home.services', 'trust-item', true);
     renderPhilosophyList();
-    renderGenericList('trust-grid', 'home.trust', 'trust-item', false);
+    renderTrustSection();
+}
+
+function renderTrustSection() {
+    const container = document.getElementById('trust-grid');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const items = ['valtti.process.contact', 'valtti.process.digital'];
+
+    items.forEach(prefix => {
+        const title = appState.content[`${prefix}.title`] || '';
+        const text = appState.content[`${prefix}.text`] || '';
+
+        // Manual icon mapping since likely not in sheet
+        let icon = 'star';
+        if (prefix.includes('contact')) icon = 'person';
+        if (prefix.includes('digital')) icon = 'visibility';
+
+        const div = document.createElement('div');
+        div.className = 'trust-item';
+        div.innerHTML = `
+            <div class="trust-icon">
+                <span class="material-icons-round">${icon}</span>
+            </div>
+            <h3>${title}</h3>
+            <p>${text}</p>
+        `;
+        container.appendChild(div);
+    });
 }
 
 function renderGenericList(containerId, prefix, itemClass, centerText = false) {
