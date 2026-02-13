@@ -541,16 +541,15 @@ function renderTrustSection() {
     if (!container) return;
     container.innerHTML = '';
 
-    const items = ['valtti.process.contact', 'valtti.process.digital'];
+    // User wants 3 items from sheets: home.trust.item1, item2, item3
+    for (let i = 1; i <= 3; i++) {
+        const prefix = `home.trust.item${i}`;
+        const title = appState.content[`${prefix}.title`];
+        const text = appState.content[`${prefix}.text`];
+        const icon = appState.content[`${prefix}.icon`] || 'verified'; // Default icon
 
-    items.forEach(prefix => {
-        const title = appState.content[`${prefix}.title`] || '';
-        const text = appState.content[`${prefix}.text`] || '';
-
-        // Manual icon mapping since likely not in sheet
-        let icon = 'star';
-        if (prefix.includes('contact')) icon = 'person';
-        if (prefix.includes('digital')) icon = 'visibility';
+        // If no title/text found, skip (or it might be that CSV hasn't updated yet)
+        if (!title && !text) continue;
 
         const div = document.createElement('div');
         div.className = 'trust-item';
@@ -562,7 +561,7 @@ function renderTrustSection() {
             <p>${text}</p>
         `;
         container.appendChild(div);
-    });
+    }
 }
 
 function renderGenericList(containerId, prefix, itemClass, centerText = false) {
