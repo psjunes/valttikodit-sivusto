@@ -57,7 +57,11 @@
                     unelmistasi. Varaa rento
                     etäkahvihetki asiantuntijamme kanssa – ei myyntipuheita, vaan aitoa kuuntelua.</p>
 
-                <form class="contact-form" action="#" method="POST" style="text-align: left; margin-top: 2rem;">
+                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST"
+                    style="text-align: left; margin-top: 2rem;">
+                    <input type="hidden" name="access_key" value="INSERT_YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="Uusi viesti Valttikodit-sivuilta">
+                    <input type="hidden" name="from_name" value="Valttikodit Verkkosivut">
                     <h2 style="text-align: center; margin-bottom: 1.5rem;">Lähetä viestiä</h2>
                     <div class="form-group">
                         <label for="firstname" class="form-label">Etunimi<span class="required">*</span></label>

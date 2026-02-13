@@ -196,8 +196,10 @@
                     pääset vaikuttamaan talotyyppiin.</p>
 
 
-                <form class="lead-form"
-                    onsubmit="event.preventDefault(); alert('Kiitos liittymisestäsi! (Oikea lähetys vaatisi backendin)');">
+                <form class="lead-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="INSERT_YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="Uusi VIP-listalle liittyminen (Tupos)">
+                    <input type="hidden" name="from_name" value="Valttikodit VIP">
                     <div class="form-group-row">
                         <input type="text" placeholder="Etunimi *" required class="form-input">
                         <input type="text" placeholder="Sukunimi *" required class="form-input">
