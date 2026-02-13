@@ -295,7 +295,7 @@ function renderProjectsList() {
             </div>
 
             <div style="margin-top: auto;">
-                <a href="${project.link}" class="btn ${project.status === 'construction' ? 'btn-secondary' : 'btn-accent'}" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
+                <a href="${project.link}" class="btn btn-accent" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
             </div>
         </div>
 `;

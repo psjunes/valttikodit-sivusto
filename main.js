@@ -318,7 +318,7 @@ function renderProjects() {
                 ${progressBarHtml}
                 
                 <div style="margin-top: auto; padding-top: 1.5rem;">
-                    <a href="${project.link || '#'}" class="btn ${isConstruction ? 'btn-secondary' : 'btn-accent'}" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
+                    <a href="${project.link || '#'}" class="btn btn-accent" style="width: 100%; text-align: center; display: block;">Tutustu kohteeseen</a>
                 </div>
             </div>
         `;
