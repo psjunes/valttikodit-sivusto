@@ -386,6 +386,17 @@ function parseModelsCSV(text) {
     return models;
 }
 
+function parseKeyValCSV(text) {
+    const rows = parseStandardCSV(text);
+    const content = {};
+    rows.forEach(row => {
+        if (row.id && row.content) {
+            content[row.id] = row.content;
+        }
+    });
+    return content;
+}
+
 // Robust CSV Line Parser (Handles quotes)
 function parseCSVLineAware(text) {
     const lines = text.split(/\r?\n/);
