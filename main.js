@@ -201,6 +201,10 @@ function updatePageContent() {
 
             if (el.tagName === 'IMG') {
                 el.src = val;
+            } else if (el.tagName === 'A') {
+                el.innerText = val;
+                if (key.includes('email')) el.href = 'mailto:' + val;
+                if (key.includes('phone')) el.href = 'tel:' + val.replace(/\s/g, '');
             } else {
                 el.innerHTML = val;
             }
