@@ -1079,12 +1079,34 @@ a {
 
 @media (max-width: 768px) {
     .immersive-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
+        /* Reduced from 3rem for better fit */
+        word-wrap: break-word;
+    }
+
+    /* FIX: Remove fixed attachment on mobile to prevent "zoomed in" look */
+    .immersive-hero {
+        background-attachment: scroll;
+        height: auto;
+        /* Allow content to dictate height if needed, OR min-height */
+        min-height: 60vh;
+        padding: 6rem 1rem;
+        /* Add padding to prevent text hitting edges */
+    }
+
+    .immersive-hero::after {
+        /* Ensure overlay covers everything if height grows */
+        height: 100%;
     }
 
     .magazine-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .magazine-text h2 {
+        font-size: 2rem;
+        /* Reduce section header size */
     }
 
     .sticky-project-nav {
@@ -1094,8 +1116,20 @@ a {
         padding-right: 1rem;
     }
 
-    .gallery-item {
-        min-width: 80vw;
+    .gallery-item-square {
+        /* Ensure gallery items are not too small or huge */
+        aspect-ratio: 16/9;
+        /* Widescreen feels better on mobile vertical scroll */
+    }
+
+    .location-split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .location-map-container {
+        aspect-ratio: 16/9 !important;
+        /* Adjust map aspect ratio for mobile */
     }
 }
 
