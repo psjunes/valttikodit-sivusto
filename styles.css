@@ -257,13 +257,21 @@ a {
 }
 
 /* Specs Table */
+/* Table Responsiveness */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+}
+
 .specs-table {
     width: 100%;
+    min-width: 600px;
+    /* Force minimum width to prevent squashing */
     border-collapse: collapse;
     background-color: var(--color-white);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
 }
 
 .specs-table th {
@@ -273,14 +281,14 @@ a {
     border-bottom: 2px solid #e5e5e5;
     font-family: var(--font-serif);
     font-size: 1.1rem;
+    white-space: nowrap;
+    /* Keep headers on one line if possible */
 }
 
 .specs-table td {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid #f0f0f0;
     color: var(--color-text-secondary);
-    /* Prevent truncation on small screens */
-    word-break: break-word;
     white-space: normal;
 }
 
@@ -780,29 +788,28 @@ a {
 /* Apartment Table */
 .apartment-table {
     width: 100%;
+    min-width: 700px;
+    /* Ensure enough space for columns */
     border-collapse: collapse;
     background-color: var(--color-white);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    margin-top: 2rem;
+    /* border-radius moved to wrapper or guarded */
+    margin-top: 0;
+    /* Managed by wrapper */
 }
 
 .apartment-table th {
     background-color: #f5f5f4;
-    /* Stone-100 */
     padding: 1rem;
     text-align: left;
     font-weight: 600;
     color: var(--color-text-primary);
+    white-space: nowrap;
 }
 
 .apartment-table td {
     padding: 1rem;
     border-bottom: 1px solid #f5f5f4;
     color: var(--color-text-secondary);
-    /* Prevent truncation on small screens */
-    word-break: break-word;
     white-space: normal;
 }
 

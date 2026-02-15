@@ -142,8 +142,9 @@ function renderProjectDetails(projectId) {
                     <span class="material-icons-round accordion-icon">keyboard_arrow_down</span>
                 </div>
                 <div class="accordion-content ${openClass}">
-                    <table class="apartment-table" style="width: 100%; border: none; margin: 0;">
-                        <tbody>
+                    <div class="table-responsive">
+                        <table class="apartment-table" style="width: 100%; border: none; margin: 0;">
+                            <tbody>
         `;
 
         grouped[cat].forEach(item => {
@@ -156,8 +157,9 @@ function renderProjectDetails(projectId) {
         });
 
         html += `
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         `;
