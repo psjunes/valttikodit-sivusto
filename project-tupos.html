@@ -198,14 +198,15 @@
 
                 <form class="lead-form" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="fa637672-a5ba-4717-8464-d1d29719c87b">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                     <input type="hidden" name="subject" value="Uusi VIP-listalle liittyminen (Tupos)">
                     <input type="hidden" name="from_name" value="Valttikodit VIP">
                     <div class="form-group-row">
-                        <input type="text" placeholder="Etunimi *" required class="form-input">
-                        <input type="text" placeholder="Sukunimi *" required class="form-input">
+                        <input type="text" name="firstname" placeholder="Etunimi *" required class="form-input">
+                        <input type="text" name="lastname" placeholder="Sukunimi *" required class="form-input">
                     </div>
-                    <input type="email" placeholder="Sähköpostiosoite *" required class="form-input">
-                    <input type="tel" placeholder="Puhelinnumero" class="form-input">
+                    <input type="email" name="email" placeholder="Sähköpostiosoite *" required class="form-input">
+                    <input type="tel" name="phone" placeholder="Puhelinnumero" class="form-input">
 
                     <div class="form-radio-group" style="margin: 2rem 0; text-align: left;">
                         <p style="margin-bottom: 1rem; color: black;">Olen kiinnostuneempi:</p>

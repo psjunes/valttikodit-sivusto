@@ -843,4 +843,205 @@ a {
     padding: 1.5rem;
     border-radius: var(--radius-md);
     border: 1px solid #d1fae5;
+}/* --- RESTORED PROJECT STYLES --- */
+
+/* Immersive Hero */
+.immersive-hero {
+    height: 80vh;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.immersive-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    /* Dark overlay */
+}
+
+.immersive-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    padding: 2rem;
+}
+
+.immersive-title {
+    font-size: 3.5rem;
+    /* Large and premium */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+}
+
+.immersive-subtitle {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: var(--radius-pill);
+}
+
+@media (max-width: 768px) {
+    .immersive-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Magazine Section */
+.magazine-section {
+    padding: 6rem 0;
+    background-color: var(--color-bg-secondary);
+}
+
+.magazine-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.magazine-text {
+    padding-right: 2rem;
+}
+
+.magazine-intro {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.magazine-quote {
+    border-left: 4px solid var(--color-accent-emerald);
+    padding-left: 1.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-text-secondary);
+    margin-top: 2rem;
+    font-family: var(--font-serif);
+}
+
+.magazine-image img {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+    .magazine-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .magazine-text {
+        padding-right: 0;
+        /* order not supported nicely here without flex, but grid auto flow works */
+    }
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-item-square {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* Perfect squares */
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item-square:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* --- RESTORED FORM STYLES --- */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    /* Comfortable padding */
+    border: 1px solid #d6d3d1;
+    /* Stone-300 */
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #fafaf9;
+    /* Stone-50 */
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-accent-emerald);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+    background-color: #ffffff;
+}
+
+.required {
+    color: #ef4444;
+    /* Red-500 */
+    margin-left: 2px;
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Location Map Container */
+.location-map-container {
+    height: 400px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-top: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.location-map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
