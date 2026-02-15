@@ -4,124 +4,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tupoksen Saunaranta - Ennakkomarkkinointi | Omakotitalo tai Paritalo | Valttikodit</title>
+    <title>Tupoksen Saunaranta - Ennakkomarkkinointi | Valttikodit</title>
     <meta name="description"
-        content="Ennakkomarkkinoinnissa Tupoksen Saunaranta. Vaikuta tulevaan kotiisi: rakennammeko erillistalon vai paritalon? Liity VIP-listalle ja päätä!">
+        content="Ennakkomarkkinoinnissa Tupoksen Saunaranta. Vaikuta tulevaan kotiisi: rakennammeko erillistalon vai paritalon?">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Tupoksen Saunaranta - Sinä päätät">
-    <meta property="og:description" content="Erillistalo vai paritalo? Vaikuta Tupoksen Saunarannan suunnitteluun.">
     <meta property="og:image" content="Tupos_Saunaranta.png">
-    <meta property="og:url" content="https://www.valttikodit.fi/project-tupos.html">
-    <meta property="og:type" content="product">
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- Design System Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .hero-bg-tupos {
+            background-image: url('Tupos_Saunaranta.png');
+        }
+
+        /* Custom styles for Tupos Hook Section */
+        .hook-split {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hook-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .hook-divider {
+            background: var(--color-accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 
-<body>
+<body data-project-id="tupos-saunaranta">
 
-    <!-- Navigation -->
+    <!-- 1. Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+            <ul class="nav-links nav-menu">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
                 <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- BLOCK 1: Hero-osio -->
-    <header class="hero hero-premarketing" style="background-image: url('Tupos_Saunaranta.png');">
-        <div class="hero-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));"></div>
-        <div class="container hero-content text-center">
-            <span class="intro-tag"
-                style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.3); color: white; margin-bottom: 2rem; backdrop-filter: blur(5px);"
+    <!-- Immersive Hero -->
+    <header class="immersive-hero hero-bg-tupos">
+        <div class="immersive-content">
+            <span class="status-badge marketing" style="margin-bottom: 1rem; display: inline-block;"
                 data-cms="tupos.hero.tag">Ennakkomarkkinointi</span>
-            <h1 data-cms="tupos.hero.title">Tupoksen parhaille paikoille nousee jotain uutta – Sinä päätät muodon.</h1>
-            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto 3rem;" data-cms="tupos.hero.text">
-                Suunnittelemme kahta modernia 90 m²
-                kotia haluttuun Saunarantaan. Rakentaminen alkaa kesällä 2026. Liity sisäpiiriin nyt ja vaikuta:
-                rakennammeko teille paritalon vai erillistalot?</p>
-            <a href="#vip-form" class="btn btn-accent btn-lg" data-cms="tupos.hero.cta">Liity VIP-listalle ja vaikuta
-                →</a>
+            <h1 class="immersive-title" data-cms="tupos.hero.title">Tupoksen parhaille paikoille nousee jotain uutta
+            </h1>
+            <p style="font-size: 1.5rem; max-width: 800px; color: rgba(255,255,255,0.95);" data-cms="tupos.hero.text">
+                Liity sisäpiiriin nyt ja vaikuta: rakennammeko teille paritalon vai erillistalot?
+            </p>
+            <a href="#vip-form" class="btn btn-accent" style="margin-top: 2rem;" data-cms="tupos.hero.cta">Liity
+                VIP-listalle ja vaikuta →</a>
         </div>
     </header>
 
-    <!-- BLOCK 2: Intro -->
-    <section class="section">
+    <!-- Intro Section -->
+    <section class="section" style="background-color: var(--color-white);">
         <div class="container">
             <div class="split-section">
-                <!-- Vasemmalla kuva (User provided Image 2) -->
-                <div class="split-image" style="position: relative;">
-                    <img src="Tupos_Saunaranta2.png" alt="Moderni koti" loading="lazy"
-                        style="height: 100%; object-fit: cover; border-radius: var(--radius-lg);"
-                        data-cms="tupos.intro.image">
+                <div class="split-image">
+                    <img src="Tupos_Saunaranta2.png" alt="Moderni koti" data-cms="tupos.intro.image">
                 </div>
-                <!-- Oikealla teksti -->
                 <div class="split-content">
-                    <span class="intro-tag" data-cms="tupos.intro.tag">Elämänlaatua</span>
+                    <span class="intro-tag"
+                        style="color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px;"
+                        data-cms="tupos.intro.tag">Elämänlaatua</span>
                     <h2 data-cms="tupos.intro.title">Moderni koti, joka joustaa elämäsi mukana.</h2>
-                    <p data-cms="tupos.intro.text1">Emme rakenna vain seiniä, rakennamme puitteet elämäsi parhaille
-                        vuosille. Tupoksen Saunarannan
-                        uudet Valttikodit yhdistävät skandinaavisen selkeän arkkitehtuurin, laadukkaat materiaalit ja
-                        pohjaratkaisun, jossa jokainen neliö on optimoitu sujuvaa arkea varten.</p>
+                    <p data-cms="tupos.intro.text1">Suunnittelemme kahta modernia 90 m² kotia haluttuun Saunarantaan.
+                        Emme rakenna vain seiniä, rakennamme puitteet elämäsi parhaille vuosille.</p>
                     <p data-cms="tupos.intro.text2">Tämä on koti sinulle, joka arvostat luonnon läheisyyttä, mutta et
-                        halua tinkiä modernin asumisen
-                        mukavuuksista.</p>
+                        halua tinkiä modernin asumisen mukavuuksista.</p>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <!-- BLOCK 4: Speksit -->
+    <!-- Specs Grid -->
     <section class="section">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <span class="intro-tag" data-cms="tupos.specs.tag">Tehokkuus</span>
-                <h2 data-cms="tupos.specs.title">90 m² täyttä elämää – Ei hukkaneliöitä.</h2>
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <span style="color: var(--color-accent); font-weight: 700; text-transform: uppercase;"
+                    data-cms="tupos.specs.tag">Tehokkuus</span>
+                <h2 data-cms="tupos.specs.title">90 m² täyttä elämää</h2>
                 <p data-cms="tupos.specs.text">Tämä koti tuntuu neliöitään suuremmalta fiksun suunnittelun ansiosta.</p>
             </div>
 
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon"
-                        data-cms="tupos.specs.item1.icon">meeting_room</span>
+            <div class="trust-grid"> <!-- Reusing grid layout -->
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon" data-cms="tupos.specs.item1.icon">meeting_room</span>
                     <h4 data-cms="tupos.specs.item1.title">4 Huonetta + Keittiö</h4>
                     <p data-cms="tupos.specs.item1.text">Avara oleskelutila ja kolme muunneltavaa makuu-/työhuonetta.
                     </p>
                 </div>
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item2.icon">hot_tub</span>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon" data-cms="tupos.specs.item2.icon">hot_tub</span>
                     <h4 data-cms="tupos.specs.item2.title">Oma sauna (s)</h4>
                     <p data-cms="tupos.specs.item2.text">Arjen luksusta rentoutumiseen.</p>
                 </div>
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon"
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon"
                         data-cms="tupos.specs.item3.icon">local_laundry_service</span>
-                    <h4 data-cms="tupos.specs.item3.title">Kodinhoitohuone (khh)</h4>
-                    <p data-cms="tupos.specs.item3.text">Pyykkihuolto piiloon omalla sisäänkäynnillä – ehdoton
-                        lapsiperheille!</p>
+                    <h4 data-cms="tupos.specs.item3.title">Kodinhoitohuone</h4>
+                    <p data-cms="tupos.specs.item3.text">Pyykkihuolto piiloon omalla sisäänkäynnillä.</p>
                 </div>
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item4.icon">checkroom</span>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon" data-cms="tupos.specs.item4.icon">checkroom</span>
                     <h4 data-cms="tupos.specs.item4.title">Vaatehuone (vh)</h4>
                     <p data-cms="tupos.specs.item4.text">Säilytystilaa, jota aina tarvitaan.</p>
                 </div>
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item5.icon">ac_unit</span>
-                    <h4 data-cms="tupos.specs.item5.title">Lämmin varasto (var)</h4>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon" data-cms="tupos.specs.item5.icon">ac_unit</span>
+                    <h4 data-cms="tupos.specs.item5.title">Lämmin varasto</h4>
                     <p data-cms="tupos.specs.item5.text">Harrastusvälineet ja kausivaatteet siististi talteen.</p>
                 </div>
-                <div class="feature-item">
-                    <span class="material-icons-round feature-icon" data-cms="tupos.specs.item6.icon">bolt</span>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon" data-cms="tupos.specs.item6.icon">bolt</span>
                     <h4 data-cms="tupos.specs.item6.title">Energiatehokas</h4>
                     <p data-cms="tupos.specs.item6.text">Pitää asumiskustannukset kurissa.</p>
                 </div>
@@ -129,103 +163,95 @@
         </div>
     </section>
 
-    <!-- BLOCK 3: The Hook (Split Option) -->
-    <section class="section" style="background-color: var(--color-bg-primary);">
+    <!-- Vote Section (Hook) -->
+    <section class="section" style="background-color: var(--color-primary); color: white;">
         <div class="container text-center">
-            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;" data-cms="tupos.hook.title">Kumpi on sinun unelmasi?
-            </h2>
-            <p style="max-width: 600px; margin: 0 auto 4rem;" data-cms="tupos.hook.desc">Tontin jako on vielä avoin.
-                Ennakkovaraajana sinun äänesi
-                ratkaisee.</p>
+            <h2 style="color: white; margin-bottom: 1rem;" data-cms="tupos.hook.title">Kumpi on sinun unelmasi?</h2>
+            <p style="margin-bottom: 3rem; opacity: 0.9;" data-cms="tupos.hook.desc">Tontin jako on vielä avoin.
+                Ennakkovaraajana sinun äänesi ratkaisee.</p>
 
-            <div class="hook-split-container">
+            <div class="hook-split">
                 <!-- Option A -->
-                <div class="hook-option">
-                    <div class="hook-image-wrapper" style="height: 300px; overflow: hidden;">
-                        <!-- Cropped view for Detached House -->
-                        <img src="Tupos_Saunaranta.png" alt="Erillistalo" class="hook-img-crop" loading="lazy"
-                            data-cms="tupos.hook.optionA.image" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="hook-content">
+                <div class="hook-card">
+                    <img src="Tupos_Saunaranta.png" alt="Erillistalo"
+                        style="height: 250px; width: 100%; object-fit: cover;" data-cms="tupos.hook.optionA.image">
+                    <div style="padding: 2rem;">
                         <h3 data-cms="tupos.hook.optionA.title">Vaihtoehto A: Oma rauha erillistalossa</h3>
                         <p data-cms="tupos.hook.optionA.text">Täydellinen yksityisyys ja oma piha-alue ilman
-                            seinänaapureita. Kuin omakotitalo, mutta
-                            helpommassa koossa.</p>
+                            seinänaapureita.</p>
                     </div>
                 </div>
 
-                <!-- Divider / OR -->
                 <div class="hook-divider">TAI</div>
 
                 <!-- Option B -->
-                <div class="hook-option">
-                    <div class="hook-image-wrapper" style="height: 300px; overflow: hidden;">
-                        <!-- Full view for Semi-detached House -->
-                        <img src="Tupos_Saunaranta4.png" alt="Paritalo" class="hook-img-crop" loading="lazy"
-                            data-cms="tupos.hook.optionB.image" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="hook-content">
+                <div class="hook-card">
+                    <img src="Tupos_Saunaranta4.png" alt="Paritalo"
+                        style="height: 250px; width: 100%; object-fit: cover;" data-cms="tupos.hook.optionB.image">
+                    <div style="padding: 2rem;">
                         <h3 data-cms="tupos.hook.optionB.title">Vaihtoehto B: Yhteisöllinen paritalo</h3>
-                        <p data-cms="tupos.hook.optionB.text">Turvallista ja helppoa asumista, jossa pihatyöt ja
-                            ylläpito ovat astetta kevyempiä.</p>
+                        <p data-cms="tupos.hook.optionB.text">Turvallista ja helppoa asumista, ylläpito astetta
+                            kevyempää.</p>
                     </div>
                 </div>
             </div>
-
-            <p style="margin-top: 3rem; font-weight: 600;" data-cms="tupos.hook.summary">Kerro meille mielipiteesi
-                liittymällä VIP-listalle. Enemmistö
-                ratkaisee toteutustavan.</p>
         </div>
     </section>
 
-    <!-- BLOCK 5: Footer CTA / Lead Form -->
-    <section id="vip-form" class="section lead-section"
-        style="position: relative; background-color: #1c1917; color: white;">
-        <!-- Placeholder BG Image 15 -->
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; background: url('hero-bg.png') center/cover; filter: blur(10px);"
-            data-cms="tupos.footer.bg">
-        </div>
+    <!-- VIP Lead Form -->
+    <section id="vip-form" class="section" style="background-color: var(--color-white);">
+        <div class="container">
+            <div class="split-section">
+                <!-- Form Text -->
+                <div class="split-content">
+                    <h2 data-cms="tupos.footer.title">Varmista paikkasi eturivissä.</h2>
+                    <p data-cms="tupos.footer.text">
+                        Kohteet tulevat julkiseen myyntiin myöhemmin. Liittymällä VIP-listalle nyt saat tiedon
+                        ennakkomyynnin aloituksesta ensimmäisenä ja pääset vaikuttamaan talotyyppiin.
+                    </p>
+                    <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--color-text-light);">
+                        Rakentamisen arvioitu aloitus on kesällä 2026. Liittyminen listalle ei sido sinua mihinkään.
+                    </p>
+                </div>
 
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="lead-content text-center" style="max-width: 700px; margin: 0 auto;">
-                <h2 style="color: white; font-size: 2.5rem;" data-cms="tupos.footer.title">Varmista paikkasi eturivissä.
-                </h2>
-                <p style="color: rgba(255,255,255,0.8); margin-bottom: 3rem;" data-cms="tupos.footer.text">Kohteet
-                    tulevat julkiseen myyntiin
-                    myöhemmin. Liittymällä VIP-listalle nyt saat tiedon ennakkomyynnin aloituksesta ensimmäisenä ja
-                    pääset vaikuttamaan talotyyppiin.</p>
+                <!-- Actual Form -->
+                <div class="split-image"
+                    style="background: var(--color-secondary); padding: 3rem; border-radius: var(--radius-lg);">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="fa637672-a5ba-4717-8464-d1d29719c87b">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <input type="hidden" name="subject" value="Uusi VIP-listalle liittyminen (Tupos)">
+                        <input type="hidden" name="from_name" value="Valttikodit VIP">
 
+                        <div class="form-group">
+                            <label>Nimi *</label>
+                            <div style="display: flex; gap: 1rem;">
+                                <input type="text" name="firstname" placeholder="Etunimi" required>
+                                <input type="text" name="lastname" placeholder="Sukunimi" required>
+                            </div>
+                        </div>
 
-                <form class="lead-form" action="https://api.web3forms.com/submit" method="POST">
-                    <input type="hidden" name="access_key" value="fa637672-a5ba-4717-8464-d1d29719c87b">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    <input type="hidden" name="subject" value="Uusi VIP-listalle liittyminen (Tupos)">
-                    <input type="hidden" name="from_name" value="Valttikodit VIP">
-                    <div class="form-group-row">
-                        <input type="text" name="firstname" placeholder="Etunimi *" required class="form-input">
-                        <input type="text" name="lastname" placeholder="Sukunimi *" required class="form-input">
-                    </div>
-                    <input type="email" name="email" placeholder="Sähköpostiosoite *" required class="form-input">
-                    <input type="tel" name="phone" placeholder="Puhelinnumero" class="form-input">
+                        <div class="form-group">
+                            <label>Sähköposti *</label>
+                            <input type="email" name="email" required>
+                        </div>
 
-                    <div class="form-radio-group" style="margin: 2rem 0; text-align: left;">
-                        <p style="margin-bottom: 1rem; color: black;">Olen kiinnostuneempi:</p>
-                        <label class="radio-label">
-                            <input type="radio" name="preference" value="detached"> Erillistalosta
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="preference" value="semidetached"> Paritalosta
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="preference" value="both" checked> Molemmat käy
-                        </label>
-                    </div>
+                        <div class="form-group">
+                            <label>Kumpi kiinnostaa enemmän?</label>
+                            <div style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                <label style="font-weight: 400;"><input type="radio" name="preference" value="detached">
+                                    Erillistalo</label>
+                                <label style="font-weight: 400;"><input type="radio" name="preference"
+                                        value="semidetached"> Paritalo</label>
+                                <label style="font-weight: 400;"><input type="radio" name="preference" value="both"
+                                        checked> Molemmat</label>
+                            </div>
+                        </div>
 
-                    <button type="submit" class="btn btn-accent"
-                        style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">Liity VIP-listalle ja vaikuta</button>
-                    <p style="font-size: 0.8rem; margin-top: 1.5rem; color: rgba(255,255,255,0.5);">Rakentamisen
-                        arvioitu aloitus on kesällä 2026. Liittyminen listalle ei sido sinua mihinkään.</p>
-                </form>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Liity
+                            VIP-listalle</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -234,31 +260,26 @@
     <footer class="footer">
         <div class="container footer-content">
             <div>
-                <h3 data-cms="footer.company.title">Valttikodit Oy</h3>
-                <p data-cms="footer.company.desc">Rakennamme koteja, joissa viihdyt.</p>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
             </div>
             <div>
-                <h3 data-cms="footer.contact.title">Yhteystiedot</h3>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
+                <h3>Yhteystiedot</h3>
+                <p>Kotkansiipi 18<br>91900 Liminka</p>
                 <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
             </div>
             <div>
-                <h3 data-cms="footer.social.title">Seuraa meitä</h3>
+                <h3>Seuraa meitä</h3>
                 <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a></p>
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                    <p><a href="#" target="_blank">Facebook</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="main.js"></script>
-    <script>
-        // Init mobile menu if needed, reusing main.js logic check
-        // main.js handles CMS data, but this page is static/custom for now.
-    </script>
+
 </body>
 
 </html>

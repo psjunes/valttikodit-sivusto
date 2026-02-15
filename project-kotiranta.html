@@ -14,11 +14,19 @@
     <meta property="og:image" content="Kotiranta_julkisivu.jpeg">
     <meta property="og:url" content="https://www.valttikodit.fi/project-kotiranta.html">
     <meta property="og:type" content="product">
+
+    <!-- Design System Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <!-- Inline override for specific assets -->
+
     <style>
-        .hero-kaarna {
+        .hero-bg-kotiranta {
             background-image: url('Kotiranta_julkisivu.jpeg');
         }
     </style>
@@ -26,66 +34,63 @@
 
 <body data-project-id="limingan-kotiranta">
 
-    <!-- Main Navigation (Transparent) -->
-    <nav class="navbar" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);">
+    <!-- 1. Navigation -->
+    <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+            <ul class="nav-links nav-menu">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
                 <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
-                <!-- References removed -->
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Immersive Hero -->
-    <header class="immersive-hero hero-kaarna">
-        <div class="immersive-content" style="color: #ffffff;">
-            <div class="immersive-subtitle" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
-                data-cms="limingan-kotiranta.hero.subtitle">Ennakkomarkkinoinnissa</div>
-            <h1 class="immersive-title" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5); color: #ffffff;"
-                data-cms="limingan-kotiranta.hero.title">As Oy Limingan Kotiranta</h1>
-            <p style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
+    <header class="immersive-hero hero-bg-kotiranta">
+        <div class="immersive-content">
+            <span class="status-badge marketing"
+                style="margin-bottom: 1rem; display: inline-block;">Ennakkomarkkinoinnissa</span>
+            <h1 class="immersive-title" data-cms="limingan-kotiranta.hero.title">As Oy Limingan Kotiranta</h1>
+            <p style="font-size: 1.5rem; max-width: 600px; color: rgba(255,255,255,0.9);"
                 data-cms="limingan-kotiranta.hero.desc">
                 Kotiranta, Liminka &bull; Paritalo &bull; 82,5 m²
             </p>
         </div>
     </header>
 
-    <!-- Sticky Project Nav Removed -->
-
     <!-- Intro / Magazine Section -->
-    <section id="esittely" class="magazine-section">
+    <section class="section" style="background-color: var(--color-white);">
         <div class="container">
-            <div class="magazine-grid">
-                <div class="magazine-text">
+            <div class="split-section">
+                <div class="split-content">
                     <h2 data-cms="limingan-kotiranta.intro.title">Luonnonrauhaa ja modernia arkkitehtuuria.</h2>
-                    <p class="magazine-intro" data-cms="limingan-kotiranta.intro.text">
+                    <p data-cms="limingan-kotiranta.intro.text">
                         Limingan Kotiranta edustaa uuden ajan pientaloasumista.
                     </p>
                     <p data-cms="limingan-kotiranta.intro.text2"></p>
-                    <div class="magazine-quote" data-cms="limingan-kotiranta.intro.quote">
+                    <blockquote
+                        style="border-left: 4px solid var(--color-accent); padding-left: 1.5rem; margin: 2rem 0; font-style: italic;"
+                        data-cms="limingan-kotiranta.intro.quote">
                         "Suunnittelun lähtökohtana oli luoda koteja, jotka hengittävät samaan tahtiin ympäröivän luonnon
                         kanssa."
-                    </div>
+                    </blockquote>
                 </div>
-                <div class="magazine-image">
-                    <img src="Kotiranta_olohuone.jpeg" alt="Interior mood" loading="lazy"
-                        style="width: 100%; height: auto; border-radius: 4px;"
-                        data-cms="limingan-kotiranta.intro.image">
+                <div class="split-image">
+                    <img src="Kotiranta_olohuone.jpeg" alt="Interior mood" data-cms="limingan-kotiranta.intro.image">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Gallery Grid -->
-    <section class="section" style="background: #fafaf9;">
+    <section class="section">
         <div class="container">
+            <h2 style="margin-bottom: 2rem;">Kuvigalleria</h2>
             <div class="gallery-grid">
                 <img src="Kotiranta_etu.jpeg" class="gallery-item-square" alt="Julkisivu" loading="lazy"
                     onclick="openLightbox(this.src)">
@@ -103,16 +108,96 @@
         </div>
     </section>
 
+    <!-- Basic Info Section (Dynamic Tables) -->
+    <section id="perustiedot" class="section" style="background-color: var(--color-secondary);">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
+            <div id="project-details-container">
+                <p>Ladataan tietoja...</p>
+                <!-- JS Populates Table Here using 'apartment-table' class -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Location / Map -->
+    <section id="sijainti" class="section" style="background-color: var(--color-white);">
+        <div class="container">
+            <div class="split-section">
+                <!-- Map -->
+                <div class="split-image" style="height: 400px;">
+                    <iframe id="location-map"
+                        src="https://maps.google.com/maps?q=Sudenkorento+6,+Kotiranta,+Liminka&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="100%" style="border:0; border-radius: var(--radius-lg);" allowfullscreen=""
+                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        data-cms-map="limingan-kotiranta.location.address">
+                    </iframe>
+                </div>
+
+                <!-- Text -->
+                <div class="split-content">
+                    <h2 data-cms="limingan-kotiranta.location.title">Rauhallinen sijainti</h2>
+                    <p style="font-weight: 700;">
+                        Osoite: <a href="https://maps.google.com/?q=Sudenkorento+6,+Kotiranta,+Liminka" target="_blank"
+                            data-cms="limingan-kotiranta.location.address"
+                            style="text-decoration: underline; color: var(--color-primary);">Sudenkorento 6, Kotiranta,
+                            Liminka</a>
+                    </p>
+                    <div data-cms="limingan-kotiranta.location.description">
+                        <p>Kohde sijaitsee rauhallisella alueella, lähellä luontoa ja hyviä kulkuyhteyksiä. Tontti
+                            rajoittuu puistoon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container text-center">
+            <div
+                style="background: var(--color-white); padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-accent);">
+                <h2 data-cms="limingan-kotiranta.cta.title">Kiinnostuitko Kotirannasta?</h2>
+                <p data-cms="limingan-kotiranta.cta.text" style="margin-bottom: 2rem;">Ota yhteyttä ja varaa oma
+                    esittelysi tai kysy lisätietoja ennakkomarkkinoinnista.</p>
+                <a href="contact.html" class="btn btn-primary">Ota yhteyttä myyntiin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p>Kotkansiipi 18<br>91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <div data-cms="footer.social.links">
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                    <p><a href="#" target="_blank">Facebook</a></p>
+                    <p><a href="#" target="_blank">LinkedIn</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
+    <!-- Lightbox CSS (Inline for now or move to styles.css) -->
     <style>
         .lightbox {
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -124,210 +209,35 @@
             align-items: center;
         }
 
-        .lightbox.hidden {
-            display: none;
-        }
-
         .lightbox-content {
             max-width: 90%;
             max-height: 90%;
             border-radius: 4px;
-            object-fit: contain;
-            /* Ensure full image is seen in lightbox */
         }
 
         .close-lightbox {
             position: absolute;
             top: 20px;
             right: 35px;
-            color: #f1f1f1;
+            color: #fff;
             font-size: 40px;
             font-weight: bold;
             cursor: pointer;
         }
-
-        /* Location Section Split Layout */
-        .location-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        @media (max-width: 768px) {
-            .location-split {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
     </style>
 
-    <!-- Progress / Timeline (Dynamic) -->
-    <!-- Progress / Timeline REMOVED -->
-
-    <!-- Apartments Layout -->
-    <!-- Apartments Layout REMOVED -->
-
-    <!-- House Model / Floorplan Inline -->
-    <!-- House Model / Floorplan REMOVED -->
-
-    <!-- Basic Info Section (Dynamic) -->
-    <section id="perustiedot" class="section">
-        <div class="container">
-            <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
-            <!-- Floorplan Removed from here -->
-            <div id="project-details-container">
-                <p>Ladataan tietoja...</p>
-                <!-- Table will be rendered here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Location / Map -->
-    <section id="sijainti" class="section" style="background: #fafaf9;">
-        <div class="container">
-            <div class="location-split">
-                <!-- Left: Square Map -->
-                <div class="location-map-container"
-                    style="aspect-ratio: 1/1; width: 100%; position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                    <iframe id="location-map"
-                        src="https://maps.google.com/maps?q=Sudenkorento+6,+Kotiranta,+Liminka&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" data-cms-map="limingan-kotiranta.location.address">
-                        <!-- Using address key directly to update map -->
-                    </iframe>
-                </div>
-
-                <!-- Right: Text Content -->
-                <div class="location-text" style="text-align: left; padding-top: 1rem;">
-                    <h2 data-cms="limingan-kotiranta.location.title"
-                        style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 2rem; color: var(--color-text-primary);">
-                        Rauhallinen sijainti Vapaalan pientadovaltaisella asuinalueella.</h2>
-
-                    <div style="margin-bottom: 2.5rem;">
-                        <span
-                            style="font-weight: 600; color: var(--color-text-primary); margin-right: 0.5rem;">Osoite:</span>
-                        <a href="https://maps.google.com/?q=Sudenkorento+6,+Kotiranta,+Liminka" target="_blank"
-                            data-cms="limingan-kotiranta.location.address"
-                            style="font-weight: 500; text-decoration: underline; color: var(--color-text-primary);">Sudenkorento
-                            6, Kotiranta, Liminka</a>
-                    </div>
-
-                    <div data-cms="limingan-kotiranta.location.description"
-                        style="color: var(--color-text-secondary); line-height: 1.7; font-size: 1.05rem;">
-                        <p style="margin-bottom: 1.5rem;">Kohde sijaitsee rauhallisella alueella, lähellä luontoa ja
-                            hyviä kulkuyhteyksiä. Tontti rajoittuu puistoon, tarjoten yksityisyyttä ja vehreyttä.</p>
-                        <ul style="list-style-type: disc; padding-left: 1.5rem; margin-top: 1rem;">
-                            <li>Rauhallinen ja viihtyisä sijainti</li>
-                            <li>Koulut ja palvelut lähellä</li>
-                            <li>Hyvät liikenneyhteydet</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact CTA -->
-    <section id="yhteys" class="section">
-        <div class="container">
-            <div class="quote-box text-center" style="border: none; box-shadow: none; background: transparent;">
-                <h2 data-cms="limingan-kotiranta.cta.title">Kiinnostuitko Kotirannasta?</h2>
-                <p data-cms="limingan-kotiranta.cta.text">Ota yhteyttä ja varaa oma esittelysi tai kysy lisätietoja
-                    ennakkomarkkinoinnista.</p>
-                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä myyntiin</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div>
-                <h3 data-cms="footer.company.title">Valttikodit Oy</h3>
-            </div>
-            <div>
-                <h3 data-cms="footer.contact.title">Yhteystiedot</h3>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
-                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
-            </div>
-            <div>
-                <h3 data-cms="footer.social.title">Seuraa meitä</h3>
-                <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Script that auto-populates timeline based on ID -->
     <script src="main.js"></script>
     <script>
-        // Additional Page Specific Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            // Wait for main data load, then update timeline specific to this project
-            let attempts = 0;
-            const checkData = setInterval(() => {
-                attempts++;
-                if (window.appState && window.appState.loaded) {
-                    console.log('Main data loaded, checking for project espoon-kaarna...');
-                    clearInterval(checkData);
-                    updateTimeline();
-                } else if (attempts > 40) { // 20 seconds timeout
-                    console.warn('Timeline data load timeout or appState not ready.');
-                    // Don't clear, keep trying but log warning
-                }
-            }, 500);
-
-            function updateTimeline() {
-                const projectId = 'limingan-kotiranta';
-                // Loose match to handle potential ID mismatch in Sheet
-                const project = window.appState.projects.find(p =>
-                    (p.id && p.id.toLowerCase() === projectId) ||
-                    (p.name && p.name.includes('Kotiranta'))
-                );
-
-                if (!project) {
-                    console.error('Project not found in data:', projectId);
-                    document.getElementById('dynamic-timeline').innerHTML = '<p>Hankkeen tietoja ei löytynyt varausjärjestelmästä.</p>';
-                    return;
-                }
-
-                // Logic based on progress
-                /*
-                   0-24%: Suunnittelu
-                   25-49%: Ennakkomarkkinointi
-                   50-99%: Rakentaminen
-                   100%: Muutto
-                */
-                const p = project.progress || 0;
-                let activeStep = 1;
-                if (p >= 25) activeStep = 2;
-                if (p >= 50) activeStep = 3;
-                if (p >= 100) activeStep = 4;
-
-                // Element removed (Timeline)
-                const timelineContainer = document.getElementById('dynamic-timeline');
-                if (timelineContainer) timelineContainer.innerHTML = '';
-
-                if (timelineContainer) timelineContainer.innerHTML = '';
-            } // End updateTimeline
-        });
-
-        // Global Lightbox functions (must be outside DOMContentLoaded or assigned to window explicitly outside data check)
+        // Lightbox Logic
         window.openLightbox = function (src) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lb.classList.remove('hidden');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.remove('hidden');
         }
         window.closeLightbox = function () {
             document.getElementById('lightbox').classList.add('hidden');
         }
     </script>
+
 </body>
 
 </html>
