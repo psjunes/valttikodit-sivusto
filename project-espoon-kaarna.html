@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As Oy Espoon Kaarna - Uudiskohde Saunalahdessa | Valttikodit</title>
+    <meta name="description"
+        content="Ennakkomarkkinoinnissa As Oy Espoon Kaarna. Modernit paritalot Saunalahdessa, Espoossa (120-140 m²). Ekologista ja laadukasta asumista.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="As Oy Espoon Kaarna - Modernit paritalot Espoossa">
+    <meta property="og:description" content="Luonnonläheistä asumista Saunalahdessa. 120-140m² paritalokoteja.">
+    <meta property="og:image" content="Kotiranta_julkisivu.jpeg">
+    <meta property="og:url" content="https://www.valttikodit.fi/project-espoon-kaarna.html">
+    <meta property="og:type" content="product">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Inline override for specific assets -->
+    <style>
+        .hero-kaarna {
+            background-image: url('Kotiranta_julkisivu.jpeg');
+        }
+    </style>
+</head>
+
+<body data-project-id="espoon-kaarna">
+
+    <!-- Main Navigation (Transparent) -->
+    <nav class="navbar" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(5px);">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Valttikodit</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="material-icons-round">menu</span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Etusivu</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
+                <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
+                <!-- References removed -->
+                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Immersive Hero -->
+    <header class="immersive-hero hero-kaarna">
+        <div class="immersive-content" style="color: #ffffff;">
+            <div class="immersive-subtitle" style="text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.subtitle">Ennakkomarkkinoinnissa</div>
+            <h1 class="immersive-title" style="text-shadow: 0 4px 10px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.title">As Oy Espoon Kaarna</h1>
+            <p style="font-size: 1.2rem; opacity: 0; animation: fadeUp 1s ease-out forwards 1.2s; text-shadow: 0 2px 4px rgba(0,0,0,0.5); color: #ffffff;"
+                data-cms="espoon-kaarna.hero.desc">
+                Saunalahti, Espoo &bull; 4 Paritaloa &bull; 120-140 m²
+            </p>
+        </div>
+    </header>
+
+    <!-- Sticky Project Nav Removed -->
+
+    <!-- Intro / Magazine Section -->
+    <section id="esittely" class="magazine-section">
+        <div class="container">
+            <div class="magazine-grid">
+                <div class="magazine-text">
+                    <h2 data-cms="espoon-kaarna.intro.title">Luonnonrauhaa ja modernia arkkitehtuuria.</h2>
+                    <p class="magazine-intro" data-cms="espoon-kaarna.intro.text">
+                        Espoon Kaarna edustaa uuden ajan pientaloasumista, jossa yhdistyvät tinkimätön estetiikka,
+                        ekologisuus ja lapsiperheen arjen sujuvuus.
+                    </p>
+                    <p data-cms="espoon-kaarna.intro.text2"></p>
+                    <div class="magazine-quote" data-cms="espoon-kaarna.intro.quote">
+                        "Suunnittelun lähtökohtana oli luoda koteja, jotka hengittävät samaan tahtiin ympäröivän luonnon
+                        kanssa."
+                    </div>
+                </div>
+                <div class="magazine-image">
+                    <img src="Kotiranta_olohuone.jpeg" alt="Interior mood" loading="lazy"
+                        style="width: 100%; height: auto; border-radius: 4px;" data-cms="espoon-kaarna.intro.image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="section" style="background: #fafaf9;">
+        <div class="container">
+            <div class="gallery-grid">
+                <img src="Kotiranta_julkisivu.jpeg" class="gallery-item-square" alt="Julkisivu" loading="lazy"
+                    onclick="openLightbox(this.src)">
+                <img src="Kotiranta_olohuone.jpeg" class="gallery-item-square" alt="Olohuone" loading="lazy"
+                    onclick="openLightbox(this.src)">
+                <img src="Kotiranta_pohjakuva.jpeg" class="gallery-item-square" alt="Pohjakuva" loading="lazy"
+                    onclick="openLightbox(this.src)">
+                <img src="model-family-exterior.png" class="gallery-item-square" alt="Piha" loading="lazy"
+                    onclick="openLightbox(this.src)">
+                <img src="model-family-interior.png" class="gallery-item-square" alt="Sisätila" loading="lazy"
+                    onclick="openLightbox(this.src)">
+                <img src="hero-bg.png" class="gallery-item-square" alt="Yksityiskohta" onclick="openLightbox(this.src)"
+                    loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <style>
+        .lightbox {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.hidden {
+            display: none;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            object-fit: contain;
+            /* Ensure full image is seen in lightbox */
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Location Section Split Layout */
+        .location-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .location-split {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+
+    <!-- Progress / Timeline (Dynamic) -->
+    <!-- Progress / Timeline REMOVED -->
+
+    <!-- Apartments Layout -->
+    <!-- Apartments Layout REMOVED -->
+
+    <!-- House Model / Floorplan Inline -->
+    <!-- House Model / Floorplan REMOVED -->
+
+    <!-- Basic Info Section (Dynamic) -->
+    <section id="perustiedot" class="section">
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Asunnon perustiedot</h2>
+            <!-- Floorplan Removed from here -->
+            <div id="project-details-container">
+                <p>Ladataan tietoja...</p>
+                <!-- Table will be rendered here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Location / Map -->
+    <section id="sijainti" class="section" style="background: #fafaf9;">
+        <div class="container">
+            <div class="location-split">
+                <!-- Left: Square Map -->
+                <div class="location-map-container"
+                    style="aspect-ratio: 1/1; width: 100%; position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <iframe id="location-map"
+                        src="https://maps.google.com/maps?q=Sudenkorento+6,+Kotiranta,+Liminka&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade" data-cms-map="espoon-kaarna.location.address">
+                        <!-- Using address key directly to update map -->
+                    </iframe>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="location-text" style="text-align: left; padding-top: 1rem;">
+                    <h2 data-cms="espoon-kaarna.location.title"
+                        style="font-family: var(--font-serif); font-size: 2.5rem; margin-bottom: 2rem; color: var(--color-text-primary);">
+                        Rauhallinen sijainti Vapaalan pientadovaltaisella asuinalueella.</h2>
+
+                    <div style="margin-bottom: 2.5rem;">
+                        <span
+                            style="font-weight: 600; color: var(--color-text-primary); margin-right: 0.5rem;">Osoite:</span>
+                        <a href="https://maps.google.com/?q=Sudenkorento+6,+Kotiranta,+Liminka" target="_blank"
+                            rel="noopener noreferrer" data-cms="espoon-kaarna.location.address"
+                            style="font-weight: 500; text-decoration: underline; color: var(--color-text-primary);">Sudenkorento
+                            6, Kotiranta, Liminka</a>
+                    </div>
+
+                    <div data-cms="espoon-kaarna.location.description"
+                        style="color: var(--color-text-secondary); line-height: 1.7; font-size: 1.05rem;">
+                        <p style="margin-bottom: 1.5rem;">Kohde sijaitsee rauhallisella alueella, lähellä luontoa ja
+                            hyviä kulkuyhteyksiä. Tontti rajoittuu puistoon, tarjoten yksityisyyttä ja vehreyttä.</p>
+                        <ul style="list-style-type: disc; padding-left: 1.5rem; margin-top: 1rem;">
+                            <li>Rauhallinen ja viihtyisä sijainti</li>
+                            <li>Koulut ja palvelut lähellä</li>
+                            <li>Hyvät liikenneyhteydet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section id="yhteys" class="section">
+        <div class="container">
+            <div class="quote-box text-center" style="border: none; box-shadow: none; background: transparent;">
+                <h2 data-cms="espoon-kaarna.cta.title">Kiinnostuitko Kaarnasta?</h2>
+                <p data-cms="espoon-kaarna.cta.text">Ota yhteyttä ja varaa oma esittelysi tai kysy lisätietoja
+                    ennakkomarkkinoinnista.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä myyntiin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <h3>Valttikodit Oy</h3>
+            </div>
+            <div>
+                <h3>Yhteystiedot</h3>
+                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
+                <p><a href="" data-cms="footer.contact.phone"></a></p>
+            </div>
+            <div>
+                <h3>Seuraa meitä</h3>
+                <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
+                        rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script that auto-populates timeline based on ID -->
+    <script src="main.js"></script>
+    <script>
+        // Additional Page Specific Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for main data load, then update timeline specific to this project
+            let attempts = 0;
+            const checkData = setInterval(() => {
+                attempts++;
+                if (window.appState && window.appState.loaded) {
+                    console.log('Main data loaded, checking for project espoon-kaarna...');
+                    clearInterval(checkData);
+                    updateTimeline();
+                } else if (attempts > 40) { // 20 seconds timeout
+                    console.warn('Timeline data load timeout or appState not ready.');
+                    // Don't clear, keep trying but log warning
+                }
+            }, 500);
+
+            function updateTimeline() {
+                const projectId = 'espoon-kaarna';
+                // Loose match to handle potential ID mismatch in Sheet
+                const project = window.appState.projects.find(p =>
+                    (p.id && p.id.toLowerCase() === projectId) ||
+                    (p.name && p.name.includes('Kaarna'))
+                );
+
+                if (!project) {
+                    console.error('Project not found in data:', projectId);
+                    document.getElementById('dynamic-timeline').innerHTML = '<p>Hankkeen tietoja ei löytynyt varausjärjestelmästä.</p>';
+                    return;
+                }
+
+                // Logic based on progress
+                /*
+                   0-24%: Suunnittelu
+                   25-49%: Ennakkomarkkinointi
+                   50-99%: Rakentaminen
+                   100%: Muutto
+                */
+                const p = project.progress || 0;
+                let activeStep = 1;
+                if (p >= 25) activeStep = 2;
+                if (p >= 50) activeStep = 3;
+                if (p >= 100) activeStep = 4;
+
+                // Element removed (Timeline)
+                const timelineContainer = document.getElementById('dynamic-timeline');
+                if (timelineContainer) timelineContainer.innerHTML = '';
+
+                if (timelineContainer) timelineContainer.innerHTML = '';
+            } // End updateTimeline
+        });
+
+        // Global Lightbox functions (must be outside DOMContentLoaded or assigned to window explicitly outside data check)
+        window.openLightbox = function (src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.classList.remove('hidden');
+        }
+        window.closeLightbox = function () {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>

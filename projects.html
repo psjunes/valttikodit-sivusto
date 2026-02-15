@@ -5,76 +5,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Myytävät asunnot ja uudiskohteet | Valttikodit</title>
-    <meta name="description"
-        content="Löydä uusi kotisi Valttikotien kohteista. Myytävät paritalot ja erillistalot Limingassa ja Espoossa. Tutustu ja varaa omasi!">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Myytävät asunnot | Valttikodit">
-    <meta property="og:description" content="Tutustu huolella suunniteltuihin uudiskohteisiimme.">
-    <meta property="og:image" content="reference-image.jpg">
-    <meta property="og:url" content="https://www.valttikodit.fi/projects.html">
-    <meta property="og:type" content="website">
+    <!-- Design System Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+    <meta name="description"
+        content="Löydä uusi kotisi Valttikotien kohteista. Myytävät paritalot ja erillistalot Limingassa ja Espoossa.">
+    <meta property="og:title" content="Myytävät asunnot | Valttikodit">
+    <meta property="og:image" content="hero-bg.jpg">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- 1. Navigation (Master Component) -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+
+            <ul class="nav-links nav-menu">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
-                <!-- <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li> -->
-                <li><a href="projects.html" class="nav-link active">Myytävät kohteet (3)</a></li>
+                <li><a href="projects.html" class="nav-link active">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
-                <!-- References removed -->
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Header -->
-    <div class="section" style="padding-top: 8rem; padding-bottom: 2rem;">
+    <!-- Header Section -->
+    <section class="section" style="padding-top: 8rem; padding-bottom: 2rem; background-color: var(--color-white);">
         <div class="container text-center">
-            <h1>Löydä uusi kotisi parhailta paikoilta.</h1>
-            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">Varaamalla ajoissa varmistat rakentamisen
-                aloituksen ja pääset vaikuttamaan sisustukseen.</p>
+            <h1>Löydä uusi kotisi parhailta paikoilta</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Varaamalla ajoissa varmistat rakentamisen aloituksen ja pääset vaikuttamaan sisustukseen.
+            </p>
         </div>
-    </div>
+    </section>
 
-    <!-- Project List -->
-    <section class="section" style="padding-top: 0;">
+    <!-- Project Grid -->
+    <section class="section" style="padding-top: 0; background-color: var(--color-white);">
         <div class="container">
-            <div id="projects-grid" class="collection-grid">
+            <div id="projects-grid" class="grid grid-3">
                 <!-- Projects rendered by script.js -->
+                <p class="text-center" style="grid-column: 1/-1;">Ladataan kohteita...</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Master Component) -->
     <footer class="footer">
         <div class="container footer-content">
             <div>
-                <h3 data-cms="footer.company.title">Valttikodit Oy</h3>
-                <p data-cms="footer.company.desc">Rakennamme koteja, joissa viihdyt.</p>
+                <h3>Aloitetaan keskustelu</h3>
+                <p>Haluatko kuulla lisää? Lupaamme rennon jutteluhetken.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä</a>
             </div>
             <div>
-                <h3 data-cms="footer.contact.title">Yhteystiedot</h3>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
-                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
+                <h3>Yhteystiedot</h3>
+                <p><strong>Valttikodit Oy</strong></p>
+                <p>Kotkansiipi 18<br>91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
             </div>
             <div>
-                <h3 data-cms="footer.social.title">Seuraa meitä</h3>
+                <h3>Seuraa meitä</h3>
                 <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a></p>
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                    <p><a href="#" target="_blank">Facebook</a></p>
+                    <p><a href="#" target="_blank">LinkedIn</a></p>
                 </div>
             </div>
         </div>

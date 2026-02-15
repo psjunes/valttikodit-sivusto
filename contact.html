@@ -4,152 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ota yhteyttä - Valttikodit | Kysy lisää asunnoista</title>
-    <meta name="description"
-        content="Ota yhteyttä Valttikoteihin! Kysy myytävistä asunnoista, tonteista tai rakentamisesta. Meidät tavoittaa sähköpostitse tai puhelimitse.">
+    <title>Ota yhteyttä - Valttikodit</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Ota yhteyttä Valttikoteihin">
-    <meta property="og:description" content="Aloitetaan keskustelu unelmiesi kodista.">
-    <meta property="og:image" content="valtti-contact.jpg">
-    <meta property="og:url" content="https://www.valttikodit.fi/contact.html">
-    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .contact-card {
-            background-color: var(--color-white);
-            padding: 3rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid #e5e5e5;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-    </style>
+
+    <meta name="description" content="Ota yhteyttä Valttikoteihin. Kysy lisää kohteistamme tai pyydä esittelyä.">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- 1. Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+            <ul class="nav-links nav-menu">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
-                <!-- <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li> -->
-                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
-                <!-- References removed -->
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <div class="section" style="padding-top: 8rem; min-height: 80vh; display: flex; align-items: center;">
+    <!-- Header -->
+    <header class="section" style="padding-top: 8rem; padding-bottom: 2rem; background-color: var(--color-white);">
+        <div class="container text-center">
+            <h1>Ota yhteyttä</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Oletko kiinnostunut kohteistamme tai onko sinulla oma tontti? Jätä viesti, niin olemme sinuun
+                yhteydessä.
+            </p>
+        </div>
+    </header>
+
+    <!-- Contact Grid -->
+    <section class="section" style="padding-top: 2rem;">
         <div class="container">
-            <div class="contact-card">
-                <h1 data-cms="contact.main.title">Aloitetaan keskustelu.</h1>
-                <p data-cms="contact.main.subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">Haluamme kuulla
-                    unelmistasi. Varaa rento
-                    etäkahvihetki asiantuntijamme kanssa – ei myyntipuheita, vaan aitoa kuuntelua.</p>
+            <div class="contact-grid">
 
-                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST"
-                    style="text-align: left; margin-top: 2rem;">
-                    <input type="hidden" name="access_key" value="fa637672-a5ba-4717-8464-d1d29719c87b">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                    <input type="hidden" name="subject" value="Uusi viesti Valttikodit-sivuilta">
-                    <input type="hidden" name="from_name" value="Valttikodit Verkkosivut">
-                    <h2 style="text-align: center; margin-bottom: 1.5rem;">Lähetä viestiä</h2>
-                    <div class="form-group">
-                        <label for="firstname" class="form-label">Etunimi<span class="required">*</span></label>
-                        <input type="text" id="firstname" name="firstname" class="form-input" required>
+                <!-- Info Column -->
+                <div>
+                    <div
+                        style="background: var(--color-white); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+                        <h3>Yhteystiedot</h3>
+                        <p><strong>Valttikodit Oy</strong></p>
+                        <p style="margin-bottom: 2rem;">Kotkansiipi 18, 91900 Liminka</p>
+
+                        <p><strong>Myynti & Asiakaspalvelu</strong></p>
+                        <p><a href="mailto:info@valttikodit.fi"
+                                style="color: var(--color-primary); font-weight: 700;">info@valttikodit.fi</a></p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="lastname" class="form-label">Sukunimi<span class="required">*</span></label>
-                        <input type="text" id="lastname" name="lastname" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Matkapuhelinnumero<span class="required">*</span></label>
-                        <input type="tel" id="phone" name="phone" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Sähköposti<span class="required">*</span></label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" class="form-label">Viesti</label>
-                        <textarea id="message" name="message" class="form-input" rows="5"></textarea>
-                    </div>
-
-                    <p class="privacy-notice">
-                        Valttikodit tarvitsee meille antamiasi yhteystietoja ottaakseen sinuun yhteyttä tuotteitamme ja
-                        palveluitamme koskevissa asioissa. Voit perua nämä viestintäasetukset koska tahansa. Lisätietoa
-                        tilauksen peruuttamisesta, tietosuojakäytännöistä ja siitä, miten olemme sitoutuneet suojelemaan
-                        yksityisyyttäsi, saat <a href="tietosuojaseloste.html" target="_blank" rel="noopener noreferrer"
-                            style="text-decoration: underline;">tietosuojakäytännöstä</a>.
-                    </p>
-
-                    <!-- Fake reCAPTCHA -->
-                    <div class="recaptcha-placeholder"
-                        style="margin-bottom: 1.5rem; background: #f9f9f9; padding: 1rem; border: 1px solid #d3d3d3; border-radius: 3px; display: inline-flex; align-items: center; justify-content: space-between; width: 100%; max-width: 300px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <input type="checkbox" id="recaptcha-check" style="width: 24px; height: 24px;">
-                            <label for="recaptcha-check" style="font-size: 14px; color: #000;">I'm not a robot</label>
-                        </div>
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA"
-                                style="width: 32px; height: 32px;">
-                            <span style="font-size: 10px; color: #555;">reCAPTCHA</span>
-                            <span style="font-size: 8px; color: #555;">Privacy - Terms</span>
+                    <div
+                        style="background: var(--color-white); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+                        <h3>Seuraa meitä</h3>
+                        <div data-cms="footer.social.links">
+                            <p><a href="#" target="_blank">Instagram</a></p>
+                            <p><a href="#" target="_blank">Facebook</a></p>
                         </div>
                     </div>
-                    <br>
+                </div>
 
-                    <button type="submit" class="btn btn-accent" style="width: 100%;">Lähetä</button>
-                </form>
+                <!-- Form Column -->
+                <div
+                    style="background: var(--color-white); padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <h2 style="margin-bottom: 2rem;">Lähetä viesti</h2>
 
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 2rem 0;">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="fa637672-a5ba-4717-8464-d1d29719c87b">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <input type="hidden" name="subject" value="Uusi viesti Valttikodit-sivuilta">
+                        <input type="hidden" name="from_name" value="Valttikodit Verkkosivut">
 
-                <h3>Tai ota suoraan yhteyttä</h3>
-                <p><strong>Puhelin:</strong> <span>040 773 2283</span></p>
-                <p><strong>Sähköposti:</strong> <span data-cms="contact.direct.email_val">info@valttikodit.fi</span></p>
+                        <div class="form-group">
+                            <label for="name">Nimi *</label>
+                            <input type="text" id="name" name="name" required placeholder="Etunimi Sukunimi">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Sähköposti *</label>
+                            <input type="email" id="email" name="email" required placeholder="sinun@sahkoposti.fi">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Puhelinnumero</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+358 40 123 4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Viesti</label>
+                            <textarea id="message" name="message" rows="5"
+                                placeholder="Kerro, mistä olet kiinnostunut..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Lähetä viesti</button>
+                    </form>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
             <div>
-                <h3 data-cms="footer.company.title">Valttikodit Oy</h3>
-                <p data-cms="footer.company.desc">Rakennamme koteja, joissa viihdyt.</p>
+                <h3>Valttikodit Oy</h3>
+                <p>Rakennamme koteja, joissa viihdyt.</p>
             </div>
             <div>
-                <h3 data-cms="footer.contact.title">Yhteystiedot</h3>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
-                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
-            </div>
-            <div>
-                <h3 data-cms="footer.social.title">Seuraa meitä</h3>
-                <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a></p>
-                </div>
+                <h3>Yhteystiedot</h3>
+                <p>Kotkansiipi 18, 91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
             </div>
         </div>
     </footer>
 
     <script src="main.js"></script>
+
 </body>
 
 </html>

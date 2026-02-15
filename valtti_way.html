@@ -4,152 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarinamme ja arvomme | Valttikodit</title>
-    <meta name="description"
-        content="Valttikodit on rakennusalan ammattilainen yli 10 vuoden kokemuksella. Rakennamme kestäviä ja terveellisiä koteja, joissa viihdyt. Tutustu tarinaamme.">
+    <title>Tarinamme - Valttikodit</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Valttikodit - Tarinamme">
-    <meta property="og:description" content="Yli 10 vuotta rakentamista suurella sydämellä. Lue lisää.">
-    <meta property="og:image" content="valtti-contact.jpg">
-    <meta property="og:url" content="https://www.valttikodit.fi/valtti_way.html">
-    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-    <style>
-        .trust-logo {
-            max-width: 200px;
-            height: auto;
-            margin-top: 1rem;
-        }
 
-        .text-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .value-card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: var(--radius-md);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            text-align: left;
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            color: var(--color-accent-emerald);
-            margin-bottom: 1rem;
-        }
-    </style>
+    <meta name="description" content="Valttikotien tarina. Miksi rakennamme koteja emmekä vain taloja?">
+    <meta property="og:title" content="Tarinamme | Valttikodit">
+    <meta property="og:image" content="intro-image.jpg">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- 1. Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+            <ul class="nav-links nav-menu">
                 <li><a href="index.html" class="nav-link">Etusivu</a></li>
-                <!-- <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li> -->
-                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link active">Tarinamme</a></li>
-                <!-- References removed -->
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero / Intro -->
-    <div class="section" style="padding-top: 8rem; padding-bottom: 4rem; background-color: var(--color-bg-secondary);">
-        <div class="container text-center" style="max-width: 900px;">
-            <h1 class="page-title" style="margin-bottom: 1.5rem;">Onnellisempi arki kodin jokaisessa elämänvaiheessa.
-            </h1>
-            <p style="font-size: 1.3rem; color: var(--color-text-secondary);">Valttikodit Oy – Rakennamme kestäviä
-                koteja ja luottamusta.</p>
+    <!-- Header -->
+    <header class="section" style="padding-top: 8rem; padding-bottom: 2rem; background-color: var(--color-white);">
+        <div class="container text-center">
+            <span class="status-badge marketing"
+                style="background: transparent; color: var(--color-accent); font-size: 1rem; border: none; padding: 0;">MEIDÄN
+                FILOSOFIA</span>
+            <h1 data-cms="story.hero.title">Kun arki toimii, mieli lepää</h1>
         </div>
-    </div>
+    </header>
 
-    <!-- Main Content -->
+    <!-- Content Section -->
+    <section class="section" style="background-color: var(--color-white); padding-top: 0;">
+        <div class="container" style="max-width: 800px;"> <!-- Readability Constraint -->
+
+            <img src="intro-image.jpg" data-cms="story.intro.image" alt="Valttikodit philosophy"
+                style="border-radius: var(--radius-lg); margin-bottom: 3rem; width: 100%;">
+
+            <div data-cms="story.content.text">
+                <p><strong>Uskomme, että koti on ihmisen tärkein paikka.</strong> Se ei ole vain sijoitus tai katto pään
+                    päällä, vaan paikka, jossa palaudutaan ja eletään elämän tärkeimmät hetket.</p>
+
+                <h3 style="margin-top: 2rem;">Skandinaavinen selkeys</h3>
+                <p>Suunnittelumme pohjautuu pohjoismaiseen perinteeseen: valoon, luonnonmateriaaleihin ja selkeisiin
+                    linjoihin. Emme kikkaile turhilla neliöillä, vaan optimoimme tilankäytön niin, että 90m² tuntuu
+                    sadalta.</p>
+
+                <h3 style="margin-top: 2rem;">Ekologisuus vakiona</h3>
+                <p>Kaikki kohteemme ovat energiatehokkaita. Käytämme vain kestäviä materiaaleja ja varmistamme, että
+                    kotisi arvo säilyy vuosikymmeniä.</p>
+
+                <blockquote
+                    style="border-left: 4px solid var(--color-accent); padding-left: 1.5rem; margin: 3rem 0; font-style: italic; font-family: var(--font-heading); font-size: 1.25rem;">
+                    "Laatu ei ole sitä, että lisätään hienouksia, vaan sitä, että poistetaan kaikki turha ja tehdään
+                    olennainen täydellisesti."
+                </blockquote>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Principles Grid -->
     <section class="section">
         <div class="container">
-
-            <!-- Company Story & Experience -->
-            <div class="split-section" style="gap: 4rem; margin-bottom: 6rem;">
-                <div class="split-image">
-                    <img src="valtti-contact.jpg" alt="Ota yhteyttä" class="intro-image" loading="lazy"
-                        style="border-radius: var(--radius-lg); height: 100%; object-fit: cover;">
+            <h2 class="text-center" style="margin-bottom: 3rem;">Arvomme</h2>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">nature_people</span>
+                    <h3>Ihminen edellä</h3>
+                    <p>Suunnittelemme koteja ihmisille, emme arkkitehtuurilehdille.</p>
                 </div>
-                <div class="split-content text-content">
-                    <h2>Yli 10 vuoden kokemus rakentamisesta</h2>
-                    <p>Valttikodit Oy on rakennusalan ammattilainen, jolla on yli vuosikymmenen kokemus monipuolisesta
-                        rakentamisesta. Historiamme kattaa laajan kirjon kohteita aina pientaloista ja paritaloista
-                        rivi- ja kerrostaloihin sekä halli- ja toimitilarakentamiseen.</p>
-                    <p>Meille rakentaminen ei ole vain seiniä ja kattoja, vaan koteja ja tiloja, joissa elämä tapahtuu.
-                        Olemme mukana koko rakennushankkeen ajan, varmistaen laadun ja sujuvuuden alusta loppuun, jotta
-                        teitä odottaa muuttaessa terveellinen, turvallinen ja toimiva koti.</p>
-                    <p>Yhteistyöterveisin,</p>
-                    <p>Jani Junes, Insinööri (ylempi AMK)</p>
-                    <p>Valttikodit Oy:n toimitusjohtaja ja perustajaosakas</p>
-                    <p>jani.junes@valttikodit.fi / puh: 0407732283</p>
-
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">verified</span>
+                    <h3>Rehellisyys</h3>
+                    <p>Se mitä lupaamme, sen pidämme. Aikataulut ja budjetit pitävät.</p>
                 </div>
-            </div>
-
-            <!-- Mission & Value Proposition -->
-            <div class="text-center" style="max-width: 800px; margin: 0 auto 6rem;">
-                <h2>Missiomme</h2>
-                <p
-                    style="font-size: 1.5rem; font-family: var(--font-serif); font-style: italic; color: var(--color-text-primary);">
-                    "Onnellisempi arki kodin jokaisessa elämänvaiheessa."</p>
-                <p style="margin-top: 2rem;">Tavoitteemme on tarjota omakotirakentajille ja -asujille ratkaisuja, jotka
-                    ovat paitsi kestäviä ja laadukkaita, myös kustannustehokkaita. Haluamme mahdollistaa matalat
-                    asumiskulut tinkimättä asumisen mukavuudesta.</p>
-            </div>
-
-            <!-- Core Values Grid -->
-            <h2 class="text-center">Toimintamme kulmakivet</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <span class="material-icons-round value-icon">verified_user</span>
-                    <h3>Luotettava Kumppani</h3>
-                    <p>Kuulumme Tilaajavastuu.fi:n Luotettava Kumppani -ohjelmaan. Tämä on takuu siitä, että hoidamme
-                        yhteiskunnalliset velvoitteemme moitteettomasti.</p>
-                    <img src="logo-luotettava-kumppani.png" alt="Luotettava Kumppani Logot" class="trust-logo"
-                        loading="lazy">
-                </div>
-                <div class="value-card">
-                    <span class="material-icons-round value-icon">eco</span>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">park</span>
                     <h3>Kestävyys</h3>
-                    <p>Rakennamme koteja, jotka kestävät aikaa ja elämää. Valinnoissamme korostuvat energiatehokkuus ja
-                        pitkäikäiset materiaalit.</p>
-                </div>
-                <div class="value-card">
-                    <span class="material-icons-round value-icon">handshake</span>
-                    <h3>Asiantunteva palvelu</h3>
-                    <p>Olemme kumppanisi koko matkan ajan. Kokenut tiimimme auttaa ja opastaa, tehden
-                        rakennusprojektista sinulle mahdollisimman vaivattoman.</p>
-                </div>
-                <div class="value-card">
-                    <span class="material-icons-round value-icon">savings</span>
-                    <h3>Kustannustehokkuus</h3>
-                    <p>Hyvällä suunnittelulla ja ketterällä toimintatavalla pystymme tarjoamaan laadukkaita koteja
-                        kilpailukykyiseen hintaan ja matalilla asumiskuluilla.</p>
+                    <p>Rakennamme vain sellaista, minkä takana voimme seistä ylpeinä.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -157,27 +106,29 @@
     <footer class="footer">
         <div class="container footer-content">
             <div>
-                <h3 data-cms="footer.company.title">Valttikodit Oy</h3>
-                <p data-cms="footer.company.desc">Rakennamme koteja, joissa viihdyt.</p>
+                <h3>Aloitetaan keskustelu</h3>
+                <p>Haluatko kuulla lisää? Lupaamme rennon jutteluhetken.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä</a>
             </div>
             <div>
-                <h3 data-cms="footer.contact.title">Yhteystiedot</h3>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
-                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
+                <h3>Yhteystiedot</h3>
+                <p><strong>Valttikodit Oy</strong></p>
+                <p>Kotkansiipi 18<br>91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
             </div>
             <div>
-                <h3 data-cms="footer.social.title">Seuraa meitä</h3>
+                <h3>Seuraa meitä</h3>
                 <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">Facebook</a> | <a href="#" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a></p>
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                    <p><a href="#" target="_blank">Facebook</a></p>
+                    <p><a href="#" target="_blank">LinkedIn</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script src="main.js"></script>
+
 </body>
 
 </html>

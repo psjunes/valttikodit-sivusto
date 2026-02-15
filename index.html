@@ -4,175 +4,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valttikodit - Laadukkaat ja ekologiset kodit | Uudiskohteet</title>
+    <title>Valttikodit - Laadukkaat ja ekologiset kodit</title>
+
+    <!-- Design System Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
     <meta name="description"
         content="Valttikodit rakentaa toimivia, tyylikkäitä ja ekologisia koteja. Tutustu myytäviin uudiskohteisiin Limingassa ja Espoossa.">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="Valttikodit - Enemmän kuin talo">
-    <meta property="og:description" content="Skandinaavisia koteja, joissa arki sujuu. Katso myytävät kohteet.">
     <meta property="og:image" content="hero-bg.jpg">
-    <meta property="og:url" content="https://www.valttikodit.fi/">
-    <meta property="og:type" content="website">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Navigation -->
+    <!-- 1. Navigation (Master Component) -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">Valttikodit</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <a href="index.html" class="nav-logo">Valttikodit</a>
+
+            <button class="hamburger" aria-label="Avaa valikko" onclick="toggleMobileMenu()">
                 <span class="material-icons-round">menu</span>
             </button>
-            <ul class="nav-links">
+
+            <ul class="nav-links nav-menu"> <!-- Kept 'nav-links' class for JS compatibility -->
                 <li><a href="index.html" class="nav-link active">Etusivu</a></li>
-                <!-- <li><a href="collection.html" class="nav-link">Mallisto & Ideat</a></li> -->
-                <li><a href="projects.html" class="nav-link">Myytävät kohteet (3)</a></li>
+                <li><a href="projects.html" class="nav-link">Myytävät kohteet</a></li>
                 <li><a href="valtti_way.html" class="nav-link">Tarinamme</a></li>
-                <!-- References removed -->
-                <li><a href="contact.html" class="btn btn-secondary">Ota yhteyttä</a></li>
+                <li><a href="contact.html" class="btn btn-primary">Ota yhteyttä</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- 2. Hero Section -->
     <header class="hero">
-        <img src="hero-bg.jpg" data-cms="home.hero.bg" alt="Sunlit bedroom in a Valttikodit home" class="hero-bg">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <h1 data-cms="home.hero.title">Enemmän kuin talo.<br>Hyvinvointisi perusta.</h1>
-            <p data-cms="home.hero.subtitle">Tyylikkäät, toimivat ja tavoitettavissa olevat skandinaaviset kodit elämän
-                kaikkiin vaiheisiin.</p>
-            <a href="projects.html" class="btn btn-primary">Myytävät kohteet</a>
-            <div style="margin-top: 4rem; opacity: 0.7;">↓</div>
+        <img src="hero-bg.jpg" data-cms="home.hero.bg" alt="Valttikodit interior" class="hero-bg">
+        <div class="hero-content">
+            <h1 class="hero-title" data-cms="home.hero.title">Enemmän kuin talo.<br>Hyvinvointisi perusta.</h1>
+            <p class="hero-subtitle" data-cms="home.hero.subtitle">
+                Tyylikkäät, toimivat ja tavoitettavissa olevat skandinaaviset kodit elämän kaikkiin vaiheisiin.
+            </p>
+            <a href="projects.html" class="btn btn-accent">Katso myytävät kohteet</a>
         </div>
     </header>
 
-    <!-- Services Summary Section (New) -->
-    <section class="section" style="padding-bottom: 0;">
+    <!-- 3. Projects Grid (Dynamic) -->
+    <section class="section" style="background-color: var(--color-white);">
         <div class="container">
-            <div class="text-center" style="max-width: 800px; margin: 0 auto 4rem;">
-                <span class="intro-tag">Palvelumme</span>
-                <h2 data-cms="home.services.title">Kaikki saman katon alta.</h2>
-                <p data-cms="home.services.text">Me emme vain rakenna seiniä. Tarjoamme kokonaisvaltaisen kumppanuuden
-                    tontin hankinnasta
-                    muuttovalmiiseen kotiin.</p>
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h2>Myytävät kohteet</h2>
+                <p>Löydä uusi kotisi huolella valituista kohteistamme.</p>
             </div>
-            <div id="services-grid" class="trust-grid" style="margin-top: 0;">
-                <!-- Sisältö ladataan dynaamisesti (main.js) -->
+
+            <div id="projects-grid" class="grid grid-3">
+                <!-- JS Populates this. Class 'grid-3' handles layout -->
+                <p class="text-center" style="grid-column: 1/-1;">Ladataan kohteita...</p>
+            </div>
+
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="projects.html" class="btn btn-secondary">Näytä kaikki kohteet</a>
             </div>
         </div>
     </section>
 
-    <!-- Introduction Section -->
+    <!-- 4. Services / Trust Section -->
     <section class="section">
+        <div class="container">
+            <div class="text-center" style="max-width: 800px; margin: 0 auto 3rem;">
+                <span>PALVELUMME</span>
+                <h2 data-cms="home.services.title">Kaikki saman katon alta</h2>
+                <p data-cms="home.services.text">Me emme vain rakenna seiniä. Tarjoamme kokonaisvaltaisen kumppanuuden.
+                </p>
+            </div>
+
+            <div id="services-grid" class="grid grid-3">
+                <!-- Fallback content if JS fails or loading -->
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">home_work</span>
+                    <h3>Uudiskohde</h3>
+                    <p>Laadukkaat asunnot parhailta paikoilta.</p>
+                </div>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">edit</span>
+                    <h3>Muutostyöt</h3>
+                    <p>Räätälöimme kodin toiveidesi mukaan.</p>
+                </div>
+                <div class="trust-item">
+                    <span class="material-icons-round trust-icon">verified_user</span>
+                    <h3>Turvallisuus</h3>
+                    <p>RS-kohteet ja 10 vuoden lisäturva.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Story / Split Section -->
+    <section class="section" style="background-color: var(--color-white);">
         <div class="container">
             <div class="split-section">
                 <div class="split-image">
-                    <img src="intro-image.jpg" data-cms="home.intro.image" alt="Interior atmosphere" loading="lazy">
+                    <img src="intro-image.jpg" data-cms="home.intro.image" alt="Interior mood">
                 </div>
                 <div class="split-content">
-                    <span class="intro-tag">Tunne</span>
                     <h2 data-cms="home.intro.title">Koti on tunne.</h2>
-                    <p data-cms="home.intro.text">Se on paikka, jossa hengähdät syvään oven suljettuasi. Se on arjen
-                        sujuvuutta, kun kaikelle on
-                        paikkansa.<br><br>Valttikodit suunnitellaan todellista elämää varten.</p>
-
-                    <div class="quote-box" data-cms="home.intro.quote">
+                    <p data-cms="home.intro.text">Se on paikka, jossa hengähdät syvään. Valttikodit suunnitellaan
+                        todellista elämää varten.</p>
+                    <blockquote
+                        style="border-left: 4px solid var(--color-accent); padding-left: 1.5rem; font-style: italic; margin-top: 2rem;">
                         "Emme rakenna vain neliöitä, vaan puitteet hyvälle elämälle."
-                    </div>
+                    </blockquote>
+                    <a href="valtti_way.html" class="btn btn-secondary" style="margin-top: 2rem;">Lue tarinamme</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy Section (Image 2) -->
-    <section class="section" style="background-color: var(--color-bg-primary);">
-        <div class="container">
-            <div class="split-section">
-                <div class="split-content">
-                    <h2 data-cms="home.philosophy.title">Kun arki toimii, mieli lepää.</h2>
-                    <p data-cms="home.philosophy.text">Skandinaavinen muotoilu ei ole meille vain estetiikkaa – se on
-                        demokratiaa. Uskomme, että hyvin
-                        suunniteltu koti vähentää stressiä.</p>
-
-                    <div id="philosophy-container" style="margin-top: 2rem;">
-                        <!-- Sisältö ladataan dynaamisesti -->
-                    </div>
-                </div>
-                <div class="split-image" style="position: relative;">
-                    <!-- Simulating layered look -->
-                    <img src="Kotiranta_ilta.jpeg" alt="Kotiranta ilta" loading="lazy"
-                        style="position: relative; z-index: 2; transform: translateX(-20px);">
-                    <div
-                        style="position: absolute; top: -30px; right: -30px; width: 100%; height: 100%; background: #e5e7eb; border-radius: var(--radius-lg); z-index: 1;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Section -->
-    <section class="section">
-        <div class="container">
-            <h2 data-cms="home.trust.title" class="text-center" style="font-size: 3rem; margin-bottom: 1rem;">
-                Turvallinen matka omaan kotiin.</h2>
-            <p data-cms="home.trust.text" class="text-center" style="max-width: 600px; margin: 0 auto 3rem;">
-                Rakentaminen voi jännittää. Siksi me
-                teemme siitä läpinäkyvää. Et jää koskaan yksin.</p>
-
-            <div id="trust-grid" class="trust-grid">
-                <!-- Sisältö ladataan dynaamisesti -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Collection Section (Now Projects) -->
-    <section class="section">
-        <div class="container">
-            <div class="text-center" style="margin-bottom: 4rem;">
-                <span class="intro-tag">Myytävät kohteet</span>
-                <h2 style="font-size: 3rem;">Löydä uusi kotisi</h2>
-                <p>Tutustu huolella valittuihin kohteisiimme.</p>
-            </div>
-
-            <div id="projects-grid" class="collection-grid">
-                <!-- Projects rendered by script.js -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- 6. Footer (Master Component) -->
     <footer class="footer">
         <div class="container footer-content">
+            <!-- Col 1: CTA -->
             <div>
-                <h2 data-cms="footer.cta.title">Aloitetaan keskustelu.</h2>
-                <p data-cms="footer.cta.text">Haluatko kuulla lisää malleistamme tai jutella tonttiasioista?<br>Lupaamme
-                    rennon jutteluhetken, emme
-                    myyntipuhetta.</p>
-                <a href="contact.html" class="btn btn-accent">Ota yhteyttä</a>
+                <h3>Aloitetaan keskustelu</h3>
+                <p>Haluatko kuulla lisää? Lupaamme rennon jutteluhetken ilman myyntipuheita.</p>
+                <a href="contact.html" class="btn btn-accent" style="margin-top: 1rem;">Ota yhteyttä</a>
             </div>
+
+            <!-- Col 2: Info -->
             <div>
-                <h3 data-cms="footer.contact.title">
-                    Yhteystiedot</h3>
-                <p data-cms="footer.company.title">Valttikodit Oy</p>
-                <p data-cms="footer.company.desc" style="display:none;">Rakennamme koteja, joissa viihdyt.</p>
-                <p data-cms="footer.contact.address">Kotkansiipi 18<br>91900 Liminka</p>
-                <p><a href="mailto:info@valttikodit.fi" data-cms="footer.contact.email">info@valttikodit.fi</a></p>
-                <p><a href="" data-cms="footer.contact.phone"></a></p>
+                <h3>Yhteystiedot</h3>
+                <p><strong>Valttikodit Oy</strong></p>
+                <p>Kotkansiipi 18<br>91900 Liminka</p>
+                <p><a href="mailto:info@valttikodit.fi">info@valttikodit.fi</a></p>
             </div>
+
+            <!-- Col 3: Social -->
             <div>
-                <h3 data-cms="footer.social.title">Seuraa
-                    meitä</h3>
+                <h3>Seuraa meitä</h3>
                 <div data-cms="footer.social.links">
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></p>
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></p>
-                    <p><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+                    <p><a href="#" target="_blank">Instagram</a></p>
+                    <p><a href="#" target="_blank">Facebook</a></p>
+                    <p><a href="#" target="_blank">LinkedIn</a></p>
                 </div>
             </div>
+        </div>
+        <div class="text-center" style="margin-top: 4rem; opacity: 0.5; font-size: 0.9rem;">
+            &copy; 2026 Valttikodit Oy. Kaikki oikeudet pidätetään.
         </div>
     </footer>
 
